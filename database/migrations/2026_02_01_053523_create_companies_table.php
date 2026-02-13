@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('type', ['prospect','client'])->default('prospect');
             $table->string('sector')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
@@ -22,6 +21,10 @@ return new class extends Migration
             $table->string('email_hr')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+
+            // Champs ajoutés dans une autre migration pour éviter les problèmes de dépendances
+            //$table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            //$table->string('logo')->nullable()->after('description');
         });
 
     }

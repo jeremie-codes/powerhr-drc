@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        $this->call([
+        /*$this->call([
             CountriesTableSeeder::class,
         ]);
 
@@ -46,6 +46,12 @@ class DatabaseSeeder extends Seeder
             'role' => 'candidate',
             'email' => 'jeremie@powerhr-drc.com',
             'password' => bcrypt('powerhr@123'),
+        ]);*/
+
+        $this->call([
+            //ClientSeeder::class,
+            //JobOfferSeeder::class,
+            JobCategorySeeder::class,
         ]);
 
     }

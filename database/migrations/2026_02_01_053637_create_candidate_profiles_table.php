@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->text('summary')->nullable();
             $table->string('job_type')->nullable();
-            $table->string('sector')->nullable();
             $table->string('qualification_level')->nullable();
             $table->integer('years_experience')->default(0);
             $table->decimal('salary_expectation', 10, 2)->nullable();

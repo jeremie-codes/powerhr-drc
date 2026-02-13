@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->text('bio')->nullable();
             $table->string('image')->nullable();
-            $table->string('langue')->nullable();
+            $table->string('langue')->default('fr');
 
             $table->foreignId('country_id')
                 ->nullable()

@@ -50,4 +50,52 @@
     <!-- Main Style -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
+    <script>
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'fr',
+                    includedLanguages: 'fr,en',
+                    autoDisplay: false
+                },
+                'google_translate_element'
+            );
+        }
+
+        function changeLanguage(lang) {
+
+            // Google Translate
+            const select = document.querySelector('.goog-te-combo');
+            if (select) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+            }
+
+            // Sauvegarde en session Laravel
+            fetch("{{ route('set.language') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                body: JSON.stringify({ lang })
+            }).then(() => {
+                window.location.reload();
+            });
+        }
+    </script>
+
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <div id="google_translate_element" class="hidden"></div>
+
+    <style>
+        .skiptranslate {
+            display: none !important;
+        }
+        body {
+            top: 0 !important;
+        }
+    </style>
 </head>

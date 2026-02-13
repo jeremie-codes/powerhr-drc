@@ -6,18 +6,18 @@
             @case('fr')
                 <img src="{{ URL::asset('build/images/flags/20/fr.svg') }}" alt="" id="header-lang-img"
                     class="object-cover h-5 rounded-full">
-                <span class="text-sm font-medium text-slate-600">French</span>
+                <span class="text-sm font-medium text-slate-600">Français</span>
             @break
             @case('en')
                 <img src="{{ URL::asset('build/images/flags/20/us.svg') }}" alt="" id="header-lang-img"
                     class="object-cover h-5 rounded-full">
-                <span class="text-sm font-medium text-slate-600">English</span>
+                <span class="text-sm font-medium text-slate-600">Anglais</span>
             @break
 
             @default
                 <img src="{{ URL::asset('build/images/flags/20/fr.svg') }}" alt="" id="header-lang-img"
                     class="object-cover h-5 rounded-full">
-                <span class="text-sm font-medium text-slate-600">French</span>
+                <span class="text-sm font-medium text-slate-600">Français</span>
         @endswitch
     </button>
 
@@ -32,7 +32,7 @@
         class="flex items-center gap-3 cursor-pointer">
             <img src="{{ URL::asset('build/images/flags/fr.svg') }}"
                 class="object-cover h-4 rounded-full">
-            <span class="text-sm font-medium text-slate-600">French</span>
+            <span class="text-sm font-medium text-slate-600">Français</span>
         </a>
 
         <!-- EN -->
@@ -41,7 +41,7 @@
         class="flex items-center gap-3 cursor-pointer">
             <img src="{{ URL::asset('build/images/flags/us.svg') }}"
                 class="object-cover h-4 rounded-full">
-            <span class="text-sm font-medium text-slate-600">English</span>
+            <span class="text-sm font-medium text-slate-600">Anglais</span>
         </a>
 
     </div>

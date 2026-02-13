@@ -2,8 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Candidate\ProfileController;
-
 
 Route::post('/set-language', function (Request $request) {
     session(['lang' => $request->lang]);
@@ -13,14 +11,10 @@ Route::post('/set-language', function (Request $request) {
 
 Route::get('/', function () {
     return view('index');
-});
-
-Route::middleware(['auth'])->group(function () {
-    Route::post('/profile', [ProfileController::class, 'store'])
-        ->name('profile.store');
-});
-
+})->name('index');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/candidate.php';
+require __DIR__.'/client.php';
 require __DIR__.'/admin.php';
+

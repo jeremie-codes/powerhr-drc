@@ -64,7 +64,12 @@ class User extends Authenticatable
 
     public function candidate()
     {
-        return $this->hasOne(CandidateProfile::class);
+        return $this->hasOne(CandidateProfile::class)->withDefault();
+    }
+
+    public function company()
+    {
+        return $this->hasOne(Company::class);
     }
 
     public function country()
@@ -82,7 +87,6 @@ class User extends Authenticatable
     public function isClient()
     {
         return in_array($this->role, ['prospect','client']);
-
     }
 
     public function isCandidate()
@@ -93,13 +97,26 @@ class User extends Authenticatable
     public function getProfileRoute()
     {
         if($this->isAdmin()) {
-            return 'admin.profile';
+            return 'admin.profile.index';
         }
         if($this->isClient()) {
-            return 'client.profile';
+            return 'client.profile.index';
         }
         if($this->isCandidate()) {
-            return 'candidate.profile';
+            return 'candidate.profile.index';
+        }
+    }
+
+    public function getSettingRoute()
+    {
+        if($this->isAdmin()) {
+            return 'admin.settings.index';
+        }
+        if($this->isClient()) {
+            return 'client.settings.index';
+        }
+        if($this->isCandidate()) {
+            return 'candidate.settings.index';
         }
     }
 

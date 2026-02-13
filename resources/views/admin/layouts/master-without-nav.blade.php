@@ -27,14 +27,14 @@
 
         function changeLanguage(lang) {
 
-            // 1️⃣ Google Translate
+            // Google Translate
             const select = document.querySelector('.goog-te-combo');
             if (select) {
                 select.value = lang;
                 select.dispatchEvent(new Event('change'));
             }
 
-            // 2️⃣ Sauvegarde en session Laravel
+            // Sauvegarde en session Laravel
             fetch("{{ route('set.language') }}", {
                 method: "POST",
                 headers: {
@@ -69,7 +69,6 @@
 
 <!-- Vendor Script -->
 @include('admin.layouts.vendor-scripts')
-
 
 </body>
 

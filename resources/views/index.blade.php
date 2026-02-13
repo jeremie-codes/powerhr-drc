@@ -14,10 +14,10 @@
         <!-- FAVICONS ICON -->
         {{-- <link rel="icon" href="images/favicon.png" type="image/x-icon" /> --}}
         <link rel="shortcut icon" type="image/x-icon"
-            href="{{ url('images/favicon.png') }}" />
+            href="{{ asset('images/favicon.png') }}" />
 
         <!-- PAGE TITLE HERE -->
-        <title>Accueil| Power HR</title>
+        <title>Accueil | Power HR</title>
 
         <!-- MOBILE SPECIFIC -->
         <meta name="viewport" content="width=device-width, initial-scale=1">

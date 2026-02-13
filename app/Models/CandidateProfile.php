@@ -10,7 +10,6 @@ class CandidateProfile extends Model
         'user_id',
         'summary',
         'job_type',
-        'sector',
         'qualification_level',
         'years_experience',
         'salary_expectation',
@@ -37,6 +36,22 @@ class CandidateProfile extends Model
     {
         return $this->hasMany(CandidateExperience::class, 'candidate_id');
     }
+
+    public function educations()
+    {
+        return $this->hasMany(CandidateEducation::class, 'candidate_profile_id');
+    }
+
+    public function skills()
+    {
+        return $this->hasMany(CandidateSkill::class, 'candidate_profile_id');
+    }
+
+    public function languages()
+    {
+        return $this->hasMany(CandidateLanguage::class, 'candidate_profile_id');
+    }
+
 
     public function documents()
     {
