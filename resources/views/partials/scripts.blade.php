@@ -37,3 +37,6 @@
 
 <!-- Main JS -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
+
+<!-- End of <body> -->
+<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@4.0.1/dist/js/multi-select-tag.min.js"></script>

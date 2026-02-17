@@ -32,6 +32,8 @@ class SettingController extends Controller
             'pays_residence'  => 'required|string|max:100',
             'langue'          => 'required|string|max:5',
             'bio'             => 'nullable|string',
+            'phone'           => 'nullable|string|max:12',
+            'gender'          => 'required|string|max:12',
             'avatar'          => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
@@ -54,6 +56,8 @@ class SettingController extends Controller
             'name'        => $validated['name'],
             'email'       => $validated['email'],
             'langue'      => $validated['langue'],
+            'gender'      => $validated['gender'],
+            'phone'       => $validated['phone'],
             'country_id'  => $validated['pays_residence'],
             'image'       => $validated['image'] ?? $user->image,
         ]);

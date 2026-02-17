@@ -47,6 +47,7 @@
     <!-- Audio Player -->
     <link rel="stylesheet" href="{{ asset('assets/css/lib/audioplayer.css') }}">
 
+
     <!-- Main Style -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
@@ -98,4 +99,7 @@
             top: 0 !important;
         }
     </style>
+
+    <!-- head: below existing links -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@4.0.1/dist/css/multi-select-tag.min.css">
 </head>

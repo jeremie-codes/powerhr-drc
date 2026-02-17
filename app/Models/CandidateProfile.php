@@ -8,6 +8,7 @@ class CandidateProfile extends Model
 {
     protected $fillable = [
         'user_id',
+        'employed_at',
         'summary',
         'job_type',
         'qualification_level',
@@ -30,6 +31,11 @@ class CandidateProfile extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function employedAt()
+    {
+        return $this->belongsTo(Company::class, 'employed_at');
     }
 
     public function experiences()

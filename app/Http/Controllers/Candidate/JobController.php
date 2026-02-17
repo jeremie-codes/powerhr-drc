@@ -121,7 +121,7 @@ class JobController extends Controller
         return back()->with('success', 'Votre demande a été annulée avec succès.');
     }
 
-    public function demandes(Request $request)
+    public function candidatures(Request $request)
     {
 
         $status = $request->status;

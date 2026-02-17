@@ -1,167 +1,305 @@
-@extends('admin.layouts.master')
-@section('title')
-    {{ __('Dashboard') }}
-@endsection
+@extends('layouts.app')
+
 @section('content')
+    {{-- body main --}}
+    <div class="dashboard-main-body nft-page">
+        {{-- breacrumbs --}}
+        <div class="flex-wrap gap-3 mb-24 d-flex align-items-center justify-content-between">
+            <h6 class="mb-0 fw-semibold">Accueil</h6>
+            <ul class="gap-2 d-flex align-items-center">
+                <li class="fw-medium">
+                    <a href="{{ route('client.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
+                        <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
+                        Tableau de bord
+                    </a>
+                </li>
+                <li>-</li>
+                <li class="fw-medium">Accueil</li>
+            </ul>
+        </div>
 
-    <x-page-title title="{{ __('Dashboard') }}" pagetitle="Dashboard" />
+        {{-- content --}}
+        <div class="row gy-4">
 
-    <div class="grid grid-cols-12 2xl:grid-cols-12 gap-x-5">
-        <div class="col-span-12 card md:col-span-6 lg:col-span-4 2xl:col-span-2">
-            <div class="text-center card-body">
-                <div
-                    class="flex items-center justify-center mx-auto text-purple-500 bg-purple-100 rounded-full size-14 dark:bg-purple-500/20">
-                    <i data-lucide="package"></i>
+            @if(auth()->user()->company == null)
+                <div class="col-12">
+                    <div class="px-24 mb-10 text-lg alert alert-primary bg-primary-50 text-primary-600 border-primary-600 border-start-width-4-px border-top-0 border-end-0 border-bottom-0 py-13 fw-semibold radius-4 d-flex align-items-center justify-content-between" role="alert">
+                        <div class="gap-2 d-flex align-items-center">
+                            <iconify-icon icon="mdi:alert-circle-outline" class="text-xl icon"></iconify-icon>
+                            <small>Complétez le profil de votre entreprise pour formaliser vos offres d'emploi. <b><a href="{{ route('client.profile.index') }}">Configurer</a></b></small>
+                        </div>
+                        <button class="remove-button text-primary-600 text-xxl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
+                    </div>
                 </div>
-                <h5 class="mt-4 mb-2"><span class="counter-value" data-target="{{ $customers->count() }}">0</span></h5>
-                <p class="text-slate-500 dark:text-zink-200">
-                    {{ __('t-total-customers') }}
-                </p>
-            </div>
-        </div><!--end col-->
-
-        <div class="col-span-12 card md:col-span-6 lg:col-span-4 2xl:col-span-2">
-            <div class="text-center card-body">
-                <div
-                    class="flex items-center justify-center mx-auto text-green-500 bg-green-100 rounded-full size-14 dark:bg-green-500/20">
-                    <i data-lucide="truck"></i>
+            @elseif(auth()->user()->company->can_post == false)
+                <div class="col-12">
+                    <div class="px-24 mb-10 text-lg alert alert-primary bg-primary-50 text-primary-600 border-primary-600 border-start-width-4-px border-top-0 border-end-0 border-bottom-0 py-13 fw-semibold radius-4 d-flex align-items-center justify-content-between" role="alert">
+                        <div class="gap-2 d-flex align-items-center">
+                            <iconify-icon icon="mdi:alert-circle-outline" class="text-xl icon"></iconify-icon>
+                            <small>Veuillez remplir le contrat dans le menu <b><a href="{{ route('client.briefs.index') }}">"Contrat"</a></b> avant de publier des offres d'emploi. <b> <a href="{{ route('client.briefs.index') }}"> Remplir le contrat</a></b></small>
+                        </div>
+                        <button class="remove-button text-primary-600 text-xxl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
+                    </div>
                 </div>
-                <h5 class="mt-4 mb-2"><span class="counter-value" data-target="{{ $candidates->count() }}">0</span></h5>
-                <p class="text-slate-500 dark:text-zink-200">
-                    {{ __('t-total-candidates') }}
-                </p>
-            </div>
-        </div><!--end col-->
+            @endif
 
-        <div class="col-span-12 card md:col-span-6 lg:col-span-4 2xl:col-span-2">
-            <div class="text-center card-body">
-                <div
-                    class="flex items-center justify-center mx-auto text-red-500 bg-red-100 rounded-full size-14 dark:bg-red-500/20">
-                    <i data-lucide="package-x"></i>
-                </div>
-                <h5 class="mt-4 mb-2"><span class="counter-value" data-target="{{ $employees->count() }}">0</span></h5>
-                <p class="text-slate-500 dark:text-zink-200">
-                    {{ __('t-total-employees') }}
-                </p>
-            </div>
-        </div><!--end col-->
+            <div class="col-xxxl-9">
+                <div class="row gy-4">
+                    <div class="col-xxl-3 col-xl-4 col-sm-6">
+                        <div class="p-3 card shadow-2 radius-8 h-100 bg-gradient-end-6">
+                            <div class="p-0 card-body">
+                                <div class="flex-wrap gap-1 mb-8 d-flex align-items-center justify-content-between">
 
-        <div class="col-span-12 card 2xl:col-span-12">
-            <div class="card-body">
-                <div class="grid items-center grid-cols-1 gap-3 mb-5 2xl:grid-cols-12">
-                    <div class="2xl:col-span-3">
-                        <h6 class="text-15">Dernieres Embauche</h6>
-                    </div><!--end col-->
-                </div><!--end grid-->
-                <div class="overflow-x-auto">
-                    <table class="w-full whitespace-nowrap">
-                        <thead class="ltr:text-left rtl:text-right">
-                            <tr class="bg-slate-100 dark:bg-zink-600">
-                                <th
-                                    class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 ID">
-                                    Matricule
-                                </th>
-                                <th
-                                    class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 Name">
-                                    {{ __('t-name') }}
-                                </th>
-                                <th
-                                    class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 Role">
-                                    {{ __('t-employer') }}
-                                </th>
-                                <th
-                                    class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 Email">
-                                    {{ __('t-designation') }}
-                                </th>
-                                <th
-                                    class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 Experience">
-                                    {{__('t-location')}}
-                                </th>
-                                <th
-                                    class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 JoinDate">
-                                    {{__('t-created-date')}}
-                                </th>
-                                <th
-                                    class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold border-b border-slate-200 dark:border-zink-500 Action">
-                                    Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="list" id="employeeList">
-                            @forelse ($hirings as $hired)
-                                <tr>
-                                    <td
-                                        class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 ID">
-                                        <a href="{{ route('users.show', $hired->user->id) }}"
-                                            class="transition-all duration-150 ease-linear text-custom-500 hover:text-custom-600">
-                                            {{$hired->user->personne->matricule}}
-                                        </a>
-                                    </td>
-                                    <td
-                                        class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Name">
-                                        <a href="{{ route('users.show', $hired->user->id) }}" class="flex items-center gap-3">
-                                            
-                                            <h6 class="grow">
-                                                {{$hired->user->personne->nom}} {{$hired->user->personne->postNom}} {{$hired->user->personne->prenom}}
-                                            </h6>
-                                        </a>
-                                    </td>
-
-                                    <td
-                                        class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Role">
-                                        <a href="{{ route('customers.show', $hired->job->user->id) }}">
-                                            {{$hired->job->user->customer->name ?? "Non defini"}} 
-                                        </a>
-                                    </td>
-                                    <td
-                                        class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Email">
-                                        <a href="{{ route('listjobs.show', $hired->job->matricule) }}">
-                                            {{$hired->job->title}} 
-                                        </a>
-                                    </td>
-                                    <td
-                                        class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Country">
-                                        {{$hired->job->location}}
-                                    </td>
-                                    <td
-                                        class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 JoinDate">
-                                        {{date('d-m-Y', strtotime($hired->job->created_at))}}
-                                    </td>
-                                    <td
-                                        class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 Action">
-                                        <div class="flex gap-3">
-                                            <a class="flex items-center justify-center size-8 transition-all duration-200 ease-linear rounded-md bg-slate-100 text-slate-500 hover:text-custom-500 hover:bg-custom-100 dark:bg-zink-600 dark:text-zink-200 dark:hover:bg-custom-500/20 dark:hover:text-custom-500"
-                                                href="{{ route('users.show', $hired->user->id) }}"><i data-lucide="eye"
-                                                    class="inline-block size-3"></i> </a>
+                                    <div class="gap-2 d-flex align-items-center">
+                                        <span
+                                            class="flex-shrink-0 mb-0 text-white w-48-px h-48-px bg-cyan-100 text-cyan-600 d-flex justify-content-center align-items-center rounded-circle h6">
+                                            <i class="ri-group-fill"></i>
+                                        </span>
+                                        <div>
+                                            <h6 class="mb-2 fw-semibold">{{ $stats['all'] }}</h6>
+                                            <span class="text-sm fw-medium text-secondary-light">Offres</span>
                                         </div>
-                                    </td>
-                                </tr>
-                            @empty
-                            <tr></tr>
-                            <div class="text-center w-full py-3">
-                                Aucune donnée disponible
+                                    </div>
+                                </div>
+                                <p class="mb-0 text-sm">Total publiés</p>
                             </div>
-                            @endforelse
-                        </tbody>
-                    </table>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-3 col-xl-4 col-sm-6">
+                        <div class="p-3 card shadow-2 radius-8 h-100 bg-gradient-end-4">
+                            <div class="p-0 card-body">
+                                <div class="flex-wrap gap-1 mb-8 d-flex align-items-center justify-content-between">
+
+                                    <div class="gap-2 d-flex align-items-center">
+                                        <span
+                                            class="flex-shrink-0 mb-0 text-white w-48-px h-48-px bg-success-100 text-success-600 d-flex justify-content-center align-items-center rounded-circle h6">
+                                            <i class="ri-group-fill"></i>
+                                        </span>
+                                        <div>
+                                            <h6 class="mb-2 fw-semibold">{{ $stats['active'] }}</h6>
+                                            <span class="text-sm fw-medium text-secondary-light">Offres</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-0 text-sm">Total visible</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-3 col-xl-4 col-sm-6">
+                        <div class="p-3 card shadow-2 radius-8 h-100 bg-gradient-end-1">
+                            <div class="p-0 card-body">
+                                <div class="flex-wrap gap-1 mb-8 d-flex align-items-center justify-content-between">
+
+                                    <div class="gap-2 d-flex align-items-center">
+                                        <span
+                                            class="flex-shrink-0 mb-0 text-white w-48-px h-48-px bg-primary-100 text-primary-600 d-flex justify-content-center align-items-center rounded-circle h6">
+                                            <i class="ri-group-fill"></i>
+                                        </span>
+                                        <div>
+                                            <h6 class="mb-2 fw-semibold">{{ $stats['inactive'] }}</h6>
+                                            <span class="text-sm fw-medium text-secondary-light">Offres</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-0 text-sm">Total non visible</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-3 col-xl-4 col-sm-6">
+                        <div class="p-3 card shadow-2 radius-8 h-100 bg-gradient-end-1">
+                            <div class="p-0 card-body">
+                                <div class="flex-wrap gap-1 mb-8 d-flex align-items-center justify-content-between">
+
+                                    <div class="gap-2 d-flex align-items-center">
+                                        <span
+                                            class="flex-shrink-0 mb-0 text-white w-48-px h-48-px bg-lilac-100 text-lilac-600 d-flex justify-content-center align-items-center rounded-circle h6">
+                                            <i class="ri-group-fill"></i>
+                                        </span>
+                                        <div>
+                                            <h6 class="mb-2 fw-semibold">{{ $stats['expiree'] }}</h6>
+                                            <span class="text-sm fw-medium text-secondary-light">Offres</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-0 text-sm">Total expirées</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="border-0 card h-100 radius-8">
+                            <div class="px-24 card-body">
+                                <div class="flex-wrap gap-2 d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <h6 class="mb-2 text-lg fw-bold">Statistiques candidatures</h6>
+                                    </div>
+
+                                    <div class="flex-wrap gap-3 mt-20 d-flex justify-content-center">
+
+                                        <div class="gap-2 p-12 border d-inline-flex align-items-center radius-8 br-hover-primary group-item">
+                                            <span
+                                                class="bg-neutral-100 w-44-px h-44-px text-xxl radius-8 d-flex justify-content-center align-items-center text-secondary-light group-hover:bg-primary-600 group-hover:text-white">
+                                                <iconify-icon icon="uis:chart" class="icon"></iconify-icon>
+                                            </span>
+                                            <div>
+                                                <span class="text-sm text-secondary-light fw-medium">En attente</span>
+                                                <h6 class="mb-0 text-md fw-semibold">{{ $demandes['soumise'] }}</h6>
+                                            </div>
+                                        </div>
+
+                                        <div class="gap-2 p-12 border d-inline-flex align-items-center radius-8 br-hover-primary group-item">
+                                            <span
+                                                class="bg-neutral-100 w-44-px h-44-px text-xxl radius-8 d-flex justify-content-center align-items-center text-secondary-light group-hover:bg-primary-600 group-hover:text-white">
+                                                <iconify-icon icon="uis:chart" class="icon"></iconify-icon>
+                                            </span>
+                                            <div>
+                                                <span class="text-sm text-secondary-light fw-medium">Acceptée</span>
+                                                <h6 class="mb-0 text-md fw-semibold">{{ $demandes['acceptee'] }}</h6>
+                                            </div>
+                                        </div>
+
+                                        <div class="gap-2 p-12 border d-inline-flex align-items-center radius-8 br-hover-primary group-item">
+                                            <span
+                                                class="bg-neutral-100 w-44-px h-44-px text-xxl radius-8 d-flex justify-content-center align-items-center text-secondary-light group-hover:bg-primary-600 group-hover:text-white">
+                                                <iconify-icon icon="uis:chart" class="icon"></iconify-icon>
+                                            </span>
+                                            <div>
+                                                <span class="text-sm text-secondary-light fw-medium">Rejetée</span>
+                                                <h6 class="mb-0 text-md fw-semibold">{{ $demandes['rejetee'] }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="barChart" class="barChart"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div><!--end col-->
 
-    </div><!--end grid-->
+            <div class="col-xxl-3">
+                <div class="row gy-2">
+                    <!-- Dashboard Widget Start -->
+                    <div class="col-12">
+                        <div class="overflow-hidden nft-promo-card card radius-12 position-relative z-1">
+                            <img src="{{ asset('assets/images/nft/nft-gradient-bg.png') }}"
+                                class="top-0 position-absolute start-0 w-100 h-100 z-n1" alt="" />
 
+                            <div class="text-center d-flex nft-promo-card__inner align-items-center justify-content-center">
+
+                                <div class="nft-promo-card__humb">
+                                    {{-- <div class="w-100">
+                                        <img src="{{ asset($user->image ? 'storage/' . $user->image : 'build/images/users/avatar-1.png') }}"
+                                            alt="" class="w-100 h-100 object-fit-contain"
+                                            style="border-radius: 100%;">
+                                    </div> --}}
+
+                                    <div class="text-center w-100">
+                                        <div class="text-white text-md">Bienvenue à nouveau!</div>
+
+                                        <h6 class="text-white ">
+                                            {{ $user->name ?? null }}
+                                            <p class="text-sm text-white">
+                                                {{ 'Profil ' . $user->role }}
+                                            </p>
+                                        </h6>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dashboard Widget End -->
+                    <div class="col-12">
+                        <div class="overflow-hidden shadow-7 radius-12 bg-base h-100">
+                            <div class="px-24 py-16 card-header border-bottom bg-base d-flex align-items-center justify-content-between">
+                                <h6 class="mb-0 text-lg fw-semibold">Candidatures</h6>
+                                <a href="{{ route('client.jobs.apply') }}"
+                                    class="gap-1 text-primary-600 hover-text-primary d-flex align-items-center">
+                                    Voir tout
+                                    <iconify-icon icon="solar:alt-arrow-right-linear" class="icon"></iconify-icon>
+                                </a>
+                            </div>
+                            <div class="gap-20 p-20 card-body d-flex flex-column">
+                                @php
+                                    $recentApplications = $demandes['last'] ?? [];
+                                @endphp
+                                @forelse($recentApplications as $application)
+                                    <div class="gap-3 d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ asset($application->candidate?->gender == 'masculin' ? 'assets/images/users/user1.png' : 'assets/images/users/user2.png') }}"
+                                                alt="" class="flex-shrink-0 overflow-hidden w-40-px h-40-px rounded-circle me-12"
+                                            >
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-0 text-md fw-medium">{{ strlen($application->jobOffer?->title) > 13 ? substr($application->jobOffer?->title, 0, 13) . '...' : $application->jobOffer?->title }}</h6>
+                                                <span class="text-sm text-secondary-light fw-medium">{{ $application->created_at->diffForHumans() }}</span>
+                                            </div>
+                                        </div>
+                                        <a href="{{ route('client.jobs.apply.show', $application) }}" class="px-16 py-6 rounded follow-btn bg-primary-100 text-primary-600">
+                                            Voir
+                                        </a>
+                                    </div>
+                                @empty
+                                    <div class="text-center"> <p class="mb-0 text-sm text-secondary-light">Aucune candidature récente</p> </div>
+                                @endforelse
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 @endsection
-@push('scripts')
-    <!--apexchart js-->
-    <script src="{{ URL::asset('build/libs/apexcharts/apexcharts.min.js') }}"></script>
 
-    <!--dashboard ecommerce init js-->
-    <script src="{{ URL::asset('build/js/pages/dashboards-ecommerce.init.js') }}"></script>
+@section('scripts')
+    <script>
+        // ================================ Earning Statistics bar chart Start ================================
+        var options = {
+            series: [{
+                name: "Candidatures",
+                data: @json($monthlyData)
+            }],
+            chart: {
+                type: 'bar',
+                height: 310,
+                toolbar: {
+                    show: false
+                }
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    columnWidth: '23%',
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: [
+                    'Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin',
+                    'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'
+                ]
+            },
+            yaxis: {
+                labels: {
+                    formatter: function(value) {
+                        return value;
+                    }
+                }
+            }
+        };
 
-    <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
-
-    <!--dashboard analytics init js-->
-    <script src="{{ URL::asset('build/js/pages/dashboards-analytics.init.js') }}"></script>
-
-    <!-- App js -->
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
-@endpush
+        var chart = new ApexCharts(document.querySelector("#barChart"), options);
+        chart.render();
+        // ================================ Earning Statistics bar chart End ================================
+    </script>
+@endsection

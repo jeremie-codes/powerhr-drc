@@ -8,7 +8,7 @@
             <h6 class="mb-0 fw-semibold">Accueil</h6>
             <ul class="gap-2 d-flex align-items-center">
                 <li class="fw-medium">
-                    <a href="index.html" class="gap-1 d-flex align-items-center hover-text-primary">
+                    <a href="{{ route('client.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
                         <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
                         Tableau de bord
                     </a>
@@ -31,12 +31,12 @@
                         <button class="remove-button text-primary-600 text-xxl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
                     </div>
                 </div>
-            @elseif(auth()->user()->role == 'prospect')
+            @elseif(auth()->user()->company->can_post == false)
                 <div class="col-12">
                     <div class="px-24 mb-10 text-lg alert alert-primary bg-primary-50 text-primary-600 border-primary-600 border-start-width-4-px border-top-0 border-end-0 border-bottom-0 py-13 fw-semibold radius-4 d-flex align-items-center justify-content-between" role="alert">
                         <div class="gap-2 d-flex align-items-center">
                             <iconify-icon icon="mdi:alert-circle-outline" class="text-xl icon"></iconify-icon>
-                            <small>Veuillez remplir le contrat le menu <b><a href="{{ route('client.contrat.index') }}">"Contrat"</a></b> avant de publier des offres d'emploi. <b><a href="{{ route('client.contrat.index') }}">Remplir le contrat</a></b></small>
+                            <small>Veuillez remplir le contrat dans le menu <b><a href="{{ route('client.briefs.index') }}">"Contrat"</a></b> avant de publier des offres d'emploi. <b> <a href="{{ route('client.briefs.index') }}"> Remplir le contrat</a></b></small>
                         </div>
                         <button class="remove-button text-primary-600 text-xxl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
                     </div>
@@ -82,7 +82,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="mb-0 text-sm">Total actives</p>
+                                <p class="mb-0 text-sm">Total visible</p>
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="mb-0 text-sm">Total inactives</p>
+                                <p class="mb-0 text-sm">Total non visible</p>
                             </div>
                         </div>
                     </div>
@@ -237,13 +237,13 @@
                                                 alt="" class="flex-shrink-0 overflow-hidden w-40-px h-40-px rounded-circle me-12"
                                             >
                                             <div class="flex-grow-1">
-                                                <h6 class="mb-0 text-md fw-medium">{{ strlen($application->jobOffert?->name) > 15 ? substr($application->jobOffert?->name, 0, 15) . '...' : $application->jobOffert?->name }}</h6>
-                                                <span class="text-sm text-secondary-light fw-medium">{{ strlen($subText) > 12 ? substr($subText, 0, 12) . '...' : $subText }}</span>
+                                                <h6 class="mb-0 text-md fw-medium">{{ strlen($application->jobOffer?->title) > 13 ? substr($application->jobOffer?->title, 0, 13) . '...' : $application->jobOffer?->title }}</h6>
+                                                <span class="text-sm text-secondary-light fw-medium">{{ $application->created_at->diffForHumans() }}</span>
                                             </div>
                                         </div>
-                                        <button type="button" class="px-16 py-6 rounded follow-btn bg-primary-100 text-primary-600">
+                                        <a href="{{ route('client.jobs.apply.show', $application) }}" class="px-16 py-6 rounded follow-btn bg-primary-100 text-primary-600">
                                             Voir
-                                        </button>
+                                        </a>
                                     </div>
                                 @empty
                                     <div class="text-center"> <p class="mb-0 text-sm text-secondary-light">Aucune candidature récente</p> </div>

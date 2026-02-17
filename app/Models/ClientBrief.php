@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ClientBrief extends Model
 {
     protected $fillable = [
-        'client_id',
+        'company_id',
 
         // Identification
         'nom_organisation',
@@ -77,12 +77,11 @@ class ClientBrief extends Model
         'lacunes_actuelles' => 'array',
         'indicateurs_performance' => 'array',
         'risques_percus' => 'array',
-        'benchmark_interne' => 'boolean',
     ];
 
-    public function client()
+    public function company()
     {
-        return $this->belongsTo(User::class, 'client_id');
+        return $this->belongsTo(Company::class);
     }
 }
 

@@ -23,8 +23,14 @@ return new class extends Migration
             $table->timestamps();
 
             // Champs ajoutés dans une autre migration pour éviter les problèmes de dépendances
+            //$table->foreignId('country_id')->constrained('countries')->cascadeOnDelete();
             //$table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             //$table->string('logo')->nullable()->after('description');
+            //$table->boolean('can_post')->default(false); seule l'admin autorsera la possibilité de poster
+            //$table->foreignId('country_id')->constrained('countries')->cascadeOnDelete();
+            //able->string('city')->nullable();
+            //able->string('website')->nullable();
+            //able->string('rccm')->nullable();
         });
 
     }

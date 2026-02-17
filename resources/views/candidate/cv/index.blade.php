@@ -8,7 +8,7 @@
             <h6 class="mb-0 fw-semibold">Mon CV</h6>
             <ul class="gap-2 d-flex align-items-center">
                 <li class="fw-medium">
-                    <a href="index.html" class="gap-1 d-flex align-items-center hover-text-primary">
+                    <a href="{{ route('candidate.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
                         <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
                         Tableau de bord
                     </a>
@@ -49,7 +49,7 @@
                             {{-- COLONNE GAUCHE --}}
                             <div class="p-20 text-white bg-primary-500" style="width:30%;">
                                 <div class="mt-20 mb-24 text-center">
-                                    <img src="{{ $candidat->image ? asset('storage/'.$candidat->image) : asset('default-avatar.png') }}"
+                                    <img src="{{ $candidat->image ? asset('storage/'.$candidat->image) : asset('assets/images/users/user1.png') }}"
                                         class="border rounded-circle" width="150" height="150">
                                 </div>
 

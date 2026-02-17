@@ -5,39 +5,48 @@
     <div class="dashboard-main-body nft-page">
         {{-- breacrumbs --}}
         <div class="flex-wrap gap-3 mb-24 d-flex align-items-center justify-content-between">
-            <h6 class="mb-0 fw-semibold">Mon CV</h6>
+            <h6 class="mb-0 fw-semibold">Profil candidat</h6>
             <ul class="gap-2 d-flex align-items-center">
                 <li class="fw-medium">
-                    <a href="index.html" class="gap-1 d-flex align-items-center hover-text-primary">
-                        <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
-                        Tableau de bord
+                    <a href="{{ route('client.jobs.apply') }}" class="gap-1 d-flex align-items-center hover-text-primary">
+                        <iconify-icon icon="solar:user-group-outline" class="text-lg icon"></iconify-icon>
+                        Candidatures
                     </a>
                 </li>
                 <li>-</li>
-                <li class="fw-medium">CV</li>
+                <li class="fw-medium">Profil candidat</li>
             </ul>
         </div>
 
         {{-- content --}}
-        <div class="px-24 mb-10 text-lg alert alert-primary bg-primary-50 text-primary-600 border-primary-600 border-start-width-4-px border-top-0 border-end-0 border-bottom-0 py-13 fw-semibold radius-4 d-flex align-items-center justify-content-between" role="alert">
-            <div class="gap-2 d-flex align-items-center">
-                <iconify-icon icon="mdi:alert-circle-outline" class="text-xl icon"></iconify-icon>
-                <small>Assurez-vous que votre CV est à jour pour maximiser vos chances d'être recruté. il apparaîtra dans les résultats de recherche des recruteurs et vous permettra de postuler rapidement aux offres d'emploi qui vous intéressent.</small>
-            </div>
-            <button class="remove-button text-primary-600 text-xxl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-        </div>
-
         <div class="card">
             <div class="card-header">
                 <div class="flex-wrap gap-2 d-flex align-items-center justify-content-end">
-                    <a href="javascript:void(0)" onclick="printInvoice()" class="gap-1 btn btn-sm btn-warning radius-8 d-inline-flex align-items-center">
+                    <a href="javascript:void(0)" onclick="printInvoice()" class="gap-1 btn btn-sm btn-primary radius-8 d-inline-flex align-items-center">
                         <iconify-icon icon="solar:download-linear" class="text-xl"></iconify-icon>
                         Télécharger
                     </a>
-                    <a href="{{ route('candidate.profile.index') }}" class="gap-1 btn btn-sm btn-success radius-8 d-inline-flex align-items-center">
-                        <iconify-icon icon="uil:edit" class="text-xl"></iconify-icon>
-                        Modifier
-                    </a>
+
+                    @if($application->status !== "acceptee")
+                        <form action="{{ route('client.jobs.change.apply', $application) }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="status" value="acceptee">
+                            <button type="submit" href="javascript:void(0)" class="gap-1 btn btn-sm btn-success radius-8 d-inline-flex align-items-center">
+                                <iconify-icon icon="solar:download-linear" class="text-xl"></iconify-icon>
+                                Récommander ce candidat
+                            </button>
+                        </form>
+
+                        @if($application->status !== "rejetee")
+                        <form action="{{ route('client.jobs.change.apply', $application) }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="status" value="rejetee">
+                            <button type="submit" class="gap-1 btn btn-sm btn-danger radius-8 d-inline-flex align-items-center">
+                                Rejeter la candidature
+                            </button>
+                        </form>
+                        @endif
+                    @endif
                 </div>
             </div>
 
@@ -49,16 +58,16 @@
                             {{-- COLONNE GAUCHE --}}
                             <div class="p-20 text-white bg-primary-500" style="width:30%;">
                                 <div class="mt-20 mb-24 text-center">
-                                    <img src="{{ $candidat->image ? asset('storage/'.$candidat->image) : asset('default-avatar.png') }}"
+                                    <img src="{{ asset($candidat->gender == 'masculin' ? 'assets/images/users/user1.png' : 'assets/images/users/user2.png') }}"
                                         class="border rounded-circle" width="150" height="150">
                                 </div>
 
                                 <h6 class="pb-2 mb-2 text-xl text-white text-uppercase border-bottom" >Coordonnées</h6>
                                 <p class="mb-8 text-sm">
-                                    {{ $candidat->phone ?? 'Téléphone non défini' }}<br>
-                                    {{ $candidat->email ?? 'Email non défini' }}<br>
-                                    {{ $candidat->gender ?? 'Genre non défini' }}<br>
-                                    {{ $candidat->address ?? 'Adresse non définie' }}, {{ $candidat?->country?->code ?? '' }}<br>
+                                    {{ 'Téléphone: *** *** ***' }}<br>
+                                    {{ 'Email: ******@***** ' }}<br>
+                                    {{ 'Sexe: ' . ucfirst($candidat->gender) }}<br>
+                                    {{ 'Adresse : *******' }}, {{ $candidat?->country?->code ?? '' }}<br>
 
                                 </p>
 
@@ -86,7 +95,8 @@
 
                             {{-- COLONNE DROITE --}}
                             <div class="p-24 bg-white" style="width:70%;">
-                                <h5 class="mt-20 mb-0">{{ $candidat->name ?? 'Nom non défini' }}</h5>
+                                <h5 class="mt-20 mb-0">Profil Anonyme</h5>
+
                                 <h6 class="pb-2 mb-16 text-xl text-primary-500 border-bottom">
                                     {{ $candidat->candidate->job_type ?? 'Métier non défini' }}
                                 </h6>

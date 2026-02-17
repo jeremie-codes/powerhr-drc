@@ -41,7 +41,7 @@
             {{-- PARAMÈTRES --}}
             <li class="{{ request()->routeIs('candidate.settings.index') ? 'active' : '' }}">
                 <a href="{{ route('candidate.settings.index') }}">
-                    <iconify-icon icon="mdi:cog-outline" class="menu-icon"></iconify-icon>
+                    <i class="text-xl ri-user-settings-line d-flex"></i>
                     <span>Paramètres</span>
                 </a>
             </li>

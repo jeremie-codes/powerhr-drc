@@ -6,7 +6,7 @@
         <h6 class="mb-0 fw-semibold">Liste d'offres</h6>
         <ul class="gap-2 d-flex align-items-center">
             <li class="fw-medium">
-            <a href="index.html" class="gap-1 d-flex align-items-center hover-text-primary">
+            <a href="{{ route('candidate.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
                 <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
                 Tableau de bord
             </a>
@@ -129,18 +129,7 @@
             <div class="p-0 card h-100 radius-12">
                 <div class="flex-wrap gap-3 px-24 py-16 card-header border-bottom bg-base d-flex align-items-center justify-content-between">
                     <div class="flex-wrap gap-3 d-flex align-items-center">
-                        {{-- <form class="navbar-search" method="GET">
-                            <input type="text"
-                                name="search"
-                                value="{{ request('search') }}"
-                                class="w-auto bg-base h-40-px"
-                                onchange="this.form.submit()"
-                                placeholder="Rechercher une offre">
-                            <iconify-icon icon="ion:search-outline" class="icon"></iconify-icon>
-                        </form> --}}
-
                         Filtrer par statut :
-
                        <form method="GET">
                             <select name="status"
                                     onchange="this.form.submit()"
@@ -156,17 +145,12 @@
                         </form>
 
                     </div>
-                    {{-- <button type="button" class="gap-2 px-12 py-12 text-sm btn btn-primary btn-sm radius-8 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
-                        <iconify-icon icon="ic:baseline-plus" class="text-xl icon line-height-1"></iconify-icon>
-                        Ajouter une offre
-                    </button> --}}
                 </div>
                 <div class="p-24 card-body">
                     <div class="table-responsive scroll-sm">
                         <table class="table mb-0 bordered-table sm-table">
                           <thead>
                             <tr>
-                            {{-- <th>#</th> --}}
                             <th>Poste</th>
                             <th>Lieu</th>
                             <th>Contrat</th>
@@ -178,9 +162,9 @@
                             <tbody>
                                 @forelse ($jobs as $index => $job)
                                 <tr>
-                                    {{-- <td>{{ $jobs->firstItem() + $index }}</td> --}}
-
-                                    <td class="fw-semibold">{{ $job->title }}</td>
+                                    <td class="fw-semibold">
+                                        <a href="{{ route('candidate.jobs.show', $job) }}">{{ $job->title }}</a>
+                                    </td>
 
                                     <td>{{ $job->location }}</td>
 

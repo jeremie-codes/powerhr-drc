@@ -8,7 +8,7 @@
             <h6 class="mb-0 fw-semibold">Accueil</h6>
             <ul class="gap-2 d-flex align-items-center">
                 <li class="fw-medium">
-                    <a href="index.html" class="gap-1 d-flex align-items-center hover-text-primary">
+                    <a href="{{ route('candidate.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
                         <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
                         Tableau de bord
                     </a>
@@ -39,7 +39,16 @@
 
                                     <h6 class="mt-4 text-white">
                                         {{ $user->name ?? null }}
-                                        <p class="text-sm text-white">{{ $user->candidate?->is_certified ? 'Profil certifié' : 'Profil non certifié' }}</p>
+                                        <p class="gap-2 text-sm text-white d-flex align-items-center">
+                                            @if($user->candidate?->is_certified)
+                                                <span>
+                                                    <iconify-icon icon="fa-solid:award" class="mb-0 text-2xl text-white"></iconify-icon>
+                                                </span>
+                                                <span> Profil certifié</span>
+                                            @else
+                                                Profil non certifié
+                                            @endif
+                                        </p>
                                     </h6>
 
                                     <p class="text-sm text-white">{{ $user->candidate?->summary ?? '' }}</p>
@@ -50,8 +59,7 @@
 
                                 <div >
                                     <div class="flex-wrap gap-16 mt-24 d-flex align-items-center">
-                                        {{-- <a href="#" class="px-32 text-white border btn rounded-pill br-white radius-8 py-11 hover-bg-white text-hover-neutral-900">Explore</a> --}}
-                                        <a href="{{ route('candidate.profile.index') }}" class="btn rounded-pill btn-primary-600 radius-8 px-28 py-11">Voir mon profil</a>
+                                        <a href="{{ route('candidate.settings.index') }}" class="btn rounded-pill btn-primary-600 radius-8 px-28 py-11">Voir mon profil</a>
                                     </div>
                                 </div>
                             </div>

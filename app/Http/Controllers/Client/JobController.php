@@ -8,7 +8,6 @@ use App\Models\JobCategory;
 use App\Models\JobOffer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 
 class JobController extends Controller
 {
@@ -18,17 +17,20 @@ class JobController extends Controller
         $status = $request->status;
 
         /* Catégories avec offres visi */
-        $categories = JobCategory::whereHas('jobOffers')
-            ->withCount('jobOffers as jobs_count')
-            /*->withCount(['jobOffers as jobs_count' => function ($q) {
+        $categories = JobCategory::whereHas('jobOffers', function ($q) {
                 $q->where('client_id', Auth::id());
-            }])*/
+            })
+            //->withCount('jobOffers as jobs_count')
+            ->withCount(['jobOffers as jobs_count' => function ($q) {
+                $q->where('client_id', Auth::id());
+            }])
             ->orderByDesc('jobs_count')
             ->get();
 
         /* Offres filtrées */
-        // $jobs = JobOffer::where('client_id', Auth::id())->search($search)
-        $jobs = JobOffer::search($search)
+        //$jobs = JobOffer::search($search)
+
+        $jobs = JobOffer::where('client_id', Auth::id())->search($search)
             ->when($status === 'active', fn ($q) => $q->where('is_active', 1))
             ->when($status === 'inactive', fn ($q) => $q->where('is_active', 0))
             ->when($request->category, fn ($q) =>
@@ -39,10 +41,16 @@ class JobController extends Controller
             ->withQueryString();
 
         /* Stats cohérentes */
-        $stats = [
+        /*$stats = [
             'count'    => JobOffer::visible()->count(),
             'active'   => JobOffer::visible()->currentlyActive()->count(),
             'inactive' => JobOffer::visible()->currentlyInactive()->count(),
+        ];*/
+
+        $stats = [
+            'count'    => JobOffer::where('client_id', Auth::id())->count(),
+            'active'   => JobOffer::where('client_id', Auth::id())->currentlyActive()->count(),
+            'inactive' => JobOffer::where('client_id', Auth::id())->currentlyInactive()->count(),
         ];
 
         return view('client.job.index', compact(
@@ -61,6 +69,16 @@ class JobController extends Controller
 
     public function create()
     {
+        $company = auth()->user()->company ?? null;
+
+        if(!$company) {
+            return redirect()->back()->with('error', 'Vous devez compléter votre profile de l\'entreprise pour publier une offre.');
+        }
+
+        if(!$company?->can_post) {
+            return redirect()->back()->with('error', 'Vous n\'avez pas le droit de publier une offre. Veuillez contacter votre administrateur.');
+        }
+
         $categories = JobCategory::all();
         return view('client.job.create', compact('categories'));
     }
@@ -112,7 +130,7 @@ class JobController extends Controller
     public function update(Request $request, JobOffer $jobOffer)
     {
         try {
-            $request->validate([
+            $validated = $request->validate([
                 'job_category_id' => 'required|exists:job_categories,id',
                 'title' => 'required|string|max:255',
                 'description' => 'required|string',
@@ -125,7 +143,7 @@ class JobController extends Controller
                 'is_active' => 'nullable|boolean',
             ]);
 
-            $jobOffer->update($request->all());
+            $jobOffer->update($validated);
 
             return redirect()->route('client.jobs.index')
                 ->with('success', 'Offre modifiée avec succès.');
@@ -148,74 +166,67 @@ class JobController extends Controller
         }
     }
 
-    public function demandes(Request $request)
+    public function candidatures(Request $request)
     {
-
         $status = $request->status;
+        $job_id = $request->job_id;
 
-        $applications = Application::with('jobOffer')
-            ->where('client_id', Auth::id())
+        $jobs = JobOffer::where('client_id', Auth::id())->get();
+        $applications = Application::with('candidate')->whereHas('jobOffer', function ($q) {
+                $q->where('client_id', Auth::id());
+            })
             ->when($status, function ($q) use ($status) {
                 $q->where('status', $status);
             })
+            ->when($job_id, function ($q) use ($job_id) {
+                $q->where('job_offer_id', $job_id);
+            })
+            ->where('status', '!=', 'annulee')
             ->latest()
-            ->paginate(10);
+            ->paginate(12);
 
-        // Statistiques
         $stats = [
-            'acceptee' => Application::where('client_id', Auth::id())
-                ->where('status', 'acceptee')->count(),
+            'acceptee' => Application::whereHas('jobOffer', function ($q) {
+                    $q->where('client_id', Auth::id());
+                })->where('status', 'acceptee')->count(),
 
-            'soumise' => Application::where('client_id', Auth::id())
-                ->where('status', 'soumise')->count(),
+            'soumise' => Application::whereHas('jobOffer', function ($q) {
+                    $q->where('client_id', Auth::id());
+                })->where('status', 'soumise')->count(),
 
-            'rejetee' => Application::where('client_id', Auth::id())
-                ->where('status', 'rejetee')->count(),
+            'rejetee' => Application::whereHas('jobOffer', function ($q) {
+                    $q->where('client_id', Auth::id());
+                })->where('status', 'rejetee')->count(),
         ];
 
-        return view('client.job.demande', compact('applications', 'stats'));
+        return view('client.candidature.index', compact('applications', 'stats', 'jobs'));
     }
 
-    public function postuler(Request $request)
+    /**
+     * @param Application $apply
+     * @return \Illuminate\Http\RedirectResponse
+     * mise à jour du status de la candidature par le client
+    */
+    public function changeApply(Request $request, Application $apply)
     {
         try {
             // Vérifier que l'utilisateur est candidat
-            if (auth()->user()->role !== 'client') {
+            if (!auth()->user()->isClient()) {
                 abort(403);
             }
 
-            // Validation
             $request->validate([
-                'job_offer_id' => 'required|exists:job_offers,id'
+                'status' => 'required|in:acceptee,rejetee'
             ]);
 
-            $job = JobOffer::findOrFail($request->job_offer_id);
+            $apply->status = $request->status;
+            $apply->save();
 
-            // Vérifier si l'offre est active
-            if (!$job->is_active || $job->is_deleted) {
-                return back()->with('error', 'Cette offre n’est plus disponible.');
-            }
+            return back()->with('success', 'Candidature modifiée avec succès.');
 
-            // Empêcher double candidature
-            $alreadyApplied = Application::where('job_offer_id', $job->id)
-                ->where('client_id', auth()->id())
-                ->exists();
-
-            if ($alreadyApplied) {
-                return back()->with('error', 'Vous avez déjà postulé à cette offre.');
-            }
-
-            // Création de la candidature
-            Application::create([
-                'job_offer_id' => $job->id,
-                'client_id' => auth()->id(),
-                'status' => 'soumise'
-            ]);
-
-            return back()->with('success', 'Candidature envoyée avec succès.');
         }
         catch (\Exception $e) {
-            \Log::error('Erreur lors de la candidature: ' . $e->getMessage());
+            \Log::error('Erreur lors de mis à jour de la candidature: ' . $e->getMessage());
             return back()->with('error', $e->getMessage());
         }
     }

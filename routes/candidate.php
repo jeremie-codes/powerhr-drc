@@ -14,7 +14,7 @@ Route::middleware(['auth', 'role:candidate'])->group(function () {
 
         Route::get('/jobs', [JobController::class, 'index'])->name('candidate.jobs.index');
         Route::get('/jobs/{jobOffer}', [JobController::class, 'show'])->name('candidate.jobs.show');
-        Route::get("/job/apply", [JobController::class, 'demandes'])->name('candidate.jobs.apply');
+        Route::get("/job/apply", [JobController::class, 'candidatures'])->name('candidate.jobs.apply');
         Route::post('/jobs/apply', [JobController::class, 'postuler'])->name('candidate.jobs.store');
         Route::post('/jobs/apply/{application}/cancel', [JobController::class, 'annuler'])->name('candidate.jobs.cancel');
 

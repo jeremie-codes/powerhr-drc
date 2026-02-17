@@ -28,7 +28,14 @@
                             <img src="{{ asset(auth()->user()->image ? 'storage/' . auth()->user()->image : 'build/images/users/avatar-1.png') }}" alt=""
                                 class="border br-white border-width-2-px w-200-px h-200-px rounded-circle object-fit-cover bg-blue-light">
 
-                            <h6 class="mt-16 mb-0">{{ auth()->user()->name }}</h6>
+                            <h6 class="mt-16 mb-0 d-flex align-items-center justify-content-center">
+                                {{ auth()->user()->name }}
+                                @if(auth()->user()->candidate?->is_certified)
+                                    <span>
+                                        <iconify-icon icon="fa-solid:award" class="mb-0 text-2xl text-primary-500"></iconify-icon>
+                                    </span>
+                                @endif
+                            </h6>
                             <span class="mb-16 text-secondary-light">{{ auth()->user()->email }}</span>
                         </div>
                         <div class="mt-24">
@@ -43,16 +50,20 @@
                                     <span class="w-70 text-secondary-light fw-medium">: {{ auth()->user()->email ?? '--' }}</span>
                                 </li>
                                 <li class="gap-1 mb-12 d-flex align-items-center">
+                                    <span class="w-30 text-md fw-semibold text-primary-light"> Téléphone</span>
+                                    <span class="w-70 text-secondary-light fw-medium">: {{ auth()->user()->phone ?? '--' }}</span>
+                                </li>
+                                <li class="gap-1 mb-12 d-flex align-items-center">
+                                    <span class="w-30 text-md fw-semibold text-primary-light"> Genre</span>
+                                    <span class="w-70 text-secondary-light fw-medium">: {{ auth()->user()->gender ?? '--' }}</span>
+                                </li>
+                                <li class="gap-1 mb-12 d-flex align-items-center">
                                     <span class="w-30 text-md fw-semibold text-primary-light">Pays</span>
                                     <span class="w-70 text-secondary-light fw-medium">: {{ auth()->user()?->country->name ?? '--' }}</span>
                                 </li>
                                 <li class="gap-1 mb-12 d-flex align-items-center">
                                     <span class="w-30 text-md fw-semibold text-primary-light">Langue</span>
                                     <span class="w-70 text-secondary-light fw-medium">: {{ auth()->user()->langue ?? '--' }}</span>
-                                </li>
-                                <li class="gap-1 d-flex align-items-center">
-                                    <span class="w-30 text-md fw-semibold text-primary-light"> Bio</span>
-                                    <span class="w-70 text-secondary-light fw-medium">: {{ auth()->user()->candidate?->summary ?? '--' }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -129,6 +140,34 @@
                                                     placeholder="Entrez votre adresse email"
                                                     required
                                                 >
+                                            </div>
+                                        </div>
+
+                                         <div class="col-sm-6">
+                                            <div class="mb-20">
+                                                <label class="mb-8 text-sm form-label fw-semibold text-primary-light">
+                                                    Téléphone
+                                                </label>
+                                                <input
+                                                    value="{{ auth()->user()->phone ?? '' }}"
+                                                    type="number"
+                                                    name="phone"
+                                                    class="form-control radius-8"
+                                                    placeholder="080 000 0000"
+                                                >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="mb-20">
+                                                <label class="mb-8 text-sm form-label fw-semibold text-primary-light">
+                                                    Genre <span class="text-danger-600">*</span>
+                                                </label>
+                                                <select name="gender" class="form-control radius-8 form-select" required>
+                                                    <option disabled selected value="">-- Choisir Langue --</option>
+                                                    <option value="masculin" @if (auth()->user()->gender == 'masculin') selected @endif>Masculin</option>
+                                                    <option value="feminin" @if (auth()->user()->gender == 'feminin') selected @endif>Féminin</option>
+                                                </select>
                                             </div>
                                         </div>
 

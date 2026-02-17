@@ -6,7 +6,7 @@
             <h6 class="mb-0 fw-semibold">Liste d'offres</h6>
             <ul class="gap-2 d-flex align-items-center">
                 <li class="fw-medium">
-                    <a href="index.html" class="gap-1 d-flex align-items-center hover-text-primary">
+                    <a href="{{ route('client.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
                         <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
                         Tableau de bord
                     </a>
@@ -174,7 +174,9 @@
                                         <tr>
                                             {{-- <td>{{ $jobs->firstItem() + $index }}</td> --}}
 
-                                            <td class="fw-semibold">{{ $job->title }}</td>
+                                            <td class="fw-semibold">
+                                                <a href="{{ route('client.jobs.show', $job) }}">{{ $job->title }}</a>
+                                            </td>
 
                                             <td>{{ $job->location }}</td>
 
@@ -197,23 +199,23 @@
 
                                                     {{-- Voir --}}
                                                     <a href="{{ route('client.jobs.show', $job) }}"
-                                                        class="btn btn-sm btn-primary" title="Voir l’offre">
-                                                        <iconify-icon icon="mdi:eye-outline"></iconify-icon>
+                                                        title="Voir l’offre" class="bg-info-focus bg-hover-info-200 text-info-600 fw-medium w-40-px h-40-px d-flex justify-content-center align-items-center rounded-circle">
+                                                        <iconify-icon icon="majesticons:eye-line" class="text-xl icon"></iconify-icon>
                                                     </a>
 
                                                     {{-- Editer --}}
                                                     <a href="{{ route('client.jobs.edit', $job) }}"
-                                                        class="btn btn-sm btn-warning" title="Modifier l’offre">
-                                                        <iconify-icon icon="mdi:pencil-outline"></iconify-icon>
+                                                        title="Modifier l’offre" class="bg-warning-focus text-warning-600 bg-hover-warning-200 fw-medium w-40-px h-40-px d-flex justify-content-center align-items-center rounded-circle">
+                                                        <iconify-icon icon="lucide:edit" class="menu-icon"></iconify-icon>
                                                     </a>
 
-                                                    {{-- Postuler --}}
+                                                    {{-- Supprimer --}}
                                                     <form method="POST"
                                                         action="{{ route('client.jobs.delete', $job->id) }}"
                                                         onsubmit="return confirm('Voulez-vous vraiment supprimer cette offre ?')">
                                                         @csrf
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="ri-delete-bin-6-line"></i>
+                                                        <button class="remove-item-btn bg-danger-focus bg-hover-danger-200 text-danger-600 fw-medium w-40-px h-40-px d-flex justify-content-center align-items-center rounded-circle">
+                                                            <iconify-icon icon="fluent:delete-24-regular" class="menu-icon"></iconify-icon>
                                                         </button>
                                                     </form>
                                                 </div>

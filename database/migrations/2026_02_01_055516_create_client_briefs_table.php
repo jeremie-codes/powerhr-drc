@@ -13,11 +13,8 @@ return new class extends Migration
     {
         Schema::create('client_briefs', function (Blueprint $table) {
             $table->id();
-
-            // Client
-            $table->foreignId('client_id')
-                ->constrained('users')
-                ->cascadeOnDelete();
+            // company
+            $table->foreignId('company_id')->constrained('companies')->cascadeOnDelete()->nullable();
 
             /* ================================
             * IDENTIFICATION DE L’ORGANISATION
@@ -106,7 +103,7 @@ return new class extends Migration
             /* ================================
             * BUDGET
             * ================================ */
-            $table->decimal('budget_disponible', 12, 2)->nullable();
+            $table->string('budget_disponible')->nullable();
 
             $table->enum('preference_facturation', [
                 'FORFAIT',
@@ -114,13 +111,13 @@ return new class extends Migration
                 'ABONNEMENT'
             ]);
 
-            $table->boolean('benchmark_interne')->default(false);
+            $table->string('benchmark_interne')->nullable();
 
             /* ================================
             * CALENDRIER
             * ================================ */
             $table->text('delais_critiques');
-            $table->text('phases_projet');
+            $table->text('phases_projet'); ///
 
             /* ================================
             * KPI RH

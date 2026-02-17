@@ -3,108 +3,76 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
-use App\Models\CandidateProfile;
+use App\Models\Company;
 use App\Models\Country;
+use App\Models\JobCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rules\Can;
 
 class ProfileController extends Controller
 {
 
     public function index()
     {
-        $user = Auth::user()->load('client');
+        $user = Auth::user()->load('company');
+        $company = $user->company ?? null;
         $countries = Country::all();
+        $jobCategories = JobCategory::all();
 
-        return view('client.profile', compact('user', 'countries'));
+        return view('client.profile', compact('user', 'countries', 'jobCategories', 'company'));
     }
 
-   public function store(Request $request)
+    public function store(Request $request)
     {
-        $user = auth()->user();
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'sector' => 'nullable|string|max:255',
+                'address' => 'nullable|string|max:255',
+                'phone' => 'nullable|string|max:20',
+                'rccm' => 'nullable|string|max:100',
+                'website' => 'nullable|string|max:100',
+                'city' => 'nullable|string|max:50',
+                'country_id' => 'required|exists:countries,id',
+                'email_dg' => 'nullable|email',
+                'email_hr' => 'nullable|email',
+                'logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            ]);
 
-        // Sauvegarde / update profil
-        $profile = $user->client()->updateOrCreate(
-            ['user_id' => $user->id],
-            $request->only([
-                'summary',
-                'job_type',
-                'sector',
-                'qualification_level',
-                'years_experience',
-                'salary_expectation',
-                'availability',
-                'is_certified'
-            ])
-        );
+            $user = Auth::user();
 
-        /*
-        |--------------------------------------------------------------------------
-        | EXPERIENCES
-        |--------------------------------------------------------------------------
-        */
-        $profile->experiences()->delete();
+            // Upload logo
+            $logoPath = null;
 
-        if ($request->has('experiences')) {
-            foreach ($request->experiences as $exp) {
-                if (!empty($exp['company_name'])) {
-                    $profile->experiences()->create($exp);
-                }
+            if ($request->hasFile('logo')) {
+                $logoPath = $request->file('logo')->store('companies', 'public');
             }
+
+            Company::updateOrCreate(
+                ['user_id' => $user->id],
+                [
+                    'name' => $request->name,
+                    'sector' => $request->sector,
+                    'address' => $request->address,
+                    'phone' => $request->phone,
+                    'email_dg' => $request->email_dg,
+                    'email_hr' => $request->email_hr,
+                    'country_id' => $request->country_id,
+                    'city' => $request->city,
+                    'rccm' => $request->rccm,
+                    'website' => $request->website,
+                    'logo' => $logoPath,
+                ]
+            );
+
+            return redirect()->route('client.index')
+                ->with('success', 'Profil entreprise enregistré avec succès. En attente validation admin.');
+        } catch (\Exception $e) {
+
+            \Log::error('Erreur lors de la mise à jour du profil: ' . $e->getMessage());
+            return redirect()->back()
+                ->with('error', 'Une erreur est survenue lors de la mise à jour du profil.');
         }
-
-        /*
-        |--------------------------------------------------------------------------
-        | EDUCATIONS
-        |--------------------------------------------------------------------------
-        */
-        $profile->educations()->delete();
-
-        if ($request->has('educations')) {
-            foreach ($request->educations as $edu) {
-                if (!empty($edu['school'])) {
-                    $profile->educations()->create($edu);
-                }
-            }
-        }
-
-        /*
-        |--------------------------------------------------------------------------
-        | SKILLS
-        |--------------------------------------------------------------------------
-        */
-        $profile->skills()->delete();
-
-        if ($request->has('skills')) {
-            foreach ($request->skills as $skill) {
-                if (!empty($skill)) {
-                    $profile->skills()->create([
-                        'skill_name' => $skill
-                    ]);
-                }
-            }
-        }
-
-        /*
-        |--------------------------------------------------------------------------
-        | LANGUAGES
-        |--------------------------------------------------------------------------
-        */
-        $profile->languages()->delete();
-
-        if ($request->has('languages')) {
-            foreach ($request->languages as $language) {
-                if (!empty($language)) {
-                    $profile->languages()->create([
-                        'language_name' => $language
-                    ]);
-                }
-            }
-        }
-
-        return back()->with('success', 'CV enregistré avec succès.');
     }
 
 }

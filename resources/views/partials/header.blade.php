@@ -243,3 +243,21 @@
         }, 6000);
     </script>
 @endif
+
+@if (session('info'))
+    <div class="px-24 mb-0 text-lg alert alert-info bg-info-100 text-info-600 border-info-600 border-start-width-4-px border-top-0 border-end-0 border-bottom-0 py-13 fw-semibold radius-4 d-flex align-items-center justify-content-between"
+        role="alert">
+        <div class="gap-2 d-flex align-items-center">
+            <iconify-icon icon="mdi:alert-circle-outline" class="text-xl icon"></iconify-icon>
+            {{ session('info') }}
+        </div>
+        <button class="remove-button text-info-600 text-xxl line-height-1"> <iconify-icon
+                icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            $('.alert').addClass('d-none');
+        }, 6000);
+    </script>
+@endif

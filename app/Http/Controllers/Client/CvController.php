@@ -3,19 +3,19 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Application;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class CvController extends Controller
 {
 
-    public function index()
+    public function index(Application $application)
     {
-        $candidat = Auth::user();
-
        // Charger le profil + toutes les relations
+        $candidat = $application->candidate;
+
         $candidat->load([
             'candidate.experiences',
             'candidate.educations',
@@ -23,9 +23,7 @@ class CvController extends Controller
             'candidate.languages'
         ]);
 
-        // dd($candidat);
-
-        return view('candidate.cv.index', compact('candidat'));
+        return view('client.candidature.show', compact('candidat', 'application'));
     }
 
     public function download()
@@ -37,7 +35,7 @@ class CvController extends Controller
             'candidate.languages'
         ]);
 
-        $pdf = Pdf::loadView('candidate.cv.show', compact('candidat'))
+        $pdf = Pdf::loadView('client.cv.show', compact('candidat'))
                 ->setPaper('A4');
 
         return $pdf->download('CV_'.$candidat->name.'.pdf');
