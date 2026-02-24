@@ -131,9 +131,7 @@
                                             class="twm-nav-btn-left">
                                             <a
                                                 class="twm-nav-sign-up"
-                                                data-bs-toggle="modal"
-                                                href="{{ route('login.view') }}"
-                                                role="button">
+                                                href="{{ route('login.view') }}">
                                                 <i class="feather-user"></i>
                                                 S'inscrire
                                             </a>
