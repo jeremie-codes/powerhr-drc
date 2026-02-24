@@ -23,39 +23,39 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" type="text/css"
-            href="{{ url('css/bootstrap.min.css') }}"><!-- BOOTSTRAP STYLE SHEET -->
+            href="{{ asset('css/bootstrap.min.css') }}"><!-- BOOTSTRAP STYLE SHEET -->
         <link rel="stylesheet" type="text/css"
-            href="{{ url('css/font-awesome.min.css') }}"><!-- FONTAWESOME STYLE SHEET -->
+            href="{{ asset('css/font-awesome.min.css') }}"><!-- FONTAWESOME STYLE SHEET -->
         <link rel="stylesheet" type="text/css"
-            href="{{ url('css/feather.css') }}"><!-- FEATHER ICON SHEET -->
+            href="{{ asset('css/feather.css') }}"><!-- FEATHER ICON SHEET -->
         <link rel="stylesheet" type="text/css"
-            href="{{ url('css/owl.carousel.min.css') }}"><!-- OWL CAROUSEL STYLE SHEET -->
+            href="{{ asset('css/owl.carousel.min.css') }}"><!-- OWL CAROUSEL STYLE SHEET -->
         <link rel="stylesheet" type="text/css"
-            href="{{ url('css/magnific-popup.min.css') }}"><!-- MAGNIFIC POPUP STYLE SHEET -->
+            href="{{ asset('css/magnific-popup.min.css') }}"><!-- MAGNIFIC POPUP STYLE SHEET -->
         <link rel="stylesheet" type="text/css"
-            href="{{ url('css/lc_lightbox.css') }}"><!-- Lc light box popup -->
+            href="{{ asset('css/lc_lightbox.css') }}"><!-- Lc light box popup -->
         <link rel="stylesheet" type="text/css"
-            href="{{ url('css/bootstrap-select.min.css') }}"><!-- BOOTSTRAP SLECT BOX STYLE SHEET  -->
+            href="{{ asset('css/bootstrap-select.min.css') }}"><!-- BOOTSTRAP SLECT BOX STYLE SHEET  -->
         <link rel="stylesheet" type="text/css"
-            href="{{ url('css/dataTables.bootstrap5.min.css') }}"><!-- DATA table STYLE SHEET  -->
+            href="{{ asset('css/dataTables.bootstrap5.min.css') }}"><!-- DATA table STYLE SHEET  -->
         <link rel="stylesheet" type="text/css"
-            href="{{ url('css/select.bootstrap5.min.css') }}"><!-- DASHBOARD select bootstrap  STYLE SHEET  -->
+            href="{{ asset('css/select.bootstrap5.min.css') }}"><!-- DASHBOARD select bootstrap  STYLE SHEET  -->
         <link rel="stylesheet" type="text/css"
-            href="{{ url('css/dropzone.css') }}"><!-- DROPZONE STYLE SHEET -->
+            href="{{ asset('css/dropzone.css') }}"><!-- DROPZONE STYLE SHEET -->
         <link rel="stylesheet" type="text/css"
-            href="{{ url('css/scrollbar.css') }}"><!-- CUSTOM SCROLL BAR STYLE SHEET -->
+            href="{{ asset('css/scrollbar.css') }}"><!-- CUSTOM SCROLL BAR STYLE SHEET -->
         <link rel="stylesheet" type="text/css"
-            href="{{ url('css/datepicker.css') }}"><!-- DATEPICKER STYLE SHEET -->
-        <link rel="stylesheet" type="text/css" href="{{ url('css/flaticon.css') }}">
+            href="{{ asset('css/datepicker.css') }}"><!-- DATEPICKER STYLE SHEET -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/flaticon.css') }}">
         <!-- Flaticon -->
         <link rel="stylesheet" type="text/css"
-            href="{{ url('css/swiper-bundle.min.css') }}"><!-- Swiper Slider -->
+            href="{{ asset('css/swiper-bundle.min.css') }}"><!-- Swiper Slider -->
         <link rel="stylesheet" type="text/css"
-            href="{{ url('css/style.css') }}"><!-- MAIN STYLE SHEET -->
+            href="{{ asset('css/style.css') }}"><!-- MAIN STYLE SHEET -->
 
         <!-- THEME COLOR CHANGE STYLE SHEET -->
         <link rel="stylesheet" class="skin" type="text/css"
-            href="{{ url('css/skins-type/skin-6.css') }}">
+            href="{{ asset('css/skins-type/skin-6.css') }}">
 
         <style>
             @media (min-width: 995px) {
@@ -134,8 +134,8 @@
                                                 data-bs-toggle="modal"
                                                 href="{{ route('login.view') }}"
                                                 role="button">
-                                                <i class="feather-log-in"></i>
-                                                Postuler
+                                                <i class="feather-user"></i>
+                                                S'inscrire
                                             </a>
                                         </div>
 
@@ -144,8 +144,8 @@
                                             <a
                                                 href="{{ route('login.view') }}"
                                                 class="twm-nav-post-a-job">
-                                                <i class="feather-briefcase"></i>
-                                                Engager
+                                                <i class="feather-log-in"></i>
+                                                Se connecter
                                             </a>
                                         </div>
                                     </div>
