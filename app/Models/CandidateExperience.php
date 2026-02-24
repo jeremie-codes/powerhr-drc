@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CandidateExperience extends Model
 {
     protected $fillable = [
-        'candidate_id',
+        'candidate_profile_id',
         'company_name',
         'position',
         'start_date',
@@ -25,6 +25,6 @@ class CandidateExperience extends Model
 
     public function candidate()
     {
-        return $this->belongsTo(CandidateProfile::class, 'candidate_id');
+        return $this->belongsTo(CandidateProfile::class, 'candidate_profile_id');
     }
 }
