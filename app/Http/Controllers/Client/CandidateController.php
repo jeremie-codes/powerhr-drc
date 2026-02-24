@@ -40,7 +40,7 @@ class CandidateController extends Controller
         }
 
         $Recommanded = RecommandedByClient::where('company_id', auth()->user()->company->id)
-            ->where('candidate_profile_id', $profile->candidate?->id)
+            ->where('candidate_profile_id', $profile->candidate->id)
             ->get()->first();
 
         return view('client.recommended.show', compact('profile', 'Recommanded'));
@@ -51,7 +51,7 @@ class CandidateController extends Controller
         try {
 
             $candidateId = $request->candidate_id;
-            $companyId = auth()->user()->company?->id;
+            $companyId = auth()->user()->company->id;
 
             if(!$companyId)
             {
