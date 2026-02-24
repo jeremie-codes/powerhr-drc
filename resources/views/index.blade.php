@@ -57,6 +57,7 @@
         <link rel="stylesheet" class="skin" type="text/css"
             href="{{ asset('css/skins-type/skin-6.css') }}">
 
+        <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/feather.min.js"></script>
         <style>
             @media (min-width: 995px) {
                 .head-text {
@@ -131,7 +132,7 @@
                                             class="twm-nav-btn-left">
                                             <a
                                                 class="twm-nav-sign-up"
-                                                href="{{ route('login.view') }}">
+                                                href="{{ route('register.view') }}">
                                                 <i class="feather-user"></i>
                                                 S'inscrire
                                             </a>
