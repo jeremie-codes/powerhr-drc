@@ -13,10 +13,10 @@ class ClientSeeder extends Seeder
     {
         // Création du user client
         $client = User::create([
-            'name' => 'Entreprise Demo',
+            'name' => 'HR Demo',
             'email' => 'client@test.com',
             'password' => Hash::make('password'),
-            'role' => 'client', // important
+            'role' => 'client',
         ]);
 
         // Création de la company liée
