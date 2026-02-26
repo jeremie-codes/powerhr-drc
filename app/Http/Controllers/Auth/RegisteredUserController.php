@@ -49,4 +49,22 @@ class RegisteredUserController extends Controller
 
         return redirect()->route('candidate.index');
     }
+
+    public function index(Request $request) {
+       try {
+            $users = User::all();
+
+            return response()->json([
+                "success" => true,
+                "message" => "Les utilisateurs sont récuperés avec succès !",
+                "data" => $users
+            ]);
+       } catch (\Throwable $th) {
+           return response()->json([
+               "success" => false,
+               "message" => "Une erreur est survenue lors de la recuperation des utilisateurs !",
+               "data" => $th
+           ]);
+       }
+    }
 }

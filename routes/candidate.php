@@ -7,7 +7,7 @@ use App\Http\Controllers\Candidate\ProfileController;
 use App\Http\Controllers\Candidate\RouteController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth', 'role:candidate'])->group(function () {
+Route::middleware(['auth', 'role:candidate,employee'])->group(function () {
     Route::prefix('candidate')->group(function () {
 
         Route::get('/', [RouteController::class, 'index'])->name('candidate.index');
