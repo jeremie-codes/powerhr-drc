@@ -6,7 +6,7 @@
         <h6 class="mb-0 fw-semibold">Détails de l'offres</h6>
         <ul class="gap-2 d-flex align-items-center">
             <li class="fw-medium">
-            <a href="{{ route('client.jobs.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
+            <a href="{{ route('admin.jobs.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
                 <iconify-icon icon="mdi:briefcase-outline" class="text-lg menu-icon"></iconify-icon>
                 Liste d'offres
             </a>
@@ -24,13 +24,13 @@
 
             {{-- HEADer --}}
             <div class="gap-3 p-20 d-flex justify-content-end border-bottom">
-                <a href="{{ route('client.jobs.edit', $jobOffer) }}" class="gap-2 btn btn-sm btn-primary d-flex">
+                <a href="{{ route('admin.jobs.edit', $jobOffer) }}" class="gap-2 btn btn-sm btn-primary d-flex">
                     <iconify-icon icon="heroicons:pencil" class="text-xl"></iconify-icon>
                     <span>Editer</span>
                 </a>
 
                 {{-- Postuler --}}
-                <form method="POST" action="{{ route('client.jobs.delete', $jobOffer->id) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cette offre ?')">
+                <form method="POST" action="{{ route('admin.jobs.delete', $jobOffer->id) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cette offre ?')">
                     @csrf
                     <button class="btn btn-sm btn-danger gx-2">
                         <i class="ri-delete-bin-6-line"></i>
@@ -56,7 +56,8 @@
 
                 <div style="text-align: right">
                     <h6 class="mb-8">
-                        {{ $jobOffer->client->company->name ?? 'Entreprise non définie' }}
+                        {{ $jobOffer->client->company->name ??
+                        ($jobOffer->client->role == "admin" ? "PowerHR-DRC" : 'Entreprise non définie') }}
                     </h6>
                     <p class="mb-1 text-sm">
                         {{ $jobOffer->client->company->address ?? 'Adresse non définie' }}

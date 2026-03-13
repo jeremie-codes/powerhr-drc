@@ -53,15 +53,20 @@ class NewPasswordController extends Controller
 
     public function update(Request $request)
     {
-        $request->validate([
-            'current_password' => ['required', 'current_password'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        try {
+            $request->validate([
+                'current_password' => ['required', 'current_password'],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ]);
 
-        $request->user()->update([
-            'password' => Hash::make($request->password),
-        ]);
+            $request->user()->update([
+                'password' => Hash::make($request->password),
+            ]);
 
-        return back()->with('success', 'Mot de passe modifié avec succès.');
+            return back()->with('success', 'Mot de passe modifié avec succès.');
+        } catch (\Throwable $th) {
+            \Log::error('Error lors de la mise à jour du password'. $th->getMessage());
+            return back()->with('error', $th->getMessage());
+        }
     }
 }

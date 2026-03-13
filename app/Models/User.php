@@ -62,6 +62,11 @@ class User extends Authenticatable
         return $query->where('is_active', true);
     }
 
+    public function scopeInactive($query)
+    {
+        return $query->where('is_active', false);
+    }
+
     /* ================= RELATIONS ================= */
 
     public function candidate()
@@ -112,7 +117,7 @@ class User extends Authenticatable
     public function getSettingRoute()
     {
         if($this->isAdmin()) {
-            return 'admin.settings.index';
+            return 'admin.users.index';
         }
         if($this->isClient()) {
             return 'client.settings.index';

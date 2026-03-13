@@ -6,7 +6,7 @@
             <h6 class="mb-0 fw-semibold">Liste d'offres</h6>
             <ul class="gap-2 d-flex align-items-center">
                 <li class="fw-medium">
-                    <a href="{{ route('client.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
+                    <a href="{{ route('admin.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
                         <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
                         Tableau de bord
                     </a>
@@ -88,7 +88,7 @@
                 </div>
             </div>
 
-            <div class="col-xxl-3">
+            <div class="col-xxl-3 d-none">
                 <div class="p-0 card h-100">
                     <div class="p-24 card-body">
                         <button type="button"
@@ -102,7 +102,7 @@
                             <ul>
                                 {{-- Toutes les catégories --}}
                                 <li class="mb-4 {{ request('category') ? '' : 'item-active' }}">
-                                    <a href="{{ route('client.jobs.index') }}"
+                                    <a href="{{ route('admin.jobs.index') }}"
                                         class="px-12 py-8 bg-hover-primary-50 w-100 radius-8 text-secondary-light">
                                         <span class="gap-10 d-flex align-items-center justify-content-between w-100">
                                             <span class="fw-semibold">Tous les secteurs</span>
@@ -114,7 +114,7 @@
                                 {{-- Catégories dynamiques --}}
                                 @foreach ($categories as $category)
                                     <li class="mb-4 {{ request('category') == $category->id ? 'item-active' : '' }}">
-                                        <a href="{{ route('client.jobs.index', ['category' => $category->id]) }}"
+                                        <a href="{{ route('admin.jobs.index', ['category' => $category->id]) }}"
                                             class="px-12 py-8 bg-hover-primary-50 w-100 radius-8 text-secondary-light">
                                             <span class="gap-10 d-flex align-items-center justify-content-between w-100">
                                                 <span class="fw-semibold">{{ $category->name }}</span>
@@ -130,7 +130,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-9">
+            <div class="col-lg-12">
                 <div class="p-0 card h-100 radius-12">
                     <div
                         class="flex-wrap gap-3 px-24 py-16 card-header border-bottom bg-base d-flex align-items-center justify-content-between">
@@ -151,7 +151,7 @@
                             </form>
 
                         </div>
-                        <a href="{{ route('client.jobs.create') }}" class="gap-2 px-12 py-12 text-sm btn btn-primary btn-sm radius-8 d-flex align-items-center">
+                        <a href="{{ route('admin.jobs.create') }}" class="gap-2 px-12 py-12 text-sm btn btn-primary btn-sm radius-8 d-flex align-items-center">
                             <iconify-icon icon="ic:baseline-plus" class="text-xl icon line-height-1"></iconify-icon>
                             Ajouter une offre
                         </a>
@@ -161,7 +161,8 @@
                             <table class="table mb-0 bordered-table sm-table">
                                 <thead>
                                     <tr>
-                                        {{-- <th>#</th> --}}
+                                        <th>#N°</th>
+                                        <th>Entreprise</th>
                                         <th>Poste</th>
                                         <th>Lieu</th>
                                         <th>Contrat</th>
@@ -172,10 +173,20 @@
                                 <tbody>
                                     @forelse ($jobs as $index => $job)
                                         <tr>
-                                            {{-- <td>{{ $jobs->firstItem() + $index }}</td> --}}
+                                            <td>{{ $jobs->firstItem() + $index }}</td>
+
+                                            @php
+                                                //dd($job);
+                                            @endphp
 
                                             <td class="fw-semibold">
-                                                <a href="{{ route('client.jobs.show', $job) }}">{{ $job->title }}</a>
+                                                <a href="{{ $job->client->role == "admin" ? '#!' : route('admin.client.show', $job->client_id) }}">
+                                                    {{ $job->client->company->name ?? ($job->client->role == "admin" ? "PowerHR-DRC" : '---') }}
+                                                </a>
+                                            </td>
+
+                                            <td class="fw-semibold">
+                                                <a href="{{ route('admin.jobs.show', $job) }}">{{ $job->title }}</a>
                                             </td>
 
                                             <td>{{ $job->location }}</td>
@@ -185,7 +196,7 @@
                                             <td>
                                                 @if ($job->expires_at)
                                                     <span
-                                                        class="{{ $job->expires_at->diffInDays(now()) <= 3 ? 'text-danger' : '' }}">
+                                                        class="{{ $job->expires_at->diffInDays(now()) >= 1 ? 'text-danger' : '' }}">
                                                         {{ $job->expires_at->format('d/m/Y') }}
                                                     </span>
                                                 @else
@@ -198,20 +209,20 @@
                                                 <div class="gap-2 d-flex justify-content-center">
 
                                                     {{-- Voir --}}
-                                                    <a href="{{ route('client.jobs.show', $job) }}"
+                                                    <a href="{{ route('admin.jobs.show', $job) }}"
                                                         title="Voir l’offre" class="bg-info-focus bg-hover-info-200 text-info-600 fw-medium w-40-px h-40-px d-flex justify-content-center align-items-center rounded-circle">
                                                         <iconify-icon icon="majesticons:eye-line" class="text-xl icon"></iconify-icon>
                                                     </a>
 
                                                     {{-- Editer --}}
-                                                    <a href="{{ route('client.jobs.edit', $job) }}"
+                                                    <a href="{{ route('admin.jobs.edit', $job) }}"
                                                         title="Modifier l’offre" class="bg-warning-focus text-warning-600 bg-hover-warning-200 fw-medium w-40-px h-40-px d-flex justify-content-center align-items-center rounded-circle">
                                                         <iconify-icon icon="lucide:edit" class="menu-icon"></iconify-icon>
                                                     </a>
 
                                                     {{-- Supprimer --}}
                                                     <form method="POST"
-                                                        action="{{ route('client.jobs.delete', $job->id) }}"
+                                                        action="{{ route('admin.jobs.delete', $job->id) }}"
                                                         onsubmit="return confirm('Voulez-vous vraiment supprimer cette offre ?')">
                                                         @csrf
                                                         <button class="remove-item-btn bg-danger-focus bg-hover-danger-200 text-danger-600 fw-medium w-40-px h-40-px d-flex justify-content-center align-items-center rounded-circle">

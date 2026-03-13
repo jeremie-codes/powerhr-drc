@@ -39,15 +39,12 @@
 
                 <div style="text-align: right">
                     <h6 class="mb-8">
-                        {{-- {{ $jobOffer->client->company->name ?? 'Entreprise' }} --}}
                         PowerHR-DRC
                     </h6>
                     <p class="mb-1 text-sm">
-                        {{-- {{ $jobOffer->client->company->address ?? '-' }} --}}
                         Croisement des avenue Kabalo & Mushi, Kinshasa
                     </p>
                     <p class="mb-0 text-sm">
-                        {{-- {{ $jobOffer->client->company->email_hr ?? $jobOffer->client->email }} --}}
                         contact@powerhr-drc.com
                     </p>
                 </div>

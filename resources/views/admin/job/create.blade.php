@@ -8,7 +8,7 @@
             <h6 class="mb-0 fw-semibold">Création d'offre</h6>
             <ul class="gap-2 d-flex align-items-center">
                 <li class="fw-medium">
-                    <a href="{{ route('client.jobs.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
+                    <a href="{{ route('admin.jobs.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
                         <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
                         Liste d'offres
                     </a>
@@ -21,7 +21,7 @@
         {{-- content --}}
         <div class="p-0 overflow-hidden card h-100 radius-12">
             <div class="p-40 card-body">
-                <form action="{{ route('client.jobs.store') }}" method="POST">
+                <form action="{{ route('admin.jobs.store') }}" method="POST">
                     @csrf
 
                     <div class="row">
@@ -113,6 +113,26 @@
                                 <label class="mb-8 form-label fw-semibold">Date d'expiration <span class="text-danger-600">*</span></label>
                                 <input type="date" name="expires_at" class="form-control radius-8"
                                     value="{{ old('expires_at') }}">
+                            </div>
+                        </div>
+
+                        {{-- Company --}}
+                        <div class="col-sm-6">
+                            <div class="mb-20">
+                                <label class="form-label fw-semibold">Entreprise
+                                    <small class="text-danger" >(Laisser vide si l'offre est interne ou n'est pas pour un client)</small>
+                                </label>
+                                <select name="client_id" class="form-select radius-8">
+                                    <option value="" selected disabled >-- choisir companie -- </option>
+                                    @forelse($companies as $company)
+                                        <option value="{{ $company->user_id }}">{{ $company->name }}</option>
+                                        <option value="{{ auth()->user()->id }}">
+                                            PowerHR-DRC <small class="text-gray-100"> (Admin)</small>
+                                        </option>
+                                    @empty
+                                        <option value="" disabled >Aucune entreprise trouvée</option>
+                                    @endforelse
+                                </select>
                             </div>
                         </div>
 

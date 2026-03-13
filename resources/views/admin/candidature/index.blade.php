@@ -6,7 +6,7 @@
             <h6 class="mb-0 fw-semibold">Candidatures</h6>
             <ul class="gap-2 d-flex align-items-center">
                 <li class="fw-medium">
-                    <a href="{{ route('client.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
+                    <a href="{{ route('admin.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
                         <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
                         Tableau de bord
                     </a>
@@ -129,7 +129,7 @@
                                 <div class="overflow-hidden border position-relative radius-16">
                                     <img src="{{ asset('assets/images/user-grid/user-grid-bg12.png') }}" alt="" class="w-100 object-fit-cover">
 
-                                    @if($application->status !== "acceptee")
+                                    {{--@if($application->status !== "acceptee")
                                         <div class="top-0 mt-16 dropdown position-absolute end-0 me-16">
                                             <button type="button" data-bs-toggle="dropdown" aria-expanded="false"
                                                 class="text-white border bg-white-gradient-light w-32-px h-32-px radius-8 border-light-white d-flex justify-content-center align-items-center">
@@ -137,7 +137,7 @@
                                             </button>
                                             <ul class="p-12 border shadow dropdown-menu bg-base">
                                                 <li>
-                                                    <form action="{{ route('client.jobs.change.apply', $application) }}" method="POST">
+                                                    <form action="{{ route('admin.jobs.change.apply', $application) }}" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="status" value="acceptee">
                                                         <button type="submit" class="gap-10 px-16 py-8 rounded dropdown-item text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center" href="#">
@@ -147,7 +147,7 @@
                                                 </li>
                                                 @if($application->status !== "rejetee")
                                                     <li>
-                                                        <form action="{{ route('client.jobs.change.apply', $application) }}" method="POST">
+                                                        <form action="{{ route('admin.jobs.change.apply', $application) }}" method="POST">
                                                             @csrf
                                                             <input type="hidden" name="status" value="rejetee">
                                                             <button type="submit" class="gap-10 px-16 py-8 rounded dropdown-item text-secondary-light bg-hover-neutral-200 text-hover-neutral-900 d-flex align-items-center" href="#">
@@ -158,13 +158,13 @@
                                                 @endif
                                             </ul>
                                         </div>
-                                    @endif
+                                    @endif--}}
 
                                     <div class="pb-16 text-center ps-16 pe-16 mt--50">
-                                        <img src="{{ asset($application->candidate?->gender == 'masculin' ? 'assets/images/users/user1.png' : 'assets/images/users/user2.png') }}" alt=""
+                                        <img src="{{ asset($application->candidate?->image ? 'storage/' . $application->candidate?->image : 'assets/images/users/user1.png') }}" alt=""
                                             class="border br-white border-width-2-px w-100-px h-100-px rounded-circle object-fit-cover">
 
-                                        <h6 class="mt-4 mb-0 text-lg">Profil anonyme</h6>
+                                        <h6 class="mt-4 mb-0 text-lg">{{ $application->candidate->name }}</h6>
                                         <span class="text-secondary-light">{{ $application->candidate?->qualification_level ?? null }}</span>
 
                                         <div class="gap-4 p-12 position-relative bg-danger-gradient-light radius-8 d-flex align-items-center">
@@ -179,7 +179,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <a href="{{ route('client.jobs.apply.show', $application) }}"
+                                        <a href="{{ route('admin.jobs.apply.show', $application) }}"
                                             class="gap-2 p-10 px-12 py-12 mt-16 text-sm bg-primary-50 text-primary-600 bg-hover-primary-600 hover-text-white btn-sm radius-8 d-flex align-items-center justify-content-center fw-medium w-100">
                                             Voir le profil
                                             <iconify-icon icon="solar:alt-arrow-right-linear"

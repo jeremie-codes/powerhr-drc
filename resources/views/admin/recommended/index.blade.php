@@ -6,7 +6,7 @@
             <h6 class="mb-0 fw-semibold">Profils récommandés</h6>
             <ul class="gap-2 d-flex align-items-center">
                 <li class="fw-medium">
-                    <a href="{{ route('client.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
+                    <a href="{{ route('admin.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
                         <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
                         Tableau de bord
                     </a>
@@ -31,7 +31,7 @@
                             </div>
                             <button class="btn btn-success-600" type="submit">Chercher</button>
                             @if(request('job_type'))
-                                <a href="{{ route('client.candidate.index') }}" class="btn btn-neutral-600" type="submit">X Effacer le filtre</a>
+                                <a href="{{ route('admin.candidate.index') }}" class="btn btn-neutral-600" type="submit">X Effacer le filtre</a>
                             @endif
                         </form>
                     </div>
@@ -43,10 +43,11 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#N°</th>
-                                    <th scope="col">Nom Complet</th>
-                                    {{-- <th scope="col">Email</th> --}}
+                                    <th scope="col">Candidat</th>
                                     <th scope="col">Métier</th>
+                                    <th scope="col">Entreprise sollicitée</th>
                                     <th scope="col" class="text-center">Status</th>
+                                    <th scope="col" class="text-center">Réponse</th>
                                     <th scope="col" class="text-center">Action</th>
                                 </tr>
                             </thead>
@@ -68,7 +69,7 @@
                                                     </span>
                                                 @endif
                                             <div class="flex-grow-1">
-                                                <a href="{{ route('client.candidate.recommended.show', $profile->candidate?->user) }}">
+                                                <a href="{{ route('admin.candidate.recommended.show', $profile->candidate?->user) }}">
                                                     <span class="mb-0 text-md fw-semibold text-secondary-light">Profile anonyme</span>
                                                 </a>
                                             </div>
@@ -78,23 +79,29 @@
                                         <span class="mb-0 text-md fw-normal text-secondary-light">{{ $profile->candidate?->user?->email ?? '---' }}</span>
                                     </td> --}}
                                     <td>{{ $profile->candidate?->job_type ?? '---' }}</td>
+                                    <td>{{ $profile->company?->name ?? '---' }}</td>
                                     <td class="text-center">
-                                        @if( $profile->candidate?->user?->is_active)
-                                            <span class="px-24 py-4 text-sm border bg-success-focus text-success-600 border-success-main radius-4 fw-medium">Active</span>
+                                        @if( $profile->traited)
+                                            <span class="px-24 py-4 text-sm border bg-neutral-200 text-neutral-600 border-neutral-400 radius-4 fw-medium">Traitée</span>
                                         @else
-                                            <span class="px-24 py-4 text-sm border bg-neutral-200 text-neutral-600 border-neutral-400 radius-4 fw-medium">Inactive</span>
+                                            <span class="px-24 py-4 text-sm border bg-danger-focus text-danger-600 border-danger-main radius-4 fw-medium">Non traitée</span>
                                         @endif
                                     </td>
                                     <td class="text-center">
+                                        <span class="mb-0 text-md fw-normal text-secondary-light">
+                                            {{ $profile->response ?? 'Non traitée' }}
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
                                         <div class="gap-10 d-flex align-items-center justify-content-center">
-                                            <a href="{{ route('client.candidate.recommended.show', $profile->candidate?->user) }}"
+                                            <a href="{{ route('admin.candidate.recommended.show', $profile->candidate?->user) }}"
                                                 class="bg-info-focus bg-hover-info-200 text-info-600 fw-medium w-40-px h-40-px d-flex justify-content-center align-items-center rounded-circle">
                                                 <iconify-icon icon="majesticons:eye-line" class="text-xl icon"></iconify-icon>
                                             </a>
 
                                             {{-- Supprimer --}}
                                             <form method="POST"
-                                                action="{{ route('client.candidate.recommended.cancel', $profile) }}"
+                                                action="{{ route('admin.candidate.recommended.cancel', $profile) }}"
                                                 onsubmit="return confirm('Voulez-vous vraiment supprimer cette recommandation ?')">
                                                 @csrf
                                                 <button class="remove-item-btn bg-danger-focus bg-hover-danger-200 text-danger-600 fw-medium w-40-px h-40-px d-flex justify-content-center align-items-center rounded-circle">

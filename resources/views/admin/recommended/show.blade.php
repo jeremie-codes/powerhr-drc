@@ -19,125 +19,172 @@
         </div>
 
         {{-- content --}}
-        <div class="card">
-            <div class="card-header">
-                <div class="flex-wrap gap-2 d-flex align-items-center justify-content-end">
-                    <a href="javascript:void(0)" onclick="printInvoice()" class="gap-1 btn btn-sm btn-primary radius-8 d-inline-flex align-items-center">
-                        <iconify-icon icon="solar:download-linear" class="text-xl"></iconify-icon>
-                        Télécharger
-                    </a>
+        <div class="row gy-4">
+            <div class="col-lg-4">
+                <div class="overflow-hidden border user-grid-card position-relative radius-16 bg-base h-100">
+                    <img src="{{ asset('assets/images/user-grid/user-grid-bg1.png') }}" alt="" class="w-100 object-fit-cover">
+                    <div class="pb-24 mb-24 ms-16 me-16 mt--100">
+                        <div class="text-center border border-top-0 border-start-0 border-end-0">
+                            <img src="{{ asset($profile->image ? 'storage/' . $profile->image : 'build/images/users/avatar-1.png') }}" alt=""
+                                 class="border br-white border-width-2-px w-200-px h-200-px rounded-circle object-fit-cover bg-blue-light">
 
-                    @if(!$Recommanded)
-                        <form action="{{ route('client.candidate.recommended.store') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="candidate_id" value="{{ $profile->candidate?->id }}">
-                            <button type="submit" href="javascript:void(0)" class="gap-1 btn btn-sm btn-success radius-8 d-inline-flex align-items-center">
-                                <iconify-icon icon="solar:download-linear" class="text-xl"></iconify-icon>
-                                Récommander ce candidat
-                            </button>
-                        </form>
-                    @endif
-                </div>
-            </div>
-
-            <div class="py-40 card-body">
-                <div class="row justify-content-center" id="cv">
-                    <div class="col-lg-8">
-                        <div class="overflow-hidden border shadow-4 radius-8 d-flex" id="curriculum">
-
-                            {{-- COLONNE GAUCHE --}}
-                            <div class="p-20 text-white bg-primary-500" style="width:30%;">
-                                <div class="mt-20 mb-24 text-center">
-                                    <img src="{{ asset($profile->gender == 'masculin' ? 'assets/images/users/user1.png' : 'assets/images/users/user2.png') }}"
-                                        class="border rounded-circle" width="150" height="150">
-                                </div>
-
-                                <h6 class="pb-2 mb-2 text-xl text-white text-uppercase border-bottom" >Coordonnées</h6>
-                                <p class="mb-8 text-sm">
-                                    {{ 'Téléphone: *** *** ***' }}<br>
-                                    {{ 'Email: ******@***** ' }}<br>
-                                    {{ 'Sexe: ' . ucfirst($profile->gender) }}<br>
-                                    {{ 'Adresse : *******' }}, {{ $profile?->country?->code ?? '' }}<br>
-
-                                </p>
-
-                                <h6 class="pb-2 mt-20 mb-2 text-xl text-white text-uppercase border-bottom" >Compétences</h6>
-                                <ul class="mb-0 text-sm" style="list-style-type: disc; padding-left: 20px;">
-                                    @forelse($profile->candidate?->skills ?? [] as $skill)
-                                        <li>{{ $skill->skill_name }}</li>
-                                    @empty
-                                        <li>Aucune compétence définie</li>
-                                    @endforelse
-
-                                </ul>
-
-                                <h6 class="pb-2 mt-20 mb-2 text-xl text-white text-uppercase border-bottom" >Langues</h6>
-                                <ul class="mb-0 text-sm" style="list-style-type: disc; padding-left: 20px;">
-                                    @forelse($profile->candidate?->languages ?? [] as $lang)
-                                        <li>
-                                            {{ $lang->language_name }}
-                                        </li>
-                                    @empty
-                                        <li>Aucune langue définie</li>
-                                    @endforelse
-                                </ul>
-                            </div>
-
-                            {{-- COLONNE DROITE --}}
-                            <div class="p-24 bg-white" style="width:70%;">
-                                <h5 class="mt-20 mb-0">Profil Anonyme</h5>
-
-                                <h6 class="pb-2 mb-16 text-xl text-primary-500 border-bottom">
-                                    {{ $profile->candidate->job_type ?? 'Métier non défini' }}
-                                </h6>
-
-                                {{-- PROFIL --}}
-                                <h6 class="mt-16 text-xl fw-semibold">Profil professionnel</h6>
-                                <p class="text-sm">
-                                    {{ $profile->candidate->summary ?? 'Vous n\'avez pas décris de profil professionnel dans votre bio' }}
-                                </p>
-
-                                {{-- EXPERIENCES --}}
-                                <h6 class="mt-24 text-xl fw-semibold">Parcours professionnel</h6>
-                                @forelse($profile->candidate?->experiences ?? [] as $exp)
-                                    <div class="mb-16">
-                                        <strong>{{ $exp->position }}</strong><br>
-                                        <span class="text-sm text-muted">
-                                            {{ $exp->company_name }} —
-                                            {{ \Carbon\Carbon::parse($exp->start_date)->format('m/Y') }}
-                                            -
-                                            {{ $exp->end_date ? \Carbon\Carbon::parse($exp->end_date)->format('m/Y') : 'Présent' }}
-                                        </span>
-                                        <p class="mt-4 mb-0 text-sm">
-                                            {{ $exp->tasks }}
-                                        </p>
-                                    </div>
-                                @empty
-                                    <p class="mb-0 text-sm text-muted">Aucune expérience professionnelle définie.</p>
-                                @endforelse
-
-                                {{-- EDUCATION --}}
-                                <h6 class="mt-24 text-xl fw-semibold">Formation</h6>
-                                @forelse($profile->candidate?->educations ?? [] as $edu)
-                                    <div class="mb-12">
-                                        <strong>{{ $edu->degree }}</strong><br>
-                                        <span class="text-sm text-muted">
-                                            {{ $edu->school }} —
-                                            {{ \Carbon\Carbon::parse($edu->start_date)->format('Y') }}
-                                            -
-                                            {{ $edu->end_date ? \Carbon\Carbon::parse($edu->end_date)->format('Y') : 'Présent' }}
-                                        </span>
-                                    </div>
-                                @empty
-                                    <p class="mb-0 text-sm text-muted">Aucune formation définie.</p>
-                                @endforelse
-                            </div>
-
+                            <h6 class="mt-16 mb-0">{{ $profile->name }}</h6>
+                            <span class="mb-16 text-secondary-light">{{ $profile->email }}</span>
+                        </div>
+                        <div class="mt-24">
+                            <h6 class="mb-16 text-xl">Information Personnelle</h6>
+                            <ul>
+                                <li class="gap-1 mb-12 d-flex align-items-center">
+                                    <span class="w-30 text-md fw-semibold text-primary-light">Nom complet</span>
+                                    <span class="w-70 text-secondary-light fw-medium">: {{ $profile->name ?? '--' }}</span>
+                                </li>
+                                <li class="gap-1 mb-12 d-flex align-items-center">
+                                    <span class="w-30 text-md fw-semibold text-primary-light"> Email</span>
+                                    <span class="w-70 text-secondary-light fw-medium">: {{ $profile->email ?? '--' }}</span>
+                                </li>
+                                <li class="gap-1 mb-12 d-flex align-items-center">
+                                    <span class="w-30 text-md fw-semibold text-primary-light">Pays</span>
+                                    <span class="w-70 text-secondary-light fw-medium">: {{ $profile?->country->name ?? '--' }}</span>
+                                </li>
+                                <li class="gap-1 mb-12 d-flex align-items-center">
+                                    <span class="w-30 text-md fw-semibold text-primary-light">Langue</span>
+                                    <span class="w-70 text-secondary-light fw-medium">: {{ $profile->langue ?? '--' }}</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h6>
+                            Entreprises intéressées
+                        </h6>
+                    </div>
+                    <div class="p-24 card-body">
+                        <div class="table-responsive scroll-sm">
+                            <table class="table mb-0 bordered-table sm-table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#N°</th>
+                                    <th scope="col">Entreprise</th>
+                                    <th scope="col">Profil</th>
+                                    <th scope="col">Réponse</th>
+                                    <th scope="col" class="text-center">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @forelse($recommanded as $index => $client)
+                                    <tr>
+                                        <td>
+                                            <div class="gap-10 d-flex align-items-center">
+                                                {{ $index + 1 }}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-grow-1">
+                                                    <a href="{{ $client->company ? route('admin.client.show', $client) : '#!' }}">
+                                                        <span class="mb-0 text-md fw-semibold text-secondary-light">{{ $client->company?->name ?? '---' }}</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="mb-0 text-md fw-normal text-secondary-light">
+                                                {{ $client->company->user->role ?? '---' }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="mb-0 text-md fw-normal text-secondary-light">
+                                                {{ $client->response ?? 'Non traitée' }}
+                                            </span>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="gap-10 d-flex align-items-center justify-content-center">
+                                                <a href="{{ route('admin.client.show', $client) }}"
+                                                   class="bg-info-focus bg-hover-info-200 text-info-600 fw-medium w-40-px h-40-px d-flex justify-content-center align-items-center rounded-circle">
+                                                    <iconify-icon icon="majesticons:eye-line" class="text-xl icon"></iconify-icon>
+                                                </a>
+
+                                                @if(!$client->traited)
+                                                <form action="{{ route('admin.candidate.recommended.validate', $client) }}" method="post">
+                                                    @csrf
+                                                    <button type="button" class="btn btn-primary-200 btn-hover-primary-200 rounded-5"
+                                                        class="btn btn-primary btn-lg"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modalId"
+                                                    >
+                                                        repondre
+                                                    </button>
+
+
+                                                    <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                                        <div
+                                                            class="modal-dialog modal-dialog-centered"
+                                                            role="document"
+                                                        >
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title text-lg" id="modalTitleId">
+                                                                        Répondre à la récommandation
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="icon-field has-validation">
+                                                                        <label>
+                                                                            Quelle est la disponibilité du candidat?
+                                                                        </label>
+                                                                        <select class="form-select" name="response">
+                                                                            <option value="disponible">Disponible</option>
+                                                                            <option value="occupé">Occupé</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button
+                                                                        type="button"
+                                                                        class="btn btn-secondary"
+                                                                    >
+                                                                        Annuler
+                                                                    </button>
+                                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                @endif
+
+                                                @if($client->traited)
+                                                    <span class="px-24 py-4 text-sm border bg-neutral-200 text-neutral-600 border-neutral-400 radius-50 fw-medium">Traitée</span>
+                                                @endif
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+
+                                @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="flex-wrap gap-2 mt-24 d-flex align-items-center justify-content-between">
+                            <span>
+                                Showing {{ $recommanded->firstItem() }}
+                                to {{ $recommanded->lastItem() ?? $recommanded->count() }}
+                                of {{ $recommanded->total() }} entries
+                            </span>
+
+                            {{ $recommanded->links('vendor.pagination.custom') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

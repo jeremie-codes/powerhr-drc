@@ -8,7 +8,7 @@
             <h6 class="mb-0 fw-semibold">Edition d'offre</h6>
             <ul class="gap-2 d-flex align-items-center">
                 <li class="fw-medium">
-                    <a href="{{ route('client.jobs.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
+                    <a href="{{ route('admin.jobs.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
                         <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
                         Liste d'offres
                     </a>
@@ -21,7 +21,7 @@
         {{-- content --}}
         <div class="p-0 overflow-hidden card h-100 radius-12">
             <div class="p-40 card-body">
-                <form action="{{ route('client.jobs.update', $jobOffer) }}" method="POST">
+                <form action="{{ route('admin.jobs.update', $jobOffer) }}" method="POST">
                     @csrf
 
                     <div class="row">
@@ -130,11 +130,26 @@
                                     <option value="0" {{ $jobOffer->is_active == false ? 'selected' : '' }}>Non</option>
                                 </select>
                             </div>
+                        </div>
 
-                             {{-- <div class="gap-3 my-20 form-switch switch-primary d-flex align-items-center">
-                                <input class="form-check-input" type="checkbox" role="switch" id="yes" name="is_active" checked="">
-                                <label class="form-check-label line-height-1 fw-medium text-secondary-light" for="yes">Activer l'offre (Elle sera publiée)</label>
-                            </div> --}}
+                        {{-- Company --}}
+                        <div class="col-sm-6">
+                            <div class="mb-20">
+                                <label class="form-label fw-semibold">Entreprise</label>
+                                <select name="client_id" class="form-select radius-8">
+                                    <option value="" selected disabled >-- choisir companie -- </option>
+                                    @forelse($companies as $company)
+                                        <option value="{{ $company->user_id }}"
+                                            {{ $company->user_id == $jobOffer->client_id ? 'selected' : '' }}
+                                        >{{ $company->name }}</option>
+                                        <option value="{{ auth()->user()->id }}"
+                                            {{ $jobOffer->client->role == "admin" ? 'selected' : '' }}
+                                        >PowerHR-DRC <small class="text-gray-100"> (Admin)</small> </option>
+                                    @empty
+                                        <option value="" disabled >Aucune entreprise trouvée</option>
+                                    @endforelse
+                                </select>
+                            </div>
                         </div>
 
                         {{-- Description --}}

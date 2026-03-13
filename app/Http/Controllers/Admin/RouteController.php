@@ -7,6 +7,7 @@ use App\Models\Application;
 use App\Models\CandidateProfile;
 use App\Models\Country;
 use App\Models\JobOffer;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -21,31 +22,29 @@ class RouteController extends Controller
         $countries = Country::all();
 
         // Offres du client
-        $jobs = JobOffer::where('client_id', Auth::id())->get();
+        $jobs = JobOffer::all();
 
         $stats = [
-            'all' => $jobs->count(),
-            'expiree' => JobOffer::where('client_id', Auth::id())
-                ->where('expires_at', '>', now())
-                ->count(),
-            'active' => JobOffer::where('client_id', Auth::id())
-                ->currentlyActive()
-                ->count(),
-            'inactive' => JobOffer::where('client_id', Auth::id())
-                ->currentlyInactive()
-                ->count(),
+            'job_all' => $jobs->count(),
+            'job_expiree' => JobOffer::where('expires_at', '>', now())->count(),
+            'job_active' => JobOffer::currentlyActive()->count(),
+            'job_inactive' => JobOffer::currentlyInactive()->count(),
+            'client_all' => User::where('role', 'client')->count(),
+            'prospect_all' => User::where('role', 'prospect')->count(),
+            'candidate_all' => User::where('role', 'candidate')
+                ->orWhere('role', 'employee')->count(),
+            'admin_all' => User::where('role', 'admin')->count()
         ];
 
         // Candidatures liées aux offres du client
-        $applicationsQuery = Application::whereHas('jobOffer', function ($query) {
-            $query->where('client_id', Auth::id());
-        })->where('status', '!=', 'annulee');
+        $applicationsQuery = Application::all();
 
         $demandes = [
             'acceptee' => (clone $applicationsQuery)->where('status', 'acceptee')->count(),
             'soumise'  => (clone $applicationsQuery)->where('status', 'soumise')->count(),
             'rejetee'  => (clone $applicationsQuery)->where('status', 'rejetee')->count(),
-            'last'     => (clone $applicationsQuery)->latest()->take(5)->get(),
+            'annulee'  => (clone $applicationsQuery)->where('status', 'annulee')->count(),
+            'last'     => Application::latest()->take(10)->get(),
         ];
 
         // Statistiques annuelles
@@ -55,10 +54,6 @@ class RouteController extends Controller
             DB::raw('MONTH(created_at) as month'),
             DB::raw('COUNT(*) as total')
         )
-            ->whereHas('jobOffer', function ($query) {
-                $query->where('client_id', Auth::id());
-            })
-            ->where('status', '!=', 'annulee')
             ->whereYear('created_at', $year)
             ->groupBy('month')
             ->pluck('total', 'month')
@@ -70,7 +65,7 @@ class RouteController extends Controller
             $monthlyData[] = $applicationsByMonth[$i] ?? 0;
         }
 
-        return view('client.index', compact(
+        return view('admin.index', compact(
             'user',
             'countries',
             'stats',
@@ -98,7 +93,7 @@ class RouteController extends Controller
 
         // Si aucune recherche → on retourne la vue vide
         if (!$hasFilters) {
-            return view('client.search', [
+            return view('admin.search', [
                 'recommendedProfiles' => collect(),
                 'otherProfiles' => collect(),
                 'hasFilters' => false
@@ -165,7 +160,7 @@ class RouteController extends Controller
             ->paginate(12)
             ->withQueryString();
 
-        return view('client.search', compact(
+        return view('admin.search', compact(
             'recommendedProfiles',
             'otherProfiles',
             'hasFilters'

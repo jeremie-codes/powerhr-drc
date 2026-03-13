@@ -5,214 +5,306 @@
     <div class="dashboard-main-body nft-page">
         {{-- breacrumbs --}}
         <div class="flex-wrap gap-3 mb-24 d-flex align-items-center justify-content-between">
-            <h6 class="mb-0 fw-semibold">Mon Entreprise</h6>
+            <h6 class="mb-0 fw-semibold">Mon Profil</h6>
             <ul class="gap-2 d-flex align-items-center">
                 <li class="fw-medium">
-                    <a href="{{ route('candidate.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
-                        <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
-                        Tableau de bord
-                    </a>
+                <a href="{{ route('candidate.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
+                    <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
+                    Tableau de bord
+                </a>
                 </li>
                 <li>-</li>
-                <li class="fw-medium">Profil entreprise</li>
+                <li class="fw-medium">Profil</li>
             </ul>
         </div>
 
         {{-- content --}}
-        <div class="p-0 overflow-hidden card h-100 radius-12">
-            <div class="p-40 card-body">
-                <form action="{{ route('client.profile.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
+        <div class="row gy-4">
+            <div class="col-lg-4">
+                <div class="overflow-hidden border user-grid-card position-relative radius-16 bg-base h-100">
+                    <img src="{{ asset('assets/images/user-grid/user-grid-bg1.png') }}" alt="" class="w-100 object-fit-cover">
+                    <div class="pb-24 mb-24 ms-16 me-16 mt--100">
+                        <div class="text-center border border-top-0 border-start-0 border-end-0">
+                            <img src="{{ asset(auth()->user()->image ? 'storage/' . auth()->user()->image : 'build/images/users/avatar-1.png') }}" alt=""
+                                class="border br-white border-width-2-px w-200-px h-200-px rounded-circle object-fit-cover bg-blue-light">
 
-                    <div class="row">
-
-                        <h6 class="mt-4 text-md">Informations de l'entreprise</h6>
-
-                        <span class="mt-24 fw-semibold text-secondary-light">Logo de l'entreprise</span>
-                        <div class="gap-4 col-12 d-md-flex">
-                            {{-- Logo --}}
-                            @if (isset($company) && $company->logo)
-                                <div class="mt-3">
-                                    <img src="{{ asset('storage/' . $company->logo) }}" width="100" class="rounded">
-                                </div>
-                            @endif
-
-                            <!-- Upload Image Start -->
-                            <div class="gap-3 upload-image-wrapper d-flex align-items-center">
-                                <div
-                                    class="overflow-hidden border border-dashed uploaded-img d-none position-relative h-120-px w-120-px input-form-light radius-8 bg-neutral-50">
-                                    <button type="button"
-                                        class="top-0 mt-8 uploaded-img__remove position-absolute end-0 z-1 text-2xxl line-height-1 me-8 d-flex">
-                                        <iconify-icon icon="radix-icons:cross-2"
-                                            class="text-xl text-danger-600"></iconify-icon>
-                                    </button>
-                                    <img id="uploaded-img__preview" class="w-100 h-100 object-fit-cover"
-                                        src="assets/images/user.png" alt="image">
-                                </div>
-
-                                <label
-                                    class="gap-1 overflow-hidden border border-dashed upload-file h-120-px w-120-px input-form-light radius-8 bg-neutral-50 bg-hover-neutral-200 d-flex align-items-center flex-column justify-content-center"
-                                    for="upload-file">
-                                    <iconify-icon icon="solar:camera-outline"
-                                        class="text-xl text-secondary-light"></iconify-icon>
-                                    <span class="fw-semibold text-secondary-light">Upload</span>
-                                    <input id="upload-file" type="file" name="logo" hidden>
-                                </label>
-                            </div>
-                            <!-- Upload Image End -->
+                            <h6 class="mt-16 mb-0">{{ auth()->user()->name }}</h6>
+                            <span class="mb-16 text-secondary-light">{{ auth()->user()->email }}</span>
                         </div>
-
-                        {{-- Nom --}}
-                        <div class="col-sm-4">
-                            <div class="mb-20">
-                                <label class="form-label fw-semibold">
-                                    Nom de l'entreprise <span class="text-danger">*</span>
-                                </label>
-                                <input type="text" name="name" class="form-control radius-8"
-                                    value="{{ old('name', $company->name ?? '') }}" required>
-                            </div>
+                        <div class="mt-24">
+                            <h6 class="mb-16 text-xl">Information Personnelle</h6>
+                            <ul>
+                                <li class="gap-1 mb-12 d-flex align-items-center">
+                                    <span class="w-30 text-md fw-semibold text-primary-light">Nom complet</span>
+                                    <span class="w-70 text-secondary-light fw-medium">: {{ auth()->user()->name ?? '--' }}</span>
+                                </li>
+                                <li class="gap-1 mb-12 d-flex align-items-center">
+                                    <span class="w-30 text-md fw-semibold text-primary-light"> Email</span>
+                                    <span class="w-70 text-secondary-light fw-medium">: {{ auth()->user()->email ?? '--' }}</span>
+                                </li>
+                                <li class="gap-1 mb-12 d-flex align-items-center">
+                                    <span class="w-30 text-md fw-semibold text-primary-light"> Téléphone</span>
+                                    <span class="w-70 text-secondary-light fw-medium">: {{ auth()->user()->phone ?? '--' }}</span>
+                                </li>
+                                <li class="gap-1 mb-12 d-flex align-items-center">
+                                    <span class="w-30 text-md fw-semibold text-primary-light"> Genre</span>
+                                    <span class="w-70 text-secondary-light fw-medium">: {{ auth()->user()->gender ?? '--' }}</span>
+                                </li>
+                                <li class="gap-1 mb-12 d-flex align-items-center">
+                                    <span class="w-30 text-md fw-semibold text-primary-light">Pays</span>
+                                    <span class="w-70 text-secondary-light fw-medium">: {{ auth()->user()?->country->name ?? '--' }}</span>
+                                </li>
+                                <li class="gap-1 mb-12 d-flex align-items-center">
+                                    <span class="w-30 text-md fw-semibold text-primary-light">Langue</span>
+                                    <span class="w-70 text-secondary-light fw-medium">: {{ auth()->user()->langue ?? '--' }}</span>
+                                </li>
+                            </ul>
                         </div>
-
-                        {{-- Secteur --}}
-                        <div class="col-sm-4">
-                            <div class="mb-20">
-                                <label class="mb-8 text-sm form-label fw-semibold text-primary-light">
-                                    Secteur d'activité <span class="text-danger-600">*</span>
-                                </label>
-                                <input type="text" name="sector" class="form-control radius-8"
-                                    value="{{ old('sector', $company->sector ?? '') }}" required>
-                            </div>
-                        </div>
-
-                        {{-- Pays --}}
-                        <div class="col-sm-4">
-                            <div class="mb-20">
-                                <label class="mb-8 text-sm form-label fw-semibold text-primary-light">
-                                    Pays <span class="text-danger-600">*</span>
-                                </label>
-                                <select name="country_id" class="form-control radius-8 form-select" required>
-                                    <option disabled selected value="">-- Choisir Pays --</option>
-                                    @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}"
-                                            @if ($company && $company->country_id == $country->id) selected @endif>
-                                            {{ $country->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        {{-- City --}}
-                        <div class="col-sm-4">
-                            <div class="mb-20">
-                                <label class="form-label fw-semibold">Ville <span class="text-danger-600">*</span> </label>
-                                <input type="text" name="city" class="form-control radius-8"
-                                    value="{{ old('city', $company->city ?? '') }}" required>
-                            </div>
-                        </div>
-
-                        {{-- Adresse --}}
-                        <div class="col-sm-4">
-                            <div class="mb-20">
-                                <label class="form-label fw-semibold">Adresse</label>
-                                <input type="text" name="address" class="form-control radius-8"
-                                    value="{{ old('address', $company->address ?? '') }}">
-                            </div>
-                        </div>
-
-                        {{-- Site web --}}
-                        <div class="col-sm-4">
-                            <div class="mb-20">
-                                <label class="form-label fw-semibold">Site web</label>
-                                <input type="text" name="website" class="form-control radius-8"
-                                    value="{{ old('website', $company->website ?? '') }}">
-                            </div>
-                        </div>
-
-                        {{-- Téléphone --}}
-                        <div class="col-sm-4">
-                            <div class="mb-20">
-                                <label class="form-label fw-semibold">Téléphone</label>
-                                <input type="text" name="phone" class="form-control radius-8"
-                                    value="{{ old('phone', $company->phone ?? '') }}">
-                            </div>
-                        </div>
-
-                        {{-- Email DG --}}
-                        <div class="col-sm-4">
-                            <div class="mb-20">
-                                <label class="form-label fw-semibold">Email Directeur Général</label>
-                                <input type="email" name="email_dg" class="form-control radius-8"
-                                    value="{{ old('email_dg', $company->email_dg ?? '') }}">
-                            </div>
-                        </div>
-
-                        {{-- Email RH --}}
-                        <div class="col-sm-4">
-                            <div class="mb-20">
-                                <label class="form-label fw-semibold">Email RH</label>
-                                <input type="email" name="email_hr" class="form-control radius-8"
-                                    value="{{ old('email_hr', $company->email_hr ?? '') }}" required>
-                            </div>
-                        </div>
-
-                        {{-- Rccm --}}
-                        <div class="col-sm-4">
-                            <div class="mb-20">
-                                <label class="form-label fw-semibold">N° D'identification / RCCM</label>
-                                <input type="text" name="rccm" class="form-control radius-8"
-                                    value="{{ old('rccm', $company->rccm ?? '') }}" required>
-                            </div>
-                        </div>
-
-                        {{-- Statut --}}
-                        @if (isset($company))
-                            <div class="mt-3 col-12">
-                                <div class="alert alert-info">
-                                    Statut autorisation publication :
-                                    <strong>
-                                        {{ $company->can_post ? 'Autorisé' : 'En attente validation admin' }}
-                                    </strong>
-                                </div>
-                            </div>
-                        @endif
-
-                        <div class="gap-3 mt-24 d-flex justify-content-center">
-                            <button type="submit" class="px-24 py-12 btn btn-primary radius-8">
-                                Enregistrer
-                            </button>
-                        </div>
-
                     </div>
-                </form>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card h-100">
+                    <div class="p-24 card-body">
+                        <ul class="mb-20 nav border-gradient-tab nav-pills d-inline-flex" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                              <button class="px-24 nav-link d-flex align-items-center active" id="pills-edit-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-edit-profile" type="button" role="tab" aria-controls="pills-edit-profile" aria-selected="true">
+                                Modifier le Profil
+                              </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <button class="px-24 nav-link d-flex align-items-center" id="pills-change-passwork-tab" data-bs-toggle="pill" data-bs-target="#pills-change-passwork" type="button" role="tab" aria-controls="pills-change-passwork" aria-selected="false" tabindex="-1">
+                                Changer le mot de passe
+                              </button>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-edit-profile" role="tabpanel" aria-labelledby="pills-edit-profile-tab" tabindex="0">
+                                <h6 class="mb-16 text-md text-primary-light">Profile Image</h6>
+                                <form action="{{ route('admin.profile.store') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+
+                                    <!-- Upload Image Start -->
+                                    <div class="mt-16 mb-24">
+                                        <div class="avatar-upload">
+                                                <div class="bottom-0 mt-16 cursor-pointer avatar-edit position-absolute end-0 me-24 z-1">
+                                                    <input type='file' id="avatar" name="avatar" accept=".png, .jpg, .jpeg" hidden>
+                                                    <label for="avatar" class="text-lg border w-32-px h-32-px d-flex justify-content-center align-items-center bg-primary-50 text-primary-600 border-primary-600 bg-hover-primary-100 rounded-circle">
+                                                        <iconify-icon icon="solar:camera-outline" class="icon"></iconify-icon>
+                                                    </label>
+                                                </div>
+                                                <div class="avatar-preview">
+                                                    <div id="imagePreview">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Upload Image End -->
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="mb-20">
+                                                <label class="mb-8 text-sm form-label fw-semibold text-primary-light">
+                                                    Nom complet <span class="text-danger-600">*</span>
+                                                </label>
+                                                <input
+                                                    value="{{ auth()->user()->name ?? '' }}"
+                                                    type="text"
+                                                    name="name"
+                                                    class="form-control radius-8"
+                                                    placeholder="Entrez votre nom complet"
+                                                    required
+                                                >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="mb-20">
+                                                <label class="mb-8 text-sm form-label fw-semibold text-primary-light">
+                                                    Email <span class="text-danger-600">*</span>
+                                                </label>
+                                                <input
+                                                    value="{{ auth()->user()->email ?? '' }}"
+                                                    type="email"
+                                                    name="email"
+                                                    class="form-control radius-8"
+                                                    placeholder="Entrez votre adresse email"
+                                                    required
+                                                >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="mb-20">
+                                                <label class="mb-8 text-sm form-label fw-semibold text-primary-light">
+                                                    Téléphone
+                                                </label>
+                                                <input
+                                                    value="{{ auth()->user()->phone ?? '' }}"
+                                                    type="number"
+                                                    name="phone"
+                                                    class="form-control radius-8"
+                                                    placeholder="080 000 0000"
+                                                >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="mb-20">
+                                                <label class="mb-8 text-sm form-label fw-semibold text-primary-light">
+                                                    Genre <span class="text-danger-600">*</span>
+                                                </label>
+                                                <select name="gender" class="form-control radius-8 form-select" required>
+                                                    <option disabled selected value="">-- Choisir Langue --</option>
+                                                    <option value="masculin" @if (auth()->user()->gender == 'masculin') selected @endif>Masculin</option>
+                                                    <option value="feminin" @if (auth()->user()->gender == 'feminin') selected @endif>Féminin</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="mb-20">
+                                                <label class="mb-8 text-sm form-label fw-semibold text-primary-light">
+                                                    Pays de résidence <span class="text-danger-600">*</span>
+                                                </label>
+                                                <select name="pays_residence" class="form-control radius-8 form-select" required>
+                                                    <option disabled selected value="">-- Choisir Pays --</option>
+                                                    @foreach ($countries as $country)
+                                                        <option
+                                                            value="{{ $country->id }}"
+                                                            @if (auth()->user()->country && auth()->user()->country->id == $country->id) selected @endif
+                                                        >
+                                                            {{ $country->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="mb-20">
+                                                <label class="mb-8 text-sm form-label fw-semibold text-primary-light">
+                                                    Langue par défaut <span class="text-danger-600">*</span>
+                                                </label>
+                                                <select name="langue" class="form-control radius-8 form-select" required>
+                                                    <option disabled selected value="">-- Choisir Langue --</option>
+                                                    <option value="fr" @if (auth()->user()->langue == 'fr') selected @endif>Français</option>
+                                                    <option value="en" @if (auth()->user()->langue == 'en') selected @endif>English</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="gap-3 d-flex align-items-center justify-content-center">
+                                        <button type="reset" class="px-56 border border-danger-600 bg-hover-danger-200 text-danger-600 py-11 radius-8">
+                                            Annuler
+                                        </button>
+                                        <button type="submit" class="px-56 py-12 btn btn-primary radius-8">
+                                            Enregistrer
+                                        </button>
+                                    </div>
+                                </form>
+
+                            </div>
+
+                            <form method="POST" action="{{ route('password.update') }}" class="tab-pane fade" id="pills-change-passwork" role="tabpanel" aria-labelledby="pills-change-passwork-tab" tabindex="0">
+                                @csrf
+                                @method('put')
+
+                                {{-- Mot de passe actuel --}}
+                                <div class="mb-20">
+                                    <label class="mb-8 text-sm form-label fw-semibold text-primary-light">
+                                        Mot de passe actuel <span class="text-danger-600">*</span>
+                                    </label>
+                                    <div class="position-relative">
+                                        <input type="password"
+                                            name="current_password"
+                                            class="form-control radius-8"
+                                            placeholder="••••••••"
+                                            required>
+                                    </div>
+                                </div>
+
+                                {{-- Nouveau mot de passe --}}
+                                <div class="mb-20">
+                                    <label class="mb-8 text-sm form-label fw-semibold text-primary-light">
+                                        Nouveau mot de passe <span class="text-danger-600">*</span>
+                                    </label>
+                                    <div class="position-relative">
+                                        <input type="password"
+                                            name="password"
+                                            class="form-control radius-8"
+                                            placeholder="••••••••"
+                                            required>
+                                    </div>
+                                </div>
+
+                                {{-- Confirmation --}}
+                                <div class="mb-20">
+                                    <label class="mb-8 text-sm form-label fw-semibold text-primary-light">
+                                        Confirmer le mot de passe <span class="text-danger-600">*</span>
+                                    </label>
+                                    <div class="position-relative">
+                                        <input type="password"
+                                            name="password_confirmation"
+                                            class="form-control radius-8"
+                                            placeholder="••••••••"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="px-56 py-12 btn btn-primary radius-8">
+                                        Modifier
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
 
     </div>
 @endsection
 
-
 @section('scripts')
-    <script>
-        // =============================== Upload Single Image js start here ================================================
-        const fileInput = document.getElementById("upload-file");
-        const imagePreview = document.getElementById("uploaded-img__preview");
-        const uploadedImgContainer = document.querySelector(".uploaded-img");
-        const removeButton = document.querySelector(".uploaded-img__remove");
+<script>
+    // ======================== Upload Image Start =====================
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                $('#imagePreview').hide();
+                $('#imagePreview').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#avatar").change(function() {
+        readURL(this);
+    });
+    // ======================== Upload Image End =====================
 
-        fileInput.addEventListener("change", (e) => {
-            if (e.target.files.length) {
-                const src = URL.createObjectURL(e.target.files[0]);
-                imagePreview.src = src;
-                uploadedImgContainer.classList.remove('d-none');
+    // ================== Password Show Hide Js Start ==========
+    function initializePasswordToggle(toggleSelector) {
+        $(toggleSelector).on('click', function() {
+            $(this).toggleClass("ri-eye-off-line");
+            var input = $($(this).attr("data-toggle"));
+            if (input.attr("type") === "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
             }
         });
-        removeButton.addEventListener("click", () => {
-            imagePreview.src = "";
-            uploadedImgContainer.classList.add('d-none');
-            fileInput.value = "";
-        });
-        // =============================== Upload Single Image js End here ================================================
-    </script>
+    }
+    // Call the function
+    initializePasswordToggle('.toggle-password');
+  // ========================= Password Show Hide Js End ===========================
+</script>
 @endsection

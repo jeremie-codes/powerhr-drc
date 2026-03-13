@@ -41,12 +41,6 @@ class JobController extends Controller
             ->withQueryString();
 
         /* Stats cohérentes */
-        /*$stats = [
-            'count'    => JobOffer::visible()->count(),
-            'active'   => JobOffer::visible()->currentlyActive()->count(),
-            'inactive' => JobOffer::visible()->currentlyInactive()->count(),
-        ];*/
-
         $stats = [
             'count'    => JobOffer::where('client_id', Auth::id())->count(),
             'active'   => JobOffer::where('client_id', Auth::id())->currentlyActive()->count(),
@@ -118,7 +112,7 @@ class JobController extends Controller
                 'is_deleted' => false,
             ]);
 
-            return redirect()->route('client.dashboard')
+            return redirect()->route('client.jobs.index')
                 ->with('success', 'Offre publiée avec succès.');
         }
         catch (\Exception $e) {

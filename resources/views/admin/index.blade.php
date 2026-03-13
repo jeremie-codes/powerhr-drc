@@ -21,28 +21,6 @@
         {{-- content --}}
         <div class="row gy-4">
 
-            @if(auth()->user()->company == null)
-                <div class="col-12">
-                    <div class="px-24 mb-10 text-lg alert alert-primary bg-primary-50 text-primary-600 border-primary-600 border-start-width-4-px border-top-0 border-end-0 border-bottom-0 py-13 fw-semibold radius-4 d-flex align-items-center justify-content-between" role="alert">
-                        <div class="gap-2 d-flex align-items-center">
-                            <iconify-icon icon="mdi:alert-circle-outline" class="text-xl icon"></iconify-icon>
-                            <small>Complétez le profil de votre entreprise pour formaliser vos offres d'emploi. <b><a href="{{ route('client.profile.index') }}">Configurer</a></b></small>
-                        </div>
-                        <button class="remove-button text-primary-600 text-xxl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                </div>
-            @elseif(auth()->user()->company->can_post == false)
-                <div class="col-12">
-                    <div class="px-24 mb-10 text-lg alert alert-primary bg-primary-50 text-primary-600 border-primary-600 border-start-width-4-px border-top-0 border-end-0 border-bottom-0 py-13 fw-semibold radius-4 d-flex align-items-center justify-content-between" role="alert">
-                        <div class="gap-2 d-flex align-items-center">
-                            <iconify-icon icon="mdi:alert-circle-outline" class="text-xl icon"></iconify-icon>
-                            <small>Veuillez remplir le contrat dans le menu <b><a href="{{ route('client.briefs.index') }}">"Contrat"</a></b> avant de publier des offres d'emploi. <b> <a href="{{ route('client.briefs.index') }}"> Remplir le contrat</a></b></small>
-                        </div>
-                        <button class="remove-button text-primary-600 text-xxl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                </div>
-            @endif
-
             <div class="col-xxxl-9">
                 <div class="row gy-4">
                     <div class="col-xxl-3 col-xl-4 col-sm-6">
@@ -53,11 +31,11 @@
                                     <div class="gap-2 d-flex align-items-center">
                                         <span
                                             class="flex-shrink-0 mb-0 text-white w-48-px h-48-px bg-cyan-100 text-cyan-600 d-flex justify-content-center align-items-center rounded-circle h6">
-                                            <i class="ri-group-fill"></i>
+                                            <i class="ri-briefcase-2-line"></i>
                                         </span>
                                         <div>
-                                            <h6 class="mb-2 fw-semibold">{{ $stats['all'] }}</h6>
-                                            <span class="text-sm fw-medium text-secondary-light">Offres</span>
+                                            <h6 class="mb-2 fw-semibold">{{ $stats['job_all'] }}</h6>
+                                            <span class="text-sm fw-medium text-secondary-light">Offre(s)</span>
                                         </div>
                                     </div>
                                 </div>
@@ -74,11 +52,11 @@
                                     <div class="gap-2 d-flex align-items-center">
                                         <span
                                             class="flex-shrink-0 mb-0 text-white w-48-px h-48-px bg-success-100 text-success-600 d-flex justify-content-center align-items-center rounded-circle h6">
-                                            <i class="ri-group-fill"></i>
+                                            <i class="ri-briefcase-2-line"></i>
                                         </span>
                                         <div>
-                                            <h6 class="mb-2 fw-semibold">{{ $stats['active'] }}</h6>
-                                            <span class="text-sm fw-medium text-secondary-light">Offres</span>
+                                            <h6 class="mb-2 fw-semibold">{{ $stats['job_active'] }}</h6>
+                                            <span class="text-sm fw-medium text-secondary-light">Offre(s)</span>
                                         </div>
                                     </div>
                                 </div>
@@ -95,11 +73,11 @@
                                     <div class="gap-2 d-flex align-items-center">
                                         <span
                                             class="flex-shrink-0 mb-0 text-white w-48-px h-48-px bg-primary-100 text-primary-600 d-flex justify-content-center align-items-center rounded-circle h6">
-                                            <i class="ri-group-fill"></i>
+                                            <i class="ri-briefcase-2-line"></i>
                                         </span>
                                         <div>
-                                            <h6 class="mb-2 fw-semibold">{{ $stats['inactive'] }}</h6>
-                                            <span class="text-sm fw-medium text-secondary-light">Offres</span>
+                                            <h6 class="mb-2 fw-semibold">{{ $stats['job_inactive'] }}</h6>
+                                            <span class="text-sm fw-medium text-secondary-light">Offre(s)</span>
                                         </div>
                                     </div>
                                 </div>
@@ -116,15 +94,99 @@
                                     <div class="gap-2 d-flex align-items-center">
                                         <span
                                             class="flex-shrink-0 mb-0 text-white w-48-px h-48-px bg-lilac-100 text-lilac-600 d-flex justify-content-center align-items-center rounded-circle h6">
-                                            <i class="ri-group-fill"></i>
+                                            <i class="ri-briefcase-2-line"></i>
                                         </span>
                                         <div>
-                                            <h6 class="mb-2 fw-semibold">{{ $stats['expiree'] }}</h6>
-                                            <span class="text-sm fw-medium text-secondary-light">Offres</span>
+                                            <h6 class="mb-2 fw-semibold">{{ $stats['job_expiree'] }}</h6>
+                                            <span class="text-sm fw-medium text-secondary-light">Offre(s)</span>
                                         </div>
                                     </div>
                                 </div>
                                 <p class="mb-0 text-sm">Total expirées</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-3 col-xl-4 col-sm-6">
+                        <div class="p-3 card shadow-2 radius-8 h-100 bg-gradient-end-6">
+                            <div class="p-0 card-body">
+                                <div class="flex-wrap gap-1 mb-8 d-flex align-items-center justify-content-between">
+
+                                    <div class="gap-2 d-flex align-items-center">
+                                        <span
+                                            class="flex-shrink-0 mb-0 text-white w-48-px h-48-px bg-cyan-100 text-cyan-600 d-flex justify-content-center align-items-center rounded-circle h6">
+                                            <i class="ri-group-fill"></i>
+                                        </span>
+                                        <div>
+                                            <h6 class="mb-2 fw-semibold">{{ $stats['client_all'] }}</h6>
+                                            <span class="text-sm fw-medium text-secondary-light">User(s)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-0 text-sm">Total compte client</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-3 col-xl-4 col-sm-6">
+                        <div class="p-3 card shadow-2 radius-8 h-100 bg-gradient-end-4">
+                            <div class="p-0 card-body">
+                                <div class="flex-wrap gap-1 mb-8 d-flex align-items-center justify-content-between">
+
+                                    <div class="gap-2 d-flex align-items-center">
+                                        <span
+                                            class="flex-shrink-0 mb-0 text-white w-48-px h-48-px bg-success-100 text-success-600 d-flex justify-content-center align-items-center rounded-circle h6">
+                                            <i class="ri-group-fill"></i>
+                                        </span>
+                                        <div>
+                                            <h6 class="mb-2 fw-semibold">{{ $stats['prospect_all'] }}</h6>
+                                            <span class="text-sm fw-medium text-secondary-light">User(s)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-0 text-sm">Total compte prospects</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-3 col-xl-4 col-sm-6">
+                        <div class="p-3 card shadow-2 radius-8 h-100 bg-gradient-end-1">
+                            <div class="p-0 card-body">
+                                <div class="flex-wrap gap-1 mb-8 d-flex align-items-center justify-content-between">
+
+                                    <div class="gap-2 d-flex align-items-center">
+                                        <span
+                                            class="flex-shrink-0 mb-0 text-white w-48-px h-48-px bg-primary-100 text-primary-600 d-flex justify-content-center align-items-center rounded-circle h6">
+                                            <i class="ri-group-fill"></i>
+                                        </span>
+                                        <div>
+                                            <h6 class="mb-2 fw-semibold">{{ $stats['candidate_all'] }}</h6>
+                                            <span class="text-sm fw-medium text-secondary-light">User(s)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-0 text-sm">Total compte candidat</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-3 col-xl-4 col-sm-6">
+                        <div class="p-3 card shadow-2 radius-8 h-100 bg-gradient-end-1">
+                            <div class="p-0 card-body">
+                                <div class="flex-wrap gap-1 mb-8 d-flex align-items-center justify-content-between">
+
+                                    <div class="gap-2 d-flex align-items-center">
+                                        <span
+                                            class="flex-shrink-0 mb-0 text-white w-48-px h-48-px bg-lilac-100 text-lilac-600 d-flex justify-content-center align-items-center rounded-circle h6">
+                                            <i class="ri-group-fill"></i>
+                                        </span>
+                                        <div>
+                                            <h6 class="mb-2 fw-semibold">{{ $stats['admin_all'] }}</h6>
+                                            <span class="text-sm fw-medium text-secondary-light">User(s)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-0 text-sm">Total compte admin</p>
                             </div>
                         </div>
                     </div>
@@ -138,25 +200,13 @@
                                     </div>
 
                                     <div class="flex-wrap gap-3 mt-20 d-flex justify-content-center">
-
                                         <div class="gap-2 p-12 border d-inline-flex align-items-center radius-8 br-hover-primary group-item">
                                             <span
                                                 class="bg-neutral-100 w-44-px h-44-px text-xxl radius-8 d-flex justify-content-center align-items-center text-secondary-light group-hover:bg-primary-600 group-hover:text-white">
-                                                <iconify-icon icon="uis:chart" class="icon"></iconify-icon>
+                                                <i class="ri-bar-chart-2-line"></i>
                                             </span>
                                             <div>
-                                                <span class="text-sm text-secondary-light fw-medium">En attente</span>
-                                                <h6 class="mb-0 text-md fw-semibold">{{ $demandes['soumise'] }}</h6>
-                                            </div>
-                                        </div>
-
-                                        <div class="gap-2 p-12 border d-inline-flex align-items-center radius-8 br-hover-primary group-item">
-                                            <span
-                                                class="bg-neutral-100 w-44-px h-44-px text-xxl radius-8 d-flex justify-content-center align-items-center text-secondary-light group-hover:bg-primary-600 group-hover:text-white">
-                                                <iconify-icon icon="uis:chart" class="icon"></iconify-icon>
-                                            </span>
-                                            <div>
-                                                <span class="text-sm text-secondary-light fw-medium">Acceptée</span>
+                                                <span class="text-sm text-success fw-medium">Acceptée</span>
                                                 <h6 class="mb-0 text-md fw-semibold">{{ $demandes['acceptee'] }}</h6>
                                             </div>
                                         </div>
@@ -164,11 +214,33 @@
                                         <div class="gap-2 p-12 border d-inline-flex align-items-center radius-8 br-hover-primary group-item">
                                             <span
                                                 class="bg-neutral-100 w-44-px h-44-px text-xxl radius-8 d-flex justify-content-center align-items-center text-secondary-light group-hover:bg-primary-600 group-hover:text-white">
-                                                <iconify-icon icon="uis:chart" class="icon"></iconify-icon>
+                                                <i class="ri-bar-chart-2-line"></i>
                                             </span>
                                             <div>
-                                                <span class="text-sm text-secondary-light fw-medium">Rejetée</span>
+                                                <span class="text-sm text-warning fw-medium">En attente</span>
+                                                <h6 class="mb-0 text-md fw-semibold">{{ $demandes['soumise'] }}</h6>
+                                            </div>
+                                        </div>
+
+                                        <div class="gap-2 p-12 border d-inline-flex align-items-center radius-8 br-hover-primary group-item">
+                                            <span
+                                                class="bg-neutral-100 w-44-px h-44-px text-xxl radius-8 d-flex justify-content-center align-items-center text-secondary-light group-hover:bg-primary-600 group-hover:text-white">
+                                                <i class="ri-bar-chart-2-line"></i>
+                                            </span>
+                                            <div>
+                                                <span class="text-sm text-danger fw-medium">Rejetée</span>
                                                 <h6 class="mb-0 text-md fw-semibold">{{ $demandes['rejetee'] }}</h6>
+                                            </div>
+                                        </div>
+
+                                        <div class="gap-2 p-12 border d-inline-flex align-items-center radius-8 br-hover-primary group-item">
+                                            <span
+                                                class="bg-neutral-100 w-44-px h-44-px text-xxl radius-8 d-flex justify-content-center align-items-center text-secondary-light group-hover:bg-primary-600 group-hover:text-white">
+                                                <i class="ri-bar-chart-2-line "></i>
+                                            </span>
+                                            <div>
+                                                <span class="text-sm text-danger fw-medium">Annulée</span>
+                                                <h6 class="mb-0 text-md fw-semibold">{{ $demandes['annulee'] }}</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -193,11 +265,6 @@
                             <div class="text-center d-flex nft-promo-card__inner align-items-center justify-content-center">
 
                                 <div class="nft-promo-card__humb">
-                                    {{-- <div class="w-100">
-                                        <img src="{{ asset($user->image ? 'storage/' . $user->image : 'build/images/users/avatar-1.png') }}"
-                                            alt="" class="w-100 h-100 object-fit-contain"
-                                            style="border-radius: 100%;">
-                                    </div> --}}
 
                                     <div class="text-center w-100">
                                         <div class="text-white text-md">Bienvenue à nouveau!</div>

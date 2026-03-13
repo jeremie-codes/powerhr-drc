@@ -52,6 +52,22 @@
                                 </li>
                             </ul>
                         </div>
+
+                        <hr class="mb-12">
+
+                        <div class="gap-2 d-flex align-items-center justify-content-center">
+                            <form method="POST"
+                                  action="{{ route('admin.candidates.update', $profile) }}"
+                                  onsubmit="return confirm('Êtes-vous sûr de vouloir modifier ces accès ?')">
+                                @csrf
+                                <input type="hidden" name="is_active" value="{{ $profile->is_active ? '0' : '1' }}">
+                                <button class="gap-1 btn btn-sm {{ $profile->is_active ? ' btn-danger' : ' btn-success' }} radius-8 d-inline-flex align-items-center">
+                                    <i class="text-xl ri-user-forbid-line menu-icon"></i>
+                                    {{ $profile->is_active ? 'Désactiver les accès' : 'Activer les accès' }}
+                                </button>
+
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

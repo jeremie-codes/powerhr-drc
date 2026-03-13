@@ -1,4 +1,4 @@
-@extends('admin.layouts.master-without-nav')
+@extends('auth.layouts.master')
 @section('title')
     {{ __('404') }}
 @endsection
@@ -10,8 +10,7 @@
         <div class="mb-0 border-none shadow-none lg:w-[500px] card bg-white/70 dark:bg-zink-500/70">
             <div class="!px-10 !py-12 card-body">
                 <a href="index">
-                    <img src="{{ URL::asset('build/images/logo-light.png') }}" alt="" class="hidden h-6 mx-auto dark:block">
-                    <img src="{{ URL::asset('build/images/logo-dark.png') }}" alt="" class="block h-6 mx-auto dark:hidden">
+                    <img src="{{ URL::asset('images/logo.png') }}" alt="" class="h-24 mx-auto">
                 </a>
 
                 <div class="mt-10">

@@ -1,11 +1,11 @@
- <ul class="sidebar-menu" id="sidebar-menu">
+<ul class="sidebar-menu" id="sidebar-menu">
 
      <li class="sidebar-menu-group-title">Accueil</li>
 
      {{-- DASHBOARD --}}
      <li class="{{ request()->routeIs('client.index') ? 'active' : '' }}">
          <a href="{{ route('client.index') }}">
-             <iconify-icon icon="solar:home-smile-angle-outline" class="text-xl menu-icon"></iconify-icon>
+             <i class="text-xl ri-home-4-line menu-icon"></i>
              <span>Tablau de bord</span>
          </a>
      </li>
@@ -15,15 +15,15 @@
      {{-- LISTE DES OFFRES --}}
      <li class="{{ request()->routeIs('client.jobs.index*') ? 'active' : '' }}">
          <a href="{{ route('client.jobs.index') }}">
-             <iconify-icon icon="mdi:briefcase-search-outline" class="text-xl menu-icon"></iconify-icon>
-             <span>Mes Offres</span>
+             <i class="text-xl ri-briefcase-2-line menu-icon"></i>
+             <span>Liste des Offres</span>
          </a>
      </li>
 
      {{-- MES CANDIDATURES --}}
      <li class="{{ request()->routeIs('client.jobs.apply*') ? 'active' : '' }}">
          <a href="{{ route('client.jobs.apply') }}">
-             <iconify-icon icon="mdi:file-document-check-outline" class="text-xl menu-icon"></iconify-icon>
+             <i class="text-xl ri-file-gif-line menu-icon"></i>
              <span>Liste des candidatures</span>
          </a>
      </li>
@@ -34,7 +34,7 @@
      {{-- TROUVER UN PROFIL --}}
      <li class="{{ request()->routeIs('client.candidate.index*') ? 'active' : '' }}">
          <a href="{{ route('client.candidate.index') }}">
-             <iconify-icon icon="mdi:file-document-check-outline" class="text-xl menu-icon"></iconify-icon>
+             <i class="text-xl ri-file-user-line menu-icon"></i>
              <span>Liste des employés</span>
          </a>
      </li>
@@ -42,7 +42,7 @@
      {{-- FIND PROFILE --}}
      <li class="{{ request()->routeIs('client.search*') ? 'active' : '' }}">
          <a href="{{ route('client.search') }}">
-             <iconify-icon icon="mdi:account-search-outline" class="text-xl menu-icon"></iconify-icon>
+             <i class="text-xl ri-user-search-line menu-icon"></i>
              <span>Trouver un profil</span>
          </a>
      </li>
@@ -50,18 +50,18 @@
      {{-- RECOMMENDED PROFILE --}}
      <li class="{{ request()->routeIs('client.candidate.recommended*') ? 'active' : '' }}">
          <a href="{{ route('client.candidate.recommended') }}">
-             <iconify-icon icon="mdi:file-document-check-outline" class="text-xl menu-icon"></iconify-icon>
+             <i class="text-xl ri-user-follow-line menu-icon"></i>
              <span>Profile recommandés</span>
          </a>
      </li>
-     @endif
+    @endif
 
-     <li class="sidebar-menu-group-title">Mon Compte</li>
+    <li class="sidebar-menu-group-title">Mon Compte</li>
 
      {{-- PROFIL --}}
      <li class="{{ request()->routeIs('client.profile.index*') ? 'active' : '' }}">
          <a href="{{ route('client.profile.index') }}">
-             <iconify-icon icon="mdi:account-outline" class="text-xl menu-icon"></iconify-icon>
+             <i class="text-xl ri-folder-user-line menu-icon"></i>
              <span>Profil entreprise</span>
          </a>
      </li>
@@ -77,7 +77,7 @@
      {{-- CONTRAT --}}
      <li class="{{ request()->routeIs('client.briefs.index*') ? 'active' : '' }}">
          <a href="{{ route('client.briefs.index') }}">
-             <iconify-icon icon="mdi:file-outline" class="text-xl menu-icon"></iconify-icon>
+             <i class="text-xl ri-file-forbid-line menu-icon"></i>
              <span>Contrat</span>
          </a>
      </li>

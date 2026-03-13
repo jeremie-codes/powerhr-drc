@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Company;
 use App\Models\Country;
-use App\Models\JobCategory;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -15,61 +15,58 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user()->load('company');
-        $company = $user->company ?? null;
         $countries = Country::all();
-        $jobCategories = JobCategory::all();
 
-        return view('client.profile', compact('user', 'countries', 'jobCategories', 'company'));
+        return view('admin.profile', compact('user', 'countries'));
     }
 
     public function store(Request $request)
     {
         try {
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'sector' => 'nullable|string|max:255',
-                'address' => 'nullable|string|max:255',
-                'phone' => 'nullable|string|max:20',
-                'rccm' => 'nullable|string|max:100',
-                'website' => 'nullable|string|max:100',
-                'city' => 'nullable|string|max:50',
-                'country_id' => 'required|exists:countries,id',
-                'email_dg' => 'nullable|email',
-                'email_hr' => 'nullable|email',
-                'logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            ]);
-
             $user = Auth::user();
 
-            // Upload logo
-            $logoPath = null;
+            // Validation
+            $validated = $request->validate([
+                'name'            => 'required|string|max:255',
+                'email'           => 'required|email|max:255',
+                'pays_residence'  => 'required|string|max:100',
+                'langue'          => 'required|string|max:5',
+                'phone'           => 'nullable|string|max:12',
+                'gender'           => 'required|string|max:12',
+                'avatar'          => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            ]);
 
-            if ($request->hasFile('logo')) {
-                $logoPath = $request->file('logo')->store('companies', 'public');
+            /* Upload de l'avatar */
+            if ($request->hasFile('avatar')) {
+
+                // Supprimer l’ancienne image
+                if ($user->image && Storage::disk('public')->exists($user->image)) {
+                    Storage::disk('public')->delete($user->image);
+                }
+
+                // Stockage
+                $validated['image'] = $request
+                    ->file('avatar')
+                    ->store('avatars', 'public');
             }
 
-            Company::updateOrCreate(
-                ['user_id' => $user->id],
-                [
-                    'name' => $request->name,
-                    'sector' => $request->sector,
-                    'address' => $request->address,
-                    'phone' => $request->phone,
-                    'email_dg' => $request->email_dg,
-                    'email_hr' => $request->email_hr,
-                    'country_id' => $request->country_id,
-                    'city' => $request->city,
-                    'rccm' => $request->rccm,
-                    'website' => $request->website,
-                    'logo' => $logoPath,
-                ]
-            );
+            // Mise à jour unique
+            $user->update([
+                'name'        => $validated['name'],
+                'email'       => $validated['email'],
+                'langue'      => $validated['langue'],
+                'gender'      => $validated['gender'],
+                'phone'       => $validated['phone'],
+                'country_id'  => $validated['pays_residence'],
+                'image'       => $validated['image'] ?? $user->image,
+            ]);
 
-            return redirect()->route('client.index')
-                ->with('success', 'Profil entreprise enregistré avec succès. En attente validation admin.');
+            return redirect()
+                ->back()
+                ->with('success', 'Profil mis à jour avec succès.');
         } catch (\Exception $e) {
 
-            \Log::error('Erreur lors de la mise à jour du profil: ' . $e->getMessage());
+            \Log::error('Erreur lors de la mise à jour du profil user(setting): ' . $e->getMessage());
             return redirect()->back()
                 ->with('error', 'Une erreur est survenue lors de la mise à jour du profil.');
         }

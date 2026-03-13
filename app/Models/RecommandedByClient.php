@@ -8,7 +8,9 @@ class RecommandedByClient extends Model
 {
     protected $fillable = [
         'company_id',
-        'candidate_profile_id'
+        'candidate_profile_id',
+        'traited',
+        'response',
     ];
 
     public function company()

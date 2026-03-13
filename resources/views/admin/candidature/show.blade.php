@@ -27,7 +27,7 @@
                         Télécharger
                     </a>
 
-                    @if($application->status !== "acceptee")
+                    {{--@if($application->status !== "acceptee")
                         <form action="{{ route('client.jobs.change.apply', $application) }}" method="POST">
                             @csrf
                             <input type="hidden" name="status" value="acceptee">
@@ -46,7 +46,7 @@
                             </button>
                         </form>
                         @endif
-                    @endif
+                    @endif--}}
                 </div>
             </div>
 
@@ -57,17 +57,17 @@
 
                             {{-- COLONNE GAUCHE --}}
                             <div class="p-20 text-white bg-primary-500" style="width:30%;">
-                                <div class="mt-20 mb-24 text-center">
-                                    <img src="{{ asset($candidat->gender == 'masculin' ? 'assets/images/users/user1.png' : 'assets/images/users/user2.png') }}"
+                                <div class="mt-20 mb-24 text-center overflow-hidden border rounded-circle bg-blue-light" style="width: 150px; height: 150px;">
+                                    <img src="{{ asset($application->candidate?->image ? 'storage/' . $application->candidate?->image : 'assets/images/users/user1.png') }}"
                                         class="border rounded-circle" width="150" height="150">
                                 </div>
 
                                 <h6 class="pb-2 mb-2 text-xl text-white text-uppercase border-bottom" >Coordonnées</h6>
                                 <p class="mb-8 text-sm">
-                                    {{ 'Téléphone: *** *** ***' }}<br>
-                                    {{ 'Email: ******@***** ' }}<br>
+                                    {{ 'Téléphone: ' . ucfirst($candidat->phone) }}<br>
+                                    {{ 'Email: ' . ucfirst($candidat->email) }}<br>
                                     {{ 'Sexe: ' . ucfirst($candidat->gender) }}<br>
-                                    {{ 'Adresse : *******' }}, {{ $candidat?->country?->code ?? '' }}<br>
+                                    {{ 'Adresse : ' . $candidat?->country?->code ?? '' }}<br>
 
                                 </p>
 
@@ -95,16 +95,16 @@
 
                             {{-- COLONNE DROITE --}}
                             <div class="p-24 bg-white" style="width:70%;">
-                                <h5 class="mt-20 mb-0">Profil Anonyme</h5>
+                                <h5 class="mt-20 mb-0">{{ $candidat->name }}</h5>
 
                                 <h6 class="pb-2 mb-16 text-xl text-primary-500 border-bottom">
-                                    {{ $candidat->candidate->job_type ?? 'Métier non défini' }}
+                                    {{ $candidat->candidate?->job_type ?? 'Métier non défini' }}
                                 </h6>
 
                                 {{-- PROFIL --}}
                                 <h6 class="mt-16 text-xl fw-semibold">Profil professionnel</h6>
                                 <p class="text-sm">
-                                    {{ $candidat->candidate->summary ?? 'Vous n\'avez pas décris de profil professionnel dans votre bio' }}
+                                    {{ $candidat->candidate?->summary ?? 'Vous n\'avez pas décris de profil professionnel dans votre bio' }}
                                 </p>
 
                                 {{-- EXPERIENCES --}}

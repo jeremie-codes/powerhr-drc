@@ -22,7 +22,7 @@ class CvController extends Controller
             'candidate.languages'
         ]);
 
-        return view('client.candidature.show', compact('candidat', 'application'));
+        return view('admin.candidature.show', compact('candidat', 'application'));
     }
 
     public function download()
@@ -34,7 +34,7 @@ class CvController extends Controller
             'candidate.languages'
         ]);
 
-        $pdf = Pdf::loadView('client.cv.show', compact('candidat'))
+        $pdf = Pdf::loadView('admin.cv.show', compact('candidat'))
                 ->setPaper('A4');
 
         return $pdf->download('CV_'.$candidat->name.'.pdf');

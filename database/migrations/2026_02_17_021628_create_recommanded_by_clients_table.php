@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('company_id')->constrained('companies')->cascadeOnDelete();
             $table->foreignId('candidate_profile_id')->constrained('candidate_profiles')->cascadeOnDelete();
+            $table->boolean('traited')->default(false);
+            $table->enum('response', ['disponible', 'occupé'])->nullbale()->default(null);
             $table->timestamps();
         });
     }

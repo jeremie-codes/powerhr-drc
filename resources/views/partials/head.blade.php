@@ -4,7 +4,7 @@
     <title>POWER-HR</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
 
     <!-- Remix Icon -->
     <link rel="stylesheet" href="{{ asset('assets/css/remixicon.css') }}">

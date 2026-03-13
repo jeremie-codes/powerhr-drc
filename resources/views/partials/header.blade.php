@@ -81,94 +81,13 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Language dropdown end -->
-
-                {{-- <div class="dropdown">
-                    <button
-                        class="has-indicator w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center"
-                        type="button" data-bs-toggle="dropdown">
-                        <iconify-icon icon="iconoir:bell" class="text-xl text-primary-light"></iconify-icon>
-                    </button>
-                    <div class="p-0 dropdown-menu to-top dropdown-menu-lg">
-                        <div
-                            class="gap-2 px-16 py-12 m-16 mb-16 radius-8 bg-primary-50 d-flex align-items-center justify-content-between">
-                            <div>
-                                <h6 class="mb-0 text-lg text-primary-light fw-semibold">Notifications</h6>
-                            </div>
-                            <span
-                                class="text-lg text-primary-600 fw-semibold w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center">05</span>
-                        </div>
-
-                        <div class="overflow-y-auto max-h-400-px scroll-sm pe-4">
-                            <a href="javascript:void(0)"
-                                class="gap-3 px-24 py-12 mb-2 d-flex align-items-start justify-content-between">
-                                <div
-                                    class="gap-3 text-black hover-bg-transparent hover-text-primary d-flex align-items-center">
-                                    <span
-                                        class="flex-shrink-0 w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center">
-                                        <iconify-icon icon="bitcoin-icons:verify-outline"
-                                            class="icon text-xxl"></iconify-icon>
-                                    </span>
-                                    <div>
-                                        <h6 class="mb-4 text-md fw-semibold">Congratulations</h6>
-                                        <p class="mb-0 text-sm text-secondary-light text-w-200-px">Your profile has been
-                                            Verified. Your
-                                            profile has been Verified</p>
-                                    </div>
-                                </div>
-                                <span class="flex-shrink-0 text-sm text-secondary-light">23 Mins ago</span>
-                            </a>
-
-                            <a href="javascript:void(0)"
-                                class="gap-3 px-24 py-12 mb-2 d-flex align-items-start justify-content-between bg-neutral-50">
-                                <div
-                                    class="gap-3 text-black hover-bg-transparent hover-text-primary d-flex align-items-center">
-                                    <span
-                                        class="flex-shrink-0 w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center">
-                                        <img src="assets/images/notification/profile-1.png" alt="">
-                                    </span>
-                                    <div>
-                                        <h6 class="mb-4 text-md fw-semibold">Ronald Richards</h6>
-                                        <p class="mb-0 text-sm text-secondary-light text-w-200-px">You can stitch
-                                            between artboards</p>
-                                    </div>
-                                </div>
-                                <span class="flex-shrink-0 text-sm text-secondary-light">23 Mins ago</span>
-                            </a>
-
-                            <a href="javascript:void(0)"
-                                class="gap-3 px-24 py-12 mb-2 d-flex align-items-start justify-content-between">
-                                <div
-                                    class="gap-3 text-black hover-bg-transparent hover-text-primary d-flex align-items-center">
-                                    <span
-                                        class="flex-shrink-0 w-44-px h-44-px bg-info-subtle text-info-main rounded-circle d-flex justify-content-center align-items-center">
-                                        AM
-                                    </span>
-                                    <div>
-                                        <h6 class="mb-4 text-md fw-semibold">Arlene McCoy</h6>
-                                        <p class="mb-0 text-sm text-secondary-light text-w-200-px">Invite you to
-                                            prototyping</p>
-                                    </div>
-                                </div>
-                                <span class="flex-shrink-0 text-sm text-secondary-light">23 Mins ago</span>
-                            </a>
-
-                        </div>
-
-                        <div class="px-16 py-12 text-center">
-                            <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">See All
-                                Notification</a>
-                        </div>
-
-                    </div>
-                </div><!-- Notification dropdown end --> --}}
 
                 <div class="dropdown">
                     <button class="d-flex justify-content-center align-items-center rounded-circle" type="button"
                         data-bs-toggle="dropdown">
                         <img src="{{ asset(auth()->user()->image ? 'storage/' . auth()->user()->image : 'build/images/users/avatar-1.png') }}" alt="image"
-                            class="w-40-px h-40-px object-fit-cover rounded-circle">
+                            class="w-40-px h-40-px object-fit-cover rounded-circle bg-light-600">
                     </button>
                     <div class="dropdown-menu to-top dropdown-menu-sm">
                         <div

@@ -1,57 +1,83 @@
- <ul class="sidebar-menu" id="sidebar-menu">
+<ul class="sidebar-menu" id="sidebar-menu">
 
-            <li class="sidebar-menu-group-title">Accueil</li>
+    <li class="sidebar-menu-group-title">Accueil</li>
 
-            {{-- DASHBOARD --}}
-            <li class="{{ request()->routeIs('candidate.index') ? 'active' : '' }}">
-                <a href="{{ route('candidate.index') }}">
-                    <iconify-icon icon="solar:home-smile-angle-outline" class="menu-icon"></iconify-icon>
-                    <span>Tablau de bord</span>
-                </a>
-            </li>
+    {{-- DASHBOARD --}}
+    <li class="{{ request()->routeIs('admin.index') ? 'active' : '' }}">
+        <a href="{{ route('admin.index') }}">
+            <i class="text-xl ri-home-4-line menu-icon"></i>
+            <span>Tablau de bord</span>
+        </a>
+    </li>
 
-            <li class="sidebar-menu-group-title">Offres</li>
+    <li class="sidebar-menu-group-title">Offres</li>
 
-            {{-- LISTE DES OFFRES --}}
-            <li class="{{ request()->routeIs('candidate.jobs.index') ? 'active' : '' }}">
-                <a href="{{ route('candidate.jobs.index') }}">
-                    <iconify-icon icon="mdi:briefcase-search-outline" class="menu-icon"></iconify-icon>
-                    <span>Offres disponibles</span>
-                </a>
-            </li>
+    {{-- LISTE DES OFFRES --}}
+    <li class="{{ request()->routeIs('admin.jobs.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.jobs.index') }}">
+            <i class="text-xl ri-briefcase-2-line menu-icon"></i>
+            <span>Liste des Offres</span>
+        </a>
+    </li>
 
-            {{-- MES CANDIDATURES --}}
-            <li class="{{ request()->routeIs('candidate.jobs.apply') ? 'active' : '' }}">
-                <a href="{{ route('candidate.jobs.apply') }}">
-                    <iconify-icon icon="mdi:file-document-check-outline" class="menu-icon"></iconify-icon>
-                    <span>Mes candidatures</span>
-                </a>
-            </li>
+    {{-- MES CANDIDATURES --}}
+    <li class="{{ request()->routeIs('admin.jobs.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.jobs.apply') }}">
+            <i class="text-xl ri-file-gif-line menu-icon"></i>
+            <span>Liste des candidatures</span>
+        </a>
+    </li>
 
-            <li class="sidebar-menu-group-title">Mon Compte</li>
+    <li class="sidebar-menu-group-title">Recherche</li>
 
-            {{-- PROFIL --}}
-            <li class="{{ request()->routeIs('candidate.profile.index') ? 'active' : '' }}">
-                <a href="{{ route('candidate.profile.index') }}">
-                    <iconify-icon icon="mdi:account-outline" class="menu-icon"></iconify-icon>
-                    <span>Mon Profil</span>
-                </a>
-            </li>
+    {{-- LISTE DES CLIENTS --}}
+    <li class="{{ request()->routeIs('admin.client.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.client.index') }}">
+            <i class="text-xl ri-stack-line menu-icon"></i>
+            <span>Liste des clients</span>
+        </a>
+    </li>
 
-            {{-- PARAMÈTRES --}}
-            <li class="{{ request()->routeIs('candidate.settings.index') ? 'active' : '' }}">
-                <a href="{{ route('candidate.settings.index') }}">
-                    <iconify-icon icon="mdi:cog-outline" class="menu-icon"></iconify-icon>
-                    <span>Paramètres</span>
-                </a>
-            </li>
+    {{-- LISTE DES CANDIDATS --}}
+    <li class="{{ request()->routeIs('admin.canidates.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.candidates.index') }}">
+            <i class="text-xl ri-stack-line menu-icon"></i>
+            <span>Liste des candidats</span>
+        </a>
+    </li>
 
-            {{-- MON CV --}}
-            <li class="{{ request()->routeIs('candidate.cv.index') ? 'active' : '' }}">
-                <a href="{{ route('candidate.cv.index') }}">
-                    <iconify-icon icon="mdi:file-account-outline" class="menu-icon"></iconify-icon>
-                    <span>Mon CV</span>
-                </a>
-            </li>
+    {{-- PROFIL CLIENT --}}
+    <li class="{{ request()->routeIs('admin.candidate.recommended.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.candidate.index') }}">
+            <i class="text-xl ri-file-user-line menu-icon"></i>
+            <span>Liste des employés</span>
+        </a>
+    </li>
 
-        </ul>
+    {{-- RECOMMENDED PROFILE --}}
+    <li class="{{ request()->routeIs('admin.candidate.recommended.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.candidate.recommended') }}">
+            <i class="text-xl ri-user-follow-line menu-icon"></i>
+            <span>Profile recommandés</span>
+        </a>
+    </li>
+
+    <li class="sidebar-menu-group-title">Mon Compte</li>
+
+    {{-- PROFIL --}}
+    <li class="{{ request()->routeIs('admin.profile.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.profile.index') }}">
+            <i class="text-xl ri-user-settings-line d-flex"></i>
+            <span>Mon Profil</span>
+        </a>
+    </li>
+
+    {{-- PARAMÈTRES --}}
+    <li class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.users.index') }}">
+            <i class="text-xl ri-group-3-line d-flex"></i>
+            <span>Gestion d'Utilisateur</span>
+        </a>
+    </li>
+
+</ul>

@@ -185,7 +185,7 @@
                                             <td>
                                                 @if ($job->expires_at)
                                                     <span
-                                                        class="{{ $job->expires_at->diffInDays(now()) <= 3 ? 'text-danger' : '' }}">
+                                                        class="{{ $job->expires_at->diffInDays(now()) >= 1 ? 'text-danger' : '' }}">
                                                         {{ $job->expires_at->format('d/m/Y') }}
                                                     </span>
                                                 @else
