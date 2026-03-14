@@ -833,7 +833,7 @@
                                     </div>
                                 @empty
                                     <p class="text-muted text-center">
-                                        Aucune offres publié !
+                                        Aucune offre publié !
                                     </p>
                                 @endforelse
                             </div>
