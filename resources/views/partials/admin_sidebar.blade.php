@@ -16,7 +16,7 @@
     <li class="{{ request()->routeIs('admin.jobs.*') ? 'active' : '' }}">
         <a href="{{ route('admin.jobs.index') }}">
             <i class="text-xl ri-briefcase-2-line menu-icon"></i>
-            <span>Liste des Offres</span>
+            <span>Liste d'Offres</span>
         </a>
     </li>
 

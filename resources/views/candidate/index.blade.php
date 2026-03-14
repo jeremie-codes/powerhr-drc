@@ -29,9 +29,9 @@
                             />
 
                             <div class="p-16 flex- nft-promo-card__inner d-flex align-items-center justify-content-between">
-                                <div class=" nft-promo-card__humb w-25">
+                                <div class=" nft-promo-card__humb overflow-hidden rounded-pill border bg-blue-light" style="width: 150px; height: 150px">
                                     <img src="{{ asset($user->image ? 'storage/' . $user->image : 'build/images/users/avatar-1.png') }}" alt=""
-                                        class="w-100 h-100 object-fit-contain" style="border-radius: 100%;">
+                                        class=" object-cover " style="border-radius: 100%;">
                                 </div>
 
                                 <div class="flex-grow-1">
@@ -59,7 +59,7 @@
 
                                 <div >
                                     <div class="flex-wrap gap-16 mt-24 d-flex align-items-center">
-                                        <a href="{{ route('candidate.settings.index') }}" class="btn rounded-pill btn-primary-600 radius-8 px-28 py-11">Voir mon profil</a>
+                                        <a href="{{ route('candidate.settings.index') }}" class="btn rounded-pill btn-warning-600 radius-8 px-28 py-11">Voir mon profil</a>
                                     </div>
                                 </div>
                             </div>

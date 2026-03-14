@@ -86,12 +86,17 @@
                 <div class="dropdown">
                     <button class="d-flex justify-content-center align-items-center rounded-circle" type="button"
                         data-bs-toggle="dropdown">
-                        <img src="{{ asset(auth()->user()->image ? 'storage/' . auth()->user()->image : 'build/images/users/avatar-1.png') }}" alt="image"
-                            class="w-40-px h-40-px object-fit-cover rounded-circle bg-light-600">
+                        <div class="w-40-px h-40-px rounded-circle bg-light-600 overflow-hidden">
+                            <img src="{{ asset(auth()->user()->image ? 'storage/' . auth()->user()->image : 'build/images/users/avatar-1.png') }}" alt="image"
+                                 class="object-fit-cover">
+                        </div>
                     </button>
                     <div class="dropdown-menu to-top dropdown-menu-sm">
-                        <div
-                            class="gap-2 px-16 py-12 mb-16 radius-8 bg-primary-50 d-flex align-items-center justify-content-between">
+                        <div class="gap-2 px-16 py-12 mb-16 radius-8 bg-primary-50 d-flex align-items-center justify-content-between">
+                            <div class="w-40-px h-40-px rounded-circle bg-light overflow-hidden">
+                                <img src="{{ asset(auth()->user()->image ? 'storage/' . auth()->user()->image : 'build/images/users/avatar-1.png') }}" alt="image"
+                                     class="object-fit-cover">
+                            </div>
                             <div>
                                 <h6 class="mb-2 text-lg text-primary-light fw-semibold">{{ auth()->user()->name }}</h6>
                                 <span class="text-sm text-secondary-light fw-medium">{{ auth()->user()->role }}</span>

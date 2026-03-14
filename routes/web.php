@@ -9,9 +9,7 @@ Route::post('/set-language', function (Request $request) {
 })->name('set.language');
 
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+Route::get('/', [\App\Http\Controllers\RouteController::class, 'index'])->name('index');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/candidate.php';

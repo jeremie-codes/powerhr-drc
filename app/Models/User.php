@@ -127,4 +127,15 @@ class User extends Authenticatable
         }
     }
 
+    public function getDashboardRoute() {
+        if($this->isAdmin()) {
+            return 'admin.index';
+        }
+        if($this->isClient()) {
+            return 'client.index';
+        }
+
+        return 'candidate.index';
+    }
+
 }
