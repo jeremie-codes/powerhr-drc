@@ -68,4 +68,5 @@ class CandidateProfile extends Model
     {
         return $this->hasMany(Application::class, 'candidate_id');
     }
+
 }

@@ -96,7 +96,7 @@ class UserController extends Controller
                 'is_active' => $request->is_active,
             ]);
 
-            return redirect()->back()->with('success', 'Status mis à jour avec succès !');
+            return redirect()->back()->with('success', 'Status accès mis à jour avec succès !');
         } catch (\Throwable $th) {
 
             \Log::error('Erreur lors de changement de status' . $th);

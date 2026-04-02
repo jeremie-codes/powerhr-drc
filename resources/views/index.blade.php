@@ -37,13 +37,31 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/swiper-bundle.min.css') }}"><!-- Swiper Slider -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"><!-- MAIN STYLE SHEET -->
 
+
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="{{ asset('css/skins-type/skin-6.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/feather.min.js"></script>
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons-css@1.2.0/css/feather.min.css"> --}}
     {{-- <script src="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/license.min.js"></script> --}}
     <style>
+
+        .bg-primary, .btn-primary {
+            background-color: #1077b2 !important;
+        }
+
+        .text-primary, .site-text-primary {
+            color: #1077b2 !important;
+        }
+
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
         @media (min-width: 995px) {
             .head-text {
                 position: relative;
@@ -118,7 +136,7 @@
                                     </div>
 
                                     <div class="twm-nav-btn-right">
-                                        <a href="{{ route('login.view') }}" class="twm-nav-post-a-job">
+                                        <a href="{{ route('login.view') }}" class="p-2 btn btn-primary" style="border-radius: 10px;">
                                             <i data-feather="user"></i>
                                             Se connecter
                                         </a>
@@ -161,10 +179,9 @@
                     <!--Left Section-->
                     <div class="col-xl-7 col-lg-7 offset-md- col-md-12 head-text">
                         <div class="twm-bnr-left-section">
-                            <div class="twm-bnr-title-small">Nous avons plus de <span class="site-text-primary">208
-                                    000 </span>emplois en direct</div>
-                            <div class="twm-bnr-title-large">Trouvez <span class="site-text-primary"> l'emploi</span>
-                                qui correspond à votre vie</div>
+                            <div class="twm-bnr-title-small">Nous avons plus de <span class="site-text-primary">208 000 </span>emplois en direct</div>
+                            <h3 class="twm-bnr-title-large">Trouvez <span class="site-text-primary"> l'emploi</span>
+                                qui correspond à votre vie</h3>
                             <div class="twm-bnr-discription">Tapez votre mot-clé, puis cliquez sur Rechercher pour
                                 trouver votre emploi idéal.</div>
                         </div>
@@ -182,13 +199,13 @@
 
                             <div class="twm-bnr-right-carousel">
                                 <div class="owl-carousel twm-h1-bnr-carousal">
-                                    <div class="item overflow-hidden">
+                                    <div class="overflow-hidden item">
                                         <div class="slide-img">
                                             <img src="{{ url('images/hr.png') }}"
                                                 class="object-cover w100" alt="#">
                                         </div>
                                     </div>
-                                    <div class="item overflow-hidden">
+                                    <div class="overflow-hidden item">
                                         <div class="slide-img">
                                             <div class="slide-img">
                                                 <img src="{{ url('images/hr-3.png') }}"
@@ -236,7 +253,7 @@
                             <div class="col-xl-4 col-lg-6 col-md-6">
                                 <div class="twm-w-process-steps">
                                     <span class="twm-large-number">01</span>
-                                    <div class="twm-w-pro-top bg-clr-sky">
+                                    <div class="twm-w-pro-top bg-primary">
                                         <div class="twm-media">
                                             <span><img src="{{ url('images/work-process/icon1.png') }}"
                                                     alt="icon1"></span>
@@ -331,7 +348,7 @@
                                             <img src="{{ asset('images/briefcase.png') }}" />
                                         </div>
                                         <div class="twm-content">
-                                            <div class="twm-jobs-available">9,185
+                                            <div class="twm-jobs-available bg-primary">9,185
                                                 Offres</div>
                                             <a href="#:void(0);">Architecture</a>
                                         </div>
@@ -345,7 +362,7 @@
                                             <img src="{{ asset('images/briefcase.png') }}" />
                                         </div>
                                         <div class="twm-content">
-                                            <div class="twm-jobs-available">3,205
+                                            <div class="twm-jobs-available bg-primary">3,205
                                                 Offres</div>
                                             <a href="#:void(0);">Ressources humaines </a>
                                         </div>
@@ -359,7 +376,7 @@
                                             <img src="{{ asset('images/briefcase.png') }}" />
                                         </div>
                                         <div class="twm-content">
-                                            <div class="twm-jobs-available">2,100
+                                            <div class="twm-jobs-available bg-primary">2,100
                                                 Offres</div>
                                             <a href="#:void(0);"> Finance </a>
                                         </div>
@@ -373,7 +390,7 @@
                                             <img src="{{ asset('images/briefcase.png') }}" />
                                         </div>
                                         <div class="twm-content">
-                                            <div class="twm-jobs-available">9,185
+                                            <div class="twm-jobs-available bg-primary">9,185
                                                 Jobs</div>
                                             <a href="#:void(0);">Comptabilité</a>
                                         </div>
@@ -387,7 +404,7 @@
                                             <img src="{{ asset('images/briefcase.png') }}" />
                                         </div>
                                         <div class="twm-content">
-                                            <div class="twm-jobs-available">3,205
+                                            <div class="twm-jobs-available bg-primary">3,205
                                                 Offres</div>
                                             <a href="#:void(0);">Marketing</a>
                                         </div>
@@ -401,7 +418,7 @@
                                             <img src="{{ asset('images/briefcase.png') }}" />
                                         </div>
                                         <div class="twm-content">
-                                            <div class="twm-jobs-available">2,100
+                                            <div class="twm-jobs-available bg-primary">2,100
                                                 offres</div>
                                             <a href="#:void(0);"> Electricité </a>
                                         </div>
@@ -415,7 +432,7 @@
                                             <img src="{{ asset('images/briefcase.png') }}" />
                                         </div>
                                         <div class="twm-content">
-                                            <div class="twm-jobs-available">1,500
+                                            <div class="twm-jobs-available bg-primary">1,500
                                                 Offres</div>
                                             <a href="#:void(0);">
                                                 Développement web</a>
@@ -430,7 +447,7 @@
                                             <img src="{{ asset('images/briefcase.png') }}" />
                                         </div>
                                         <div class="twm-content">
-                                            <div class="twm-jobs-available">9,185
+                                            <div class="twm-jobs-available bg-primary">9,185
                                                 Offres</div>
                                             <a href="#:void(0);">Géologie</a>
                                         </div>
@@ -441,10 +458,10 @@
                                 <div class="item ">
                                     <div class="job-categories-block">
                                         <div class="twm-media">
-                                            <i data-feather="briefcase" class="flaticon-dashboard"></i>
+                                            <img src="{{ asset('images/briefcase.png') }}" />
                                         </div>
                                         <div class="twm-content">
-                                            <div class="twm-jobs-available">3,205
+                                            <div class="twm-jobs-available bg-primary">3,205
                                                 Offres</div>
                                             <a href="#:void(0);">Santé
                                             </a>
@@ -711,7 +728,7 @@
                                 <div class="item ">
                                     <div class="job-categories-block">
                                         <div class="twm-content">
-                                            <div class="twm-jobs-available">DEMANDE DE COTATION ET SOURCING</div>
+                                            <div class="twm-jobs-available bg-primary">DEMANDE DE COTATION ET  bg-primarySOURCING</div>
                                             <a href="#:void(0);">Demande de cotations, sourcing (étude des besoins du
                                                 client, recherche et évaluation des candidatures, sélection des
                                                 talents, négociation du contrat, rapport global)</a>
@@ -723,7 +740,7 @@
                                 <div class="item ">
                                     <div class="job-categories-block">
                                         <div class="twm-content">
-                                            <div class="twm-jobs-available">OUTSOURCING : RECRUTEMENT, ONBOARDING</div>
+                                            <div class="twm-jobs-available bg-primary">OUTSOURCING : RECRUTEMENT,  bg-primaryONBOARDING</div>
                                             <a href="#:void(0);">
                                                 Signature du contrat de travail, immatriculations CNSS, visa contrats
                                                 ONEM, cartes de services, ouverture des
@@ -737,7 +754,7 @@
                                 <div class="item ">
                                     <div class="job-categories-block">
                                         <div class="twm-content">
-                                            <div class="twm-jobs-available">GESTION DES CONTRATS, GESTION DE LA PAIE
+                                            <div class="twm-jobs-available bg-primary">GESTION DES CONTRATS,  bg-primaryGESTION DE LA PAIE
                                             </div>
                                             <a href="#:void(0);">
                                                 Timesheets, payroll, bulletins de salaire, le paiement des salaires, le
@@ -751,7 +768,7 @@
                                 <div class="item ">
                                     <div class="job-categories-block">
                                         <div class="twm-content">
-                                            <div class="twm-jobs-available">GESTION DES CONTRATS, GESTION DE LA PAIE
+                                            <div class="twm-jobs-available bg-primary">GESTION DES CONTRATS,  bg-primaryGESTION DE LA PAIE
                                             </div>
                                             <a href="#:void(0);">
                                                 Timesheets, payroll, bulletins de salaire, le paiement des salaires, le
@@ -765,7 +782,7 @@
                                 <div class="item ">
                                     <div class="job-categories-block">
                                         <div class="twm-content">
-                                            <div class="twm-jobs-available">FORMATIONS, BILAN DE COMPÉTENCES</div>
+                                            <div class="twm-jobs-available bg-primary">FORMATIONS, BILAN DE  bg-primaryCOMPÉTENCES</div>
                                             <a href="#:void(0);">Plan de formation, cartographie de risques, création
                                                 d’entreprise, conseils financiers et
                                                 fiscal</a>
@@ -801,7 +818,7 @@
                                 @forelse($offers as $offer)
                                     <div class="item">
                                         <!--Block one-->
-                                        <div class="blog-post twm-blog-post-1-outer border">
+                                        <div class="border blog-post twm-blog-post-1-outer">
                                             <div class="wt-post-info">
                                                 <div class="wt-post-meta ">
                                                     <ul>
@@ -832,7 +849,7 @@
                                         </div>
                                     </div>
                                 @empty
-                                    <p class="text-muted text-center">
+                                    <p class="text-center text-muted">
                                         Aucune offre publié !
                                     </p>
                                 @endforelse
@@ -873,7 +890,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="widget widget_services ftr-list-center">
-                                        <h3 class="widget-title">Contact</h3>
+                                        <h3 class="widget-title text-primary">Contact</h3>
                                         <ul>
                                             <li><a href="#"> +243 8222 144 160</a></li>
                                             <li><a href="#">contact@powerhr.com</a></li>
@@ -884,7 +901,7 @@
 
                                 <div class="col-lg-6">
                                     <div class="widget widget_services ftr-list-center">
-                                        <h3 class="widget-title">Liens rapides</h3>
+                                        <h3 class="widget-title text-primary">Liens rapides</h3>
                                         <ul>
                                             <li><a href="/">Accueil</a></li>
                                             <li><a href="#">A propos</a></li>

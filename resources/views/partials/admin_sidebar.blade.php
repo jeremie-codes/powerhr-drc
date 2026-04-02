@@ -47,8 +47,8 @@
     </li>
 
     {{-- PROFIL CLIENT --}}
-    <li class="{{ request()->routeIs('admin.candidate.recommended.*') ? 'active' : '' }}">
-        <a href="{{ route('admin.candidate.index') }}">
+    <li class="{{ request()->routeIs('admin.employes.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.employes.index') }}">
             <i class="text-xl ri-file-user-line menu-icon"></i>
             <span>Liste des employés</span>
         </a>

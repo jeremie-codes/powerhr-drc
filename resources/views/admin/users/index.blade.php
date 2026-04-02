@@ -73,7 +73,7 @@
                                                 </span>
                                             @endif
                                             <div class="flex-grow-1">
-                                                <a href="{{ route('admin.candidate.show', $profile) }}">
+                                                <a href="{{ route('admin.candidates.show', $profile) }}">
                                                     <span class="mb-0 text-md fw-semibold text-secondary-light">{{ $profile->name ?? '---' }}</span>
                                                 </a>
                                             </div>
@@ -100,10 +100,15 @@
                                             {{-- Désactiver les accès --}}
                                             <form method="POST"
                                                   action="{{ route('admin.users.update', $profile) }}"
-                                                  onsubmit="return confirm('Voulez-vous désactiver ces accès?')">
+                                                  onsubmit="return confirm('Voulez-vous {{ $profile->is_active ? 'désactiver' : 'activer' }} ces accès de connexion?')">
                                                 @csrf
+                                                <input type="hidden" name="is_active" value="{{ $profile->is_active ? '0' : '1' }}">
                                                 <button class="bg-info-focus bg-secondary-focus bg-hover-secondary-200 text-secondary-600 fw-medium w-40-px h-40-px d-flex justify-content-center align-items-center rounded-circle">
-                                                    <i class="text-xl ri-user-forbid-line menu-icon"></i>
+                                                    @if ($profile->is_active)
+                                                        <i class="text-xl ri-user-forbid-line menu-icon"></i>
+                                                    @else
+                                                        <i class="text-xl ri-user-follow-line menu-icon"></i>
+                                                    @endif
                                                 </button>
                                             </form>
 
@@ -111,7 +116,7 @@
                                             <form method="POST"
                                                   action="{{ route('admin.users.delete', $profile) }}"
                                                   onsubmit="return confirm('Voulez-vous vraiment le supprimer?')">
-                                                @csrf
+                                                @csrf 
                                                 <button class="remove-item-btn bg-danger-focus bg-hover-danger-200 text-danger-600 fw-medium w-40-px h-40-px d-flex justify-content-center align-items-center rounded-circle">
                                                     <iconify-icon icon="fluent:delete-24-regular" class="menu-icon"></iconify-icon>
                                                 </button>

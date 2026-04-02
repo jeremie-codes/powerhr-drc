@@ -5,42 +5,139 @@
     <div class="dashboard-main-body nft-page">
         {{-- breacrumbs --}}
         <div class="flex-wrap gap-3 mb-24 d-flex align-items-center justify-content-between">
-            <h6 class="mb-0 fw-semibold">Mon Profil</h6>
+            <h6 class="mb-0 fw-semibold">
+                {{ isset($profile) ? "Modifier le candidat" : 'Créer un candidat' }}
+            </h6>
             <ul class="gap-2 d-flex align-items-center">
                 <li class="fw-medium">
                     <a href="{{ route('candidate.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
                         <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
-                        Tableau de bord
+                        Candidats
                     </a>
                 </li>
                 <li>-</li>
-                <li class="fw-medium">Profil</li>
+                <li class="fw-medium">
+                    {{ isset($profile) ? 'Edition' : 'Création' }}
+                </li>
             </ul>
-        </div>
-
-        <div class="px-24 mb-10 text-lg alert alert-primary bg-primary-50 text-primary-600 border-primary-600 border-start-width-4-px border-top-0 border-end-0 border-bottom-0 py-13 fw-semibold radius-4 d-flex align-items-center justify-content-between" role="alert">
-            <div class="gap-2 d-flex align-items-center">
-                <iconify-icon icon="mdi:alert-circle-outline" class="text-xl icon"></iconify-icon>
-                <small>Complétez votre profil pour maximiser vos chances de trouver un emploi.</small>
-            </div>
-            <button class="remove-button text-primary-600 text-xxl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
         </div>
 
         {{-- content --}}
         <div class="p-0 overflow-hidden card h-100 radius-12">
             <div class="p-40 card-body">
-                <form action="{{ route('candidate.profile.store') }}" method="POST">
+                <form action="{{ route('admin.candidates.store') }}" method="POST">
                     @csrf
 
+                    @isset($profile)
+                        <input type="hidden" name="user_id" value="{{ $profile->id }}">
+                    @endisset
+
                     <div class="row">
-                        <h6 class="mt-4 text-md">Informations Personnelles</h6>
+                         <h6 class="text-md">Informations d'accès</h6>
+
+                        {{-- Nom de l'utilisateur --}}
+                        <div class="col-md-6">
+                            <div class="mb-20">
+                                <label class="form-label fw-semibold">Nom complet de l'utilisateur <span class="text-danger">*</span></label>
+                                <input type="text" name="username" class="form-control radius-8"
+                                    value="{{ old('username', $profile->name ?? '') }} " required>
+                            </div>
+                        </div>
+
+                        {{-- Email --}}
+                        <div class="col-md-6">
+                            <div class="mb-20">
+                                <label class="form-label fw-semibold">Email <span class="text-danger">*</span></label>
+                                <input type="email" name="email" class="form-control radius-8"
+                                    value="{{ old('email', $profile->email ?? '') }}" required>
+                            </div>
+                        </div>
+
+                        @if(!isset($profile))
+                        {{-- Password --}}
+                        <div class="col-md-6">
+                            <div class="mb-20">
+                                <label class="form-label fw-semibold">Mot de passe <span class="text-danger">*</span> | Minimum 8 caractères</label>
+                                <input type="password" name="password" class="form-control radius-8" required>
+                            </div>
+                        </div>
+                        
+                        {{-- Password Confirmation --}}
+                        <div class="col-md-6">
+                            <div class="mb-20">
+                                <label class="form-label fw-semibold">Confirmer le mot de passe <span class="text-danger">*</span></label>
+                                <input type="password" name="password_confirmation" class="form-control radius-8" required>
+                            </div>
+                        </div>
+                        @endif
+
+                        {{-- Role --}}
+                        <div class="col-md-6">
+                            <div class="mb-20">
+                                <label class="form-label fw-semibold">Status profile <span class="text-danger">*</span></label>
+
+                                <select name="role" class="form-select radius-8" required onchange="toggleEmployerField(this)">
+                                    <option selected value="candidate" {{ old('role', $profile->role ?? '') == 'candidate' ? 'selected' : '' }}>Candidat</option>
+                                    <option value="employee" {{ old('role', $profile->role ?? '') == 'employee' ? 'selected' : '' }}>Employé(e)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        {{-- Pays --}}
+                        <div class="col-md-6">
+                            <div class="mb-20">
+                                <label class="form-label fw-semibold">Pays de résidence <span class="text-danger">*</span></label>
+
+                                <select name="residence_id" class="form-select radius-8" required>
+
+                                    <option value="">-- Choisir --</option>
+
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country->id }} "
+                                            {{ old('residence_id', $profile->country_id ?? '') == $country->id ? 'selected' : '' }}>
+                                            {{ $country->name }}
+                                        </option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                        </div>
+
+                        {{-- Employer --}}
+                        <div class="col-md-6 {{ $profile->candidate?->employed_at ? 'd-block': 'd-none' }}" id="employer-field">
+                            <div class="mb-20">
+                                <label class="form-label fw-semibold">
+                                    Employeur <span class="text-danger">*</span>
+                                    <br>
+                                    <small class="text-danger {{ $profile->candidate?->employedAt ? 'd-none': 'd-block' }}">Si vous changer le status du profil à Employé(e), le candidat s'affichera dans la liste des employé(e)s </small>
+                                    <small class="text-danger {{ $profile->candidate?->employedAt ? 'd-block': 'd-none' }}">Si vous changer le status du profil à Candidat, le candidat s'affichera dans la liste des candidats </small>
+                                </label>
+
+                                <select name="employed_at" class="form-select radius-8">
+
+                                    <option value="">-- Choisir --</option>
+
+                                    @foreach ($employers as $employer)
+                                        <option value="{{ $employer->id }} "
+                                            {{ old('employed_at', $profile->candidate?->employed_at ?? '') == $employer->id ? 'selected' : '' }}>
+                                            {{ $employer->name }}
+                                        </option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <hr class="my-3">
+                        
+                        <h6 class="mt-2 text-md">Informations Personnelles</h6>
 
                         {{-- Job Type --}}
                         <div class="col-sm-6">
                             <div class="mb-20">
                                 <label class="mb-8 form-label fw-semibold">Votre métier</label>
                                 <input type="text" name="job_type" class="form-control radius-8" placeholder="Ex: Développeur Web, Designer Graphique, etc."
-                                    value="{{ old('job_type', auth()->user()->candidate?->job_type ?? '') }}">
+                                    value="{{ old('job_type', $profile->candidate?->job_type ?? '') }}">
                             </div>
                         </div>
 
@@ -51,27 +148,27 @@
 
                                 <select name="qualification_level" class="form-select radius-8">
                                     <option value="Bac"
-                                        {{ auth()->user()->candidate?->qualification_level == 'Bac' ? 'selected' : '' }}>
+                                        {{ old('qualification_level', $profile->candidate?->qualification_level ?? '') == 'Bac' ? 'selected' : '' }}>
                                         Bac (Baccalauréat, Diplôme d'état)
                                     </option>
                                     <option value="Graduat"
-                                        {{ auth()->user()->candidate?->qualification_level == 'Graduat' ? 'selected' : '' }}>
+                                        {{ old('qualification_level', $profile->candidate?->qualification_level ?? '') == 'Graduat' ? 'selected' : '' }}>
                                         Graduat
                                     </option>
                                     <option value="Licencie"
-                                        {{ auth()->user()->candidate?->qualification_level == 'Licencie' ? 'selected' : '' }}>
+                                        {{ old('qualification_level', $profile->candidate?->qualification_level ?? '') == 'Licencie' ? 'selected' : '' }}>
                                         Licencie
                                     </option>
                                     <option value="master"
-                                        {{ auth()->user()->candidate?->qualification_level == 'master' ? 'selected' : '' }}>
+                                        {{ old('qualification_level', $profile->candidate?->qualification_level ?? '') == 'master' ? 'selected' : '' }}>
                                         Master
                                     </option>
                                     <option value="doctorate"
-                                        {{ auth()->user()->candidate?->qualification_level == 'doctorate' ? 'selected' : '' }}>
+                                        {{ old('qualification_level', $profile->candidate?->qualification_level ?? '') == 'doctorate' ? 'selected' : '' }}>
                                         Doctorat
                                     </option>
                                     <option value="autre"
-                                        {{ auth()->user()->candidate?->qualification_level == 'autre' ? 'selected' : '' }}>
+                                        {{ old('qualification_level', $profile->candidate?->qualification_level ?? '') == 'autre' ? 'selected' : '' }}>
                                         Autre
                                     </option>
                                 </select>
@@ -83,7 +180,7 @@
                             <div class="mb-20">
                                 <label class="mb-8 form-label fw-semibold">Années d'expérience</label>
                                 <input type="number" name="years_experience" class="form-control radius-8"
-                                    value="{{ old('years_experience', auth()->user()->candidate?->years_experience ?? '') }}">
+                                    value="{{ old('years_experience', $profile->candidate?->years_experience ?? '') }}">
                             </div>
                         </div>
 
@@ -93,7 +190,7 @@
                                 <label class="mb-8 form-label fw-semibold">Salaire souhaité</label>
                                 <input type="number" step="0.01" name="salary_expectation"
                                     class="form-control radius-8"
-                                    value="{{ old('salary_expectation', auth()->user()->candidate?->salary_expectation ?? '') }}">
+                                    value="{{ old('salary_expectation', $profile->candidate?->salary_expectation ?? '') }}">
                             </div>
                         </div>
 
@@ -135,7 +232,7 @@
 
                         <div class="gap-3 mt-24 d-flex justify-content-center">
                             <button type="submit" class="px-24 py-12 btn btn-primary radius-8">
-                                Enregistrer
+                                {{ isset($profile->candidate) ? 'Mettre à jour' : 'Créer le profil' }}
                             </button>
                         </div>
 
@@ -295,30 +392,45 @@
     }
 </script>
 
+{{-- toggle show Employer Field --}}
+<script>
+    window.toggleEmployerField = function (el) {
+        const employerField = document.getElementById('employer-field');
+        
+        if(el.value === 'employee') {
+            el.setAttribute('required', 'required');
+            employerField.classList.remove('d-none');
+        } else {
+            el.removeAttribute('required');
+            employerField.classList.add('d-none');
+        }
+    }
+</script>
+
 {{-- Autofill form --}}
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
 
-    @if(isset($candidate))
+        @if(isset($profile->candidate))
 
-        @foreach($candidate->experiences ?? [] as $exp)
-            addExperience(@json($exp));
-        @endforeach
+            @foreach($profile->candidate?->experiences ?? [] as $exp)
+                addExperience(@json($exp));
+            @endforeach
 
-        @foreach($candidate->educations ?? [] as $edu)
-            addEducation(@json($edu));
-        @endforeach
+            @foreach($profile->candidate?->educations ?? [] as $edu)
+                addEducation(@json($edu));
+            @endforeach
 
-        @foreach($candidate->skills ?? [] as $skill)
-            addSkill("{{ $skill->skill_name }}");
-        @endforeach
+            @foreach($profile->candidate?->skills ?? [] as $skill)
+                addSkill("{{ $skill->skill_name }}");
+            @endforeach
 
-        @foreach($candidate->languages ?? [] as $lang)
-            addLanguage("{{ $lang->language_name }}");
-        @endforeach
+            @foreach($profile->candidate?->languages ?? [] as $lang)
+                addLanguage("{{ $lang->language_name }}");
+            @endforeach
 
-    @endif
+        @endif
 
-});
+    });
 </script>
 @endsection

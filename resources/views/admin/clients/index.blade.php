@@ -18,11 +18,11 @@
 
         <div class="row gy-4">
             <div class="p-0 card h-100 radius-12">
-                <div class="flex-wrap gap-3 px-24 py-16 card-header border-bottom bg-base d-flex align-items-center justify-content-start">
-                    <div class="flex-wrap gap-3 d-flex align-items-center w-100">
+                <div class="flex gap-3 px-24 py-16 card-header border-bottom bg-base d-flex align-items-center justify-content-between">
+                    <div class="flex-wrap gap-3 d-flex align-items-center">
                         <span class="mb-0 text-md fw-medium text-secondary-light">Filtre :</span>
                         <form method="GET" class="gap-4 align-items-center d-md-flex">
-                            <select class="form-select form-select" name="role">
+                            <select class="form-select" name="role">
                                 <option value="" selected>Tout</option>
                                 <option value="client">Client</option>
                                 <option value="prospect">Prospect</option>
@@ -39,6 +39,10 @@
                         @if(request('name'))
                             <a href="{{ route('admin.client.index') }}" class="btn btn-neutral-600" type="submit">X Effacer le filtre</a>
                         @endif
+                    </div>
+
+                    <div>
+                        <a href="{{ route('admin.client.create') }}" class="btn btn-primary-500" type="submit">Créer un client</a>
                     </div>
                 </div>
 

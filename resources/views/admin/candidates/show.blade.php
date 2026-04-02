@@ -50,12 +50,28 @@
                                     <span class="w-30 text-md fw-semibold text-primary-light">Langue</span>
                                     <span class="w-70 text-secondary-light fw-medium">: {{ $profile->langue ?? '--' }}</span>
                                 </li>
+                                
+                                <li class="gap-1 mb-12 d-flex align-items-center">
+                                    <span class="w-30 text-md fw-semibold text-primary-light">Status</span>
+                                    <span class="w-70 text-secondary-light fw-medium">: {{ $profile->role ?? '--' }}</span>
+                                </li>
+                                
+                                @if($profile->candidate?->employed_at)
+                                <li class="gap-1 mb-12 d-flex align-items-center">
+                                    <span class="w-30 text-md fw-semibold text-primary-light">Employeur</span>
+                                    <span class="w-70 text-secondary-light fw-medium">: {{ ucfirst($profile->candidate?->employedAt->name) ?? '--' }}</span>
+                                </li>
+                                @endif
                             </ul>
                         </div>
 
                         <hr class="mb-12">
 
                         <div class="gap-2 d-flex align-items-center justify-content-center">
+                            <a href="{{ route('admin.candidates.edit', $profile) }}" class="gap-2 btn btn-primary d-flex">
+                                <iconify-icon icon="heroicons:pencil" class="text-xl"></iconify-icon>
+                                <span>Editer</span>
+                            </a>
                             <form method="POST"
                                   action="{{ route('admin.candidates.update', $profile) }}"
                                   onsubmit="return confirm('Êtes-vous sûr de vouloir modifier ces accès ?')">
@@ -76,7 +92,7 @@
                 <div class="overflow-hidden border shadow-4 radius-8 d-flex" id="curriculum">
                     {{-- COLONNE GAUCHE --}}
                     <div class="p-20 text-white bg-primary-500" style="width:30%;">
-                        <div class="mt-20 mb-24 text-center overflow-hidden border rounded-circle bg-blue-light" style="width: 150px; height: 150px;">
+                        <div class="mt-20 mb-24 overflow-hidden text-center border rounded-circle bg-blue-light" style="width: 150px; height: 150px;">
                             <img src="{{ asset($profile->image ? 'storage/' . $profile->image : 'assets/images/users/user1.png') }}"
                                  class="border rounded-circle" width="150" height="150">
                         </div>

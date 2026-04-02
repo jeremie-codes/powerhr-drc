@@ -44,7 +44,7 @@
                                 </li>
                                 <li class="gap-1 mb-12 d-flex align-items-center">
                                     <span class="w-30 text-md fw-semibold text-primary-light">Pays</span>
-                                    <span class="w-70 text-secondary-light fw-medium">: {{ $client?->country->name ?? '--' }}</span>
+                                    <span class="w-70 text-secondary-light fw-medium">: {{ $client?->country?->name ?? '--' }}</span>
                                 </li>
                                 <li class="gap-1 mb-12 d-flex align-items-center">
                                     <span class="w-30 text-md fw-semibold text-primary-light">Langue</span>
@@ -105,9 +105,9 @@
                             </p>
                         </div>
 
-                        <div style="text-align: right" class="d-flex align-items-center justify-content-center">
-                            <img src="{{ asset($client->image ? 'storage/' . $client->image : 'images/company.png') }}" alt=""
-                                 class="object-cover w-76-px rounded-8">
+                        <div style="text-align: right; width: 100px; height: 100px" class="overflow-hidden border d-flex align-items-center justify-content-center bg-light rounded-pill">
+                            <img src="{{ asset($client->company->logo ? 'storage/' . $client->company->logo : 'images/company.png') }}" alt=""
+                                 class="object-cover rounded-pill min-w-100 min-h-100">
                         </div>
                     </div>
 
@@ -130,7 +130,7 @@
                                     <tr>
                                         <td>Pays</td>
                                         <td class="ps-8">
-                                            : {{ $client->country->name ?? '--' }}
+                                            : {{ $client->company?->country?->name ?? '--' }}
                                         </td>
                                     </tr>
                                     <tr>

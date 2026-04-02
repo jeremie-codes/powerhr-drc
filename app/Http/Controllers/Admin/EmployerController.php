@@ -24,17 +24,4 @@ class EmployerController extends Controller
         return view('admin.employes.index', compact('profiles'));
     }
 
-    public function show(User $user)
-    {
-
-        $profile = $user->load([
-            'candidate.experiences',
-            'candidate.educations',
-            'candidate.skills',
-            'candidate.languages'
-        ]);
-
-        return view('admin.employes.show', compact('profile'));
-    }
-
 }

@@ -3,25 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\ClientBrief;
 use App\Models\Country;
-use App\Models\JobOffer;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Company;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
     public function index(Request $request)
     {
-        $clients = User::where('role', 'client')
-            ->when($request->name, fn($query, $name) => $query->where('name', 'like', '%' . $name . '%'))
-            ->when($request->role, fn($query, $role) => $query->where('role', $role))
-            ->orWhere('role', 'prospect')->paginate(10);
+
+        if(!$request->name && !$request->role) {
+            $clients = User::whereIn('role', ['client', 'prospect'])->latest()->paginate(10);
+        } else {
+             $clients = User::when($request->name, fn($query, $name) => $query->where('name', 'like', '%' . $name . '%'))
+            ->when($request->role, fn($query, $role) => $query->where('role', $role))->latest()->paginate(10);
+        }
+
 
         $stats = [
             'all' => $clients->count(),
@@ -49,7 +50,7 @@ class ClientController extends Controller
         return view('admin.clients.create_edit', compact('client', 'countries'));
     }
 
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
         try {
             $request->validate([
@@ -67,14 +68,27 @@ class ClientController extends Controller
                 'is_active' => 'required|boolean',
                 'logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
                 'user_id' => 'nullable|exists:users,id',
+                'username' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+                'role'     => 'required|in:client,prospect',
+                'password' => 'nullable|string|min:8|confirmed',
             ]);
 
-            // Upload logo
-            $logoPath = null;
+            $userData = [
+                'name' => $request->name,
+                'username' => $request->username,
+                'email' => $request->email,
+                'role' => $request->role,
+            ];
 
-            if ($request->hasFile('logo')) {
-                $logoPath = $request->file('logo')->store('companies', 'public');
+            if ($request->filled('password')) {
+                $userData['password'] = bcrypt($request->password);
             }
+
+            $user = User::updateOrCreate(
+                ['id' => $request->user_id],
+                $userData
+            );
 
             $data = [
                 'name' => $request->name,
@@ -92,11 +106,12 @@ class ClientController extends Controller
             ];
 
             if ($request->hasFile('logo')) {
-                $data['logo'] = $request->file('logo')->store('companies', 'public');
+                $logoPath = $request->file('logo')->store('companies', 'public');
+                $data['logo'] = $logoPath;
             }
 
             Company::updateOrCreate(
-                ['user_id' => $request->user_id],
+                ['user_id' => $user->id],
                 $data
             );
 
@@ -105,6 +120,108 @@ class ClientController extends Controller
         } catch (\Exception $e) {
 
             \Log::error('Erreur lors de la mise à jour du profil: ' . $e->getMessage());
+            return redirect()->route('admin.client.index')
+                ->with('error', 'Une erreur est survenue.');
+        }
+    }*/
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'sector' => 'nullable|string|max:255',
+            'address' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:20',
+            'rccm' => 'nullable|string|max:100',
+            'website' => 'nullable|string|max:100',
+            'city' => 'nullable|string|max:50',
+            'country_id' => 'required|exists:countries,id',
+            'email_dg' => 'nullable|email',
+            'email_hr' => 'nullable|email',
+            'can_post' => 'required|boolean',
+            'is_active' => 'required|boolean',
+            'logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+
+            'user_id' => 'nullable|exists:users,id',
+            'username' => 'required|string|max:255',
+            'residence_id' => 'nullable|exists:countries,id',
+            'email' => 'required|email|max:255',
+            'password' => 'nullable|string|min:8|confirmed',
+            'role' => 'required|in:client,prospect',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            // =========================
+            // USER
+            // =========================
+            $userData = [
+                'name' => $request->username,
+                'email' => $request->email,
+                'role' => $request->role,
+                'country_id' => $request->residence_id
+            ];
+
+            if ($request->filled('password')) {
+                $userData['password'] = Hash::make($request->password); //bcrypt($request->password);
+            }
+
+            $user = User::updateOrCreate(
+                ['id' => $request->user_id],
+                $userData
+            );
+
+            // =========================
+            // COMPANY
+            // =========================
+            $company = Company::where('user_id', $user->id)->first();
+
+            $data = [
+                'name' => $request->name,
+                'sector' => $request->sector,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'email_dg' => $request->email_dg,
+                'email_hr' => $request->email_hr,
+                'country_id' => $request->country_id,
+                'city' => $request->city,
+                'rccm' => $request->rccm,
+                'website' => $request->website,
+                'can_post' => $request->can_post,
+                'is_active' => $request->is_active,
+                'user_id' => $user->id,
+            ];
+
+            // =========================
+            // LOGO MANAGEMENT
+            // =========================
+            if ($request->hasFile('logo')) {
+
+                // Supprimer ancien logo si existe
+                if ($company && $company->logo) {
+                    Storage::disk('public')->delete($company->logo);
+                }
+
+                $data['logo'] = $request->file('logo')->store('companies', 'public');
+            }
+
+            Company::updateOrCreate(
+                ['user_id' => $user->id],
+                $data
+            );
+
+            DB::commit();
+
+            return redirect()->route('admin.client.index')
+                ->with('success', 'Profil entreprise enregistré avec succès.');
+
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+
+            \Log::error('Erreur profil entreprise: ' . $e->getMessage());
+
             return redirect()->route('admin.client.index')
                 ->with('error', 'Une erreur est survenue.');
         }

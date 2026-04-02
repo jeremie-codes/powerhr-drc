@@ -19,7 +19,7 @@
         <div class="row gy-4">
             <div class="p-0 card h-100 radius-12">
                 <div
-                    class="flex-wrap gap-3 px-24 py-16 card-header border-bottom bg-base d-flex align-items-center justify-content-start">
+                    class="flex gap-3 px-24 py-16 card-header border-bottom bg-base d-flex align-items-center justify-content-between">
                     <div class="flex-wrap gap-3 d-flex align-items-center">
                         <span class="mb-0 text-md fw-medium text-secondary-light">Filtre :</span>
                         <form method="GET" class="gap-4 align-items-center d-md-flex">
@@ -36,6 +36,8 @@
                             <a href="{{ route('admin.candidates') }}" class="btn btn-neutral-600" type="submit">X Effacer le filtre</a>
                         @endif
                     </div>
+
+                    <a href="{{ route('admin.candidates.create') }}" class="btn btn-primary-500" type="submit">Créer un candidat</a>
                 </div>
 
                 <div class="p-24 card-body">
@@ -90,6 +92,11 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="gap-10 d-flex align-items-center justify-content-center">
+                                            <a href="{{ route('admin.candidates.edit', $profile) }}"
+                                                class="bg-warning-focus bg-hover-warning-200 text-warning-600 fw-medium w-40-px h-40-px d-flex justify-content-center align-items-center rounded-circle">
+                                                <iconify-icon icon="lucide:edit" class="menu-icon"></iconify-icon>
+                                            </a>
+                                            
                                             <a href="{{ route('admin.candidates.show', $profile) }}"
                                                 class="bg-info-focus bg-hover-info-200 text-info-600 fw-medium w-40-px h-40-px d-flex justify-content-center align-items-center rounded-circle">
                                                 <iconify-icon icon="majesticons:eye-line" class="text-xl icon"></iconify-icon>

@@ -36,16 +36,19 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         Route::get('/clients', [ClientController::class, 'index'])->name('admin.client.index');
         Route::get('/clients/{client}/profile', [ClientController::class, 'show'])->name('admin.client.show');
+        Route::get('/clients/create', [ClientController::class, 'create'])->name('admin.client.create');
         Route::get('/clients/{client}/edit', [ClientController::class, 'edit'])->name('admin.client.edit');
         Route::post('/clients/store', [ClientController::class, 'store'])->name('admin.client.store');
         Route::post('/clients/{client}/update', [ClientController::class, 'update'])->name('admin.client.update');
 
         Route::get('/candidates', [CandidateController::class, 'index'])->name('admin.candidates.index');
+        Route::get('/candidates/create', [CandidateController::class, 'create'])->name('admin.candidates.create');
+        Route::get('/candidates/{user}/edit', [CandidateController::class, 'edit'])->name('admin.candidates.edit');
         Route::get('/candidates/{user}/profile', [CandidateController::class, 'show'])->name('admin.candidates.show');
+        Route::post('/candidates/store', [CandidateController::class, 'store'])->name('admin.candidates.store');
         Route::post('/candidates/{user}/update', [CandidateController::class, 'update'])->name('admin.candidates.update');
 
-        Route::get('/employes', [EmployerController::class, 'index'])->name('admin.candidate.index');
-        Route::get('/employes/{user}/profile', [EmployerController::class, 'show'])->name('admin.candidate.show');
+        Route::get('/employes', [EmployerController::class, 'index'])->name('admin.employes.index');
 
         Route::get('/candidates/recommended', [RecommendedController::class, 'index'])->name('admin.candidate.recommended');
         Route::post('/candidates/recommended', [RecommendedController::class, 'store'])->name('admin.candidate.recommended.store');
