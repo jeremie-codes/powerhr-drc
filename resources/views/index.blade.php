@@ -1,979 +1,828 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('base')
 
-<head>
+@section('title', 'Accueil')
 
-    <!-- META -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content />
-    <meta name="author" content />
-    <meta name="robots" content />
-    <meta name="description" content />
+@section('body')
+<!-- ============================ Hero Banner  Start================================== -->
+<div class="hero-header full-height home-5 position-relative" data-overlay="0">
+    <div class="container">
 
-    <!-- FAVICONS ICON -->
-    {{-- <link rel="icon" href="images/favicon.png" type="image/x-icon" /> --}}
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}" />
+        <!-- Search Form -->
+        <div class="row justify-content-between align-items-center g-4">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
 
-    <!-- PAGE TITLE HERE -->
-    <title>Accueil | Power HR</title>
+                <div class="mb-5 position-relative">
+                    <h1>Découvrez, postulez, réussissez, <span class="text-seegreen text-warning fst-italic">tout au même endroit</span></h1>
+                    <p class="banner-subtitle fw-light">Rejoignez une communauté de professionnels où les opportunités sont illimitées et où la collaboration est la clé du succès.</p>
+                </div>
 
-    <!-- MOBILE SPECIFIC -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+                <!-- Search Form -->
+                <div class="shadow smartSearch">
+                    <div class="row g-0">
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}"><!-- BOOTSTRAP STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
-    <!-- FONTAWESOME STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.min.css') }}">
-    <!-- OWL CAROUSEL STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/magnific-popup.min.css') }}">
-    <!-- MAGNIFIC POPUP STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/lc_lightbox.css') }}"><!-- Lc light box popup -->
-    <!-- DATA table STYLE SHEET  -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/scrollbar.css') }}">
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
+                            <div class="form-search withIcon start">
+                                <input type="text" class="form-control" placeholder="Intitulé de l'offre ou mot-clé...">
+                                <span class="icons"><i class="bi bi-search"></i></span>
+                            </div>
+                        </div>
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/flaticon.css') }}">
-    <!-- Flaticon -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/swiper-bundle.min.css') }}"><!-- Swiper Slider -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"><!-- MAIN STYLE SHEET -->
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+                            <div class="form-search btn-box">
+                                <button type="button" class="btn btn-primary">Recherche</button>
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
 
-    <!-- THEME COLOR CHANGE STYLE SHEET -->
-    <link rel="stylesheet" class="skin" type="text/css" href="{{ asset('css/skins-type/skin-6.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+                <div class="mt-5 d-block position-relative">
+                    <div class="flex-wrap gap-3 d-flex align-items-center justify-content-start">
+                        <div class="singleGroup">
+                            <div class="gap-2 d-flex align-items-center justify-content-start">
+                                <div class="bg-white square--40 circle"><img src="assets-2/img/trustpilot.png" class="img-fluid" width="20" alt="Image"></div>
+                                <div class="text-white fw-4 fw-bold">Avis de </div>
+                            </div>
+                        </div>
+                        <div class="singleGroup">
+                            <div class="gap-2 d-flex align-items-center justify-content-start">
+                                <div class="gap-1 d-flex align-items-center justify-content-start">
+                                    <i class="text-sm fa-solid fa-star text-warning"></i>
+                                    <i class="text-sm fa-solid fa-star text-warning"></i>
+                                    <i class="text-sm fa-solid fa-star text-warning"></i>
+                                    <i class="text-sm fa-solid fa-star text-warning"></i>
+                                    <i class="text-sm fa-solid fa-star text-warning"></i>
+                                </div>
+                                <span class="text-white fw-bold">4.8/5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.29.2/dist/feather.min.js"></script>
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons-css@1.2.0/css/feather.min.css"> --}}
-    {{-- <script src="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/license.min.js"></script> --}}
-    <style>
-
-        .bg-primary, .btn-primary {
-            background-color: #1077b2 !important;
-        }
-
-        .text-primary, .site-text-primary {
-            color: #1077b2 !important;
-        }
-
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        @media (min-width: 995px) {
-            .head-text {
-                position: relative;
-                top: -150px;
-            }
-        }
-    </style>
-
-</head>
-
-<body>
-
-    <!-- LOADING AREA START ===== -->
-    <div class="loading-area">
-        <div class="loading-box"></div>
-        <div class="loading-pic">
-            <div class="wrapper">
-                <div class="cssload-loader"></div>
+            <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 z-2">
+            <div class="banner-clousio">
+                <div class="position-relative">
+                    <div class="m-0 text-center figure"><img src="assets-2/img/banner-worker.png" class="img-fluid" alt=""></div>
+                </div>
+            </div>
             </div>
         </div>
+        <!-- </row> -->
+
     </div>
-    <!-- LOADING AREA  END ====== -->
+</div>
+<!-- ============================ Hero Banner End ================================== -->
 
-    <div class="page-wraper">
 
-        <!-- HEADER START -->
-        <header class="site-header header-style-3 mobile-sider-drawer-menu">
+<!-- ============================== User Options Start ======================================= -->
+<section>
+    <div class="container">
+        <div class="row g-4">
 
-            <div class="sticky-header main-bar-wraper navbar-expand-lg">
-                <div class="main-bar">
-                    <div class="clearfix container-fluid">
+            <div class="col-xl-6 col-lg-6 col-md-6">
+                <div class="py-4 border calculamBox">
+                    <div class="flex-wrap gap-2 d-flex align-items-center justify-content-between">
 
-                        <div class="logo-header">
-                            <div class="logo-header-inner logo-header-one">
-                                <a href="/">
-                                    <img src="{{ url('images/logo.png') }}" alt width="120">
-                                </a>
+                        <div class="boxCaps">
+                            <div class="mb-3 capsWrap">
+                                <h4>Pour les employeurs</h4>
+                                <p>Trouvez des professionnels du monde entier et possédant toutes les compétences.</p>
+                            </div>
+                            <div class="d-block btnWrap">
+                                <a href="{{ route('client.jobs.create') }}" class="btn btn-light-primary rounded-pill"><i class="bi bi-send-check me-2"></i>Publiez votre offre - Gratuitement</a>
                             </div>
                         </div>
 
-                        <!-- NAV Toggle Button -->
-                        <button id="mobile-side-drawer" data-target=".header-nav" data-toggle="collapse" type="button"
-                            class="navbar-toggler collapsed">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar icon-bar-first"></span>
-                            <span class="icon-bar icon-bar-two"></span>
-                            <span class="icon-bar icon-bar-three"></span>
-                        </button>
-
-                        <!-- MAIN Vav -->
-                        <div class="nav-animation header-nav navbar-collapse collapse d-flex justify-content-center">
-
-                            <ul class=" nav navbar-nav">
-                                <li class="has-mega-menu"><a href="/">Accueil</a></li>
-                                <li class="has-child"><a href="#">A propos</a></li>
-                                <li class="has-child"><a href="#:;">Services</a></li>
-                                <li class="has-child"><a href="#:;">Blog</a></li>
-                            </ul>
-
-                        </div>
-
-                        <!-- Header Right Section-->
-                        <div class="extra-nav header-2-nav">
-                            <div class="extra-cell"></div>
-                            <div class="extra-cell">
-                                <div class="header-nav-btn-section">
-                                    <div class="twm-nav-btn-left">
-                                        <a class="twm-nav-sign-up" href="{{ route('register.view') }}">
-                                            <i data-feather="log-in"></i>
-                                            S'inscrire
-                                        </a>
-                                    </div>
-
-                                    <div class="twm-nav-btn-right">
-                                        <a href="{{ route('login.view') }}" class="p-2 btn btn-primary" style="border-radius: 10px;">
-                                            <i data-feather="user"></i>
-                                            Se connecter
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- SITE Search -->
-                <div id="search">
-                    <span class="close"></span>
-                    <form role="search" id="searchform" action="/search" method="get" class="radius-xl">
-                        <input class="form-control" value name="q" type="search"
-                            placeholder="Type to search" />
-                        <span class="input-group-append">
-                            <button type="button" class="search-btn">
-                                <i class="fa fa-paper-plane"></i>
-                            </button>
-                        </span>
-                    </form>
-                </div>
-            </div>
-
-        </header>
-        <!-- HEADER END -->
-
-        <!-- CONTENT START -->
-        <div class="page-content">
-
-            <!--Banner Start-->
-            <div class="pt-5 twm-home1-banner-section site-bg-gray"
-                style="background-image:url( {{ url('images/main-slider/slider1/bg1.jpg') }} )"
-                style=" height: 100vh;">
-                <div class="justify-center row" style="postion: relative; margin-top: 100px; height: 90vh;">
-
-                    <!--Left Section-->
-                    <div class="col-xl-7 col-lg-7 offset-md- col-md-12 head-text">
-                        <div class="twm-bnr-left-section">
-                            <div class="twm-bnr-title-small">Nous avons plus de <span class="site-text-primary">208 000 </span>emplois en direct</div>
-                            <h3 class="twm-bnr-title-large">Trouvez <span class="site-text-primary"> l'emploi</span>
-                                qui correspond à votre vie</h3>
-                            <div class="twm-bnr-discription">Tapez votre mot-clé, puis cliquez sur Rechercher pour
-                                trouver votre emploi idéal.</div>
-                        </div>
-                    </div>
-
-                    <!--right Section-->
-                    <div class="col-xl-5 col-lg-5 col-md-12 twm-bnr-right-section">
-                        <div class="twm-bnr-right-content">
-
-                            <div class="twm-img-bg-circle-area">
-                                <div class="twm-img-bg-circle1 rotate-center"><span></span></div>
-                                <div class="twm-img-bg-circle2 rotate-center-reverse"><span></span></div>
-                                <div class="twm-img-bg-circle3"><span></span></div>
-                            </div>
-
-                            <div class="twm-bnr-right-carousel">
-                                <div class="owl-carousel twm-h1-bnr-carousal">
-                                    <div class="overflow-hidden item">
-                                        <div class="slide-img">
-                                            <img src="{{ url('images/hr.png') }}"
-                                                class="object-cover w100" alt="#">
-                                        </div>
-                                    </div>
-                                    <div class="overflow-hidden item">
-                                        <div class="slide-img">
-                                            <div class="slide-img">
-                                                <img src="{{ url('images/hr-3.png') }}"
-                                                     class="object-cover w100" alt="#">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-
-                            <!--Samll Ring Left-->
-                            <div class="twm-small-ring-l slide-top-animation"></div>
-                            <div class="twm-small-ring-2 slide-top-animation"></div>
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="twm-gradient-text">
-                    Jobs
-                </div>
-            </div>
-            <!--Banner End-->
-
-            <!-- HOW IT WORK SECTION START -->
-            <div class="section-full p-t120 p-b90 site-bg-white twm-how-it-work-area">
-
-                <div class="container">
-
-                    <!-- TITLE START-->
-                    <div class="section-head center wt-small-separator-outer">
-                        <div class="wt-small-separator site-text-primary">
-                            <div>Processus</div>
-                        </div>
-                        <h2 class="wt-title">Employé/Candidat</h2>
-
-                    </div>
-                    <!-- TITLE END-->
-
-                    <div class="twm-how-it-work-section">
-                        <div class="row">
-                            <div class="col-xl-4 col-lg-6 col-md-6">
-                                <div class="twm-w-process-steps">
-                                    <span class="twm-large-number">01</span>
-                                    <div class="twm-w-pro-top bg-primary">
-                                        <div class="twm-media">
-                                            <span><img src="{{ url('images/work-process/icon1.png') }}"
-                                                    alt="icon1"></span>
-                                        </div>
-                                        <h4 class="twm-title">Créez<br>
-                                            Un compte
-                                        </h4>
-                                    </div>
-                                    <p>Créez votre compte rapidement et soumettez votre dossier chez Power HR</p>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-4 col-lg-6 col-md-6">
-                                <div class="twm-w-process-steps">
-                                    <span class="twm-large-number">02</span>
-                                    <div class="twm-w-pro-top bg-clr-pink">
-                                        <div class="twm-media">
-                                            <span><img src="{{ url('images/work-process/icon2.png') }}"
-                                                    alt="icon1"></span>
-                                        </div>
-                                        <h4 class="twm-title">Mentionnez
-
-
-                                            <br>
-                                            Votre Attente
-                                        </h4>
-                                    </div>
-                                    <p>Désignez l’offre que vous cherchez, votre prétention salariale et autres </p>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-4 col-lg-6 col-md-6">
-                                <div class="twm-w-process-steps">
-                                    <span class="twm-large-number">03</span>
-                                    <div class="twm-w-pro-top bg-clr-green">
-                                        <div class="twm-media">
-                                            <span><img src="{{ url('images/work-process/icon3.png') }}"
-                                                    alt="icon1"></span>
-                                        </div>
-                                        <h4 class="twm-title">Soumettez
-
-
-                                            <br>Votre CV
-                                        </h4>
-                                    </div>
-                                    <p>Uploadez votre CV et mettez-le à jour au quotidien </p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- HOW IT WORK SECTION END -->
-
-            <!-- JOBS CATEGORIES SECTION START -->
-            <div class="section-full p-t120 p-b90 site-bg-gray twm-job-categories-area">
-
-                <div class="container">
-
-                    <div class="wt-separator-two-part">
-                        <div class="row wt-separator-two-part-row">
-                            <div class="col-xl-5 col-lg-5 col-md-12 wt-separator-two-part-left">
-                                <!-- TITLE START-->
-                                <div class="section-head left wt-small-separator-outer">
-                                    <div class="wt-small-separator site-text-primary">
-                                        <div>Quel secteur vous intéresse ? </div>
-                                    </div>
-                                    <h2 class="wt-title">Nous savons trouver tout ce qu'il vous faut.</h2>
-                                </div>
-                                <!-- TITLE END-->
-                            </div>
-
-                            <div class="col-xl-6 col-lg-6 col-md-12 wt-separator-two-part-right">
-                                <p>Peu importe le secteur dans lequel vous évoluez, chaque domaine de compétence est
-                                    géré et plusieurs candidats y trouvent des offres. </p>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="twm-job-categories-section">
-
-                        <div class="job-categories-style1 m-b30">
-                            <div class="owl-carousel job-categories-carousel owl-btn-left-bottom ">
-
-                                <!-- COLUMNS 1 -->
-                                <div class="item ">
-                                    <div class="job-categories-block">
-                                        <div class="twm-media">
-                                            <img src="{{ asset('images/briefcase.png') }}" />
-                                        </div>
-                                        <div class="twm-content">
-                                            <div class="twm-jobs-available bg-primary">9,185
-                                                Offres</div>
-                                            <a href="#:void(0);">Architecture</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- COLUMNS 2 -->
-                                <div class="item ">
-                                    <div class="job-categories-block">
-                                        <div class="twm-media">
-                                            <img src="{{ asset('images/briefcase.png') }}" />
-                                        </div>
-                                        <div class="twm-content">
-                                            <div class="twm-jobs-available bg-primary">3,205
-                                                Offres</div>
-                                            <a href="#:void(0);">Ressources humaines </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- COLUMNS 3 -->
-                                <div class="item ">
-                                    <div class="job-categories-block">
-                                        <div class="twm-media">
-                                            <img src="{{ asset('images/briefcase.png') }}" />
-                                        </div>
-                                        <div class="twm-content">
-                                            <div class="twm-jobs-available bg-primary">2,100
-                                                Offres</div>
-                                            <a href="#:void(0);"> Finance </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- COLUMNS 5 -->
-                                <div class="item ">
-                                    <div class="job-categories-block">
-                                        <div class="twm-media">
-                                            <img src="{{ asset('images/briefcase.png') }}" />
-                                        </div>
-                                        <div class="twm-content">
-                                            <div class="twm-jobs-available bg-primary">9,185
-                                                Jobs</div>
-                                            <a href="#:void(0);">Comptabilité</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- COLUMNS 6 -->
-                                <div class="item ">
-                                    <div class="job-categories-block">
-                                        <div class="twm-media">
-                                            <img src="{{ asset('images/briefcase.png') }}" />
-                                        </div>
-                                        <div class="twm-content">
-                                            <div class="twm-jobs-available bg-primary">3,205
-                                                Offres</div>
-                                            <a href="#:void(0);">Marketing</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- COLUMNS 7 -->
-                                <div class="item ">
-                                    <div class="job-categories-block">
-                                        <div class="twm-media">
-                                            <img src="{{ asset('images/briefcase.png') }}" />
-                                        </div>
-                                        <div class="twm-content">
-                                            <div class="twm-jobs-available bg-primary">2,100
-                                                offres</div>
-                                            <a href="#:void(0);"> Electricité </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- COLUMNS 8 -->
-                                <div class="item ">
-                                    <div class="job-categories-block">
-                                        <div class="twm-media">
-                                            <img src="{{ asset('images/briefcase.png') }}" />
-                                        </div>
-                                        <div class="twm-content">
-                                            <div class="twm-jobs-available bg-primary">1,500
-                                                Offres</div>
-                                            <a href="#:void(0);">
-                                                Développement web</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- COLUMNS 9 -->
-                                <div class="item ">
-                                    <div class="job-categories-block">
-                                        <div class="twm-media">
-                                            <img src="{{ asset('images/briefcase.png') }}" />
-                                        </div>
-                                        <div class="twm-content">
-                                            <div class="twm-jobs-available bg-primary">9,185
-                                                Offres</div>
-                                            <a href="#:void(0);">Géologie</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- COLUMNS 10 -->
-                                <div class="item ">
-                                    <div class="job-categories-block">
-                                        <div class="twm-media">
-                                            <img src="{{ asset('images/briefcase.png') }}" />
-                                        </div>
-                                        <div class="twm-content">
-                                            <div class="twm-jobs-available bg-primary">3,205
-                                                Offres</div>
-                                            <a href="#:void(0);">Santé
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-            <!-- JOBS CATEGORIES SECTION END -->
-
-            <!-- EXPLORE NEW LIFE START -->
-            <div class="bg-cover section-full p-t120 p-b120 twm-explore-area "
-                style="background-image: url({{ url('images/background/bg-1.jpg') }});">
-                <div class="container">
-
-                    <div class="section-content">
-                        <div class="row">
-
-                            <div class="col-lg-4 col-md-12">
-                                <div class="twm-explore-media-wrap">
-                                    <div class="twm-media">
-                                        <img src="images/fille.png" alt>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-8 col-md-12">
-                                <div class="twm-explore-content-outer">
-                                    <div class="twm-explore-content">
-
-                                        <div class="twm-l-line-1"></div>
-                                        <div class="twm-l-line-2"></div>
-
-                                        <div class="twm-r-circle-1"></div>
-                                        <div class="twm-r-circle-2"></div>
-
-                                        <div class="twm-title-small">Un nouveau depart </div>
-                                        <div class="twm-title-large">
-                                            <h2>Découvrez les meilleures offres d’emploi depuis votre ville
-                                            </h2>
-                                            <p>Power HR vous aide, vous accompagne à trouver l’emploi de vos rêves sans
-                                                beaucoup de difficultés. Tout est facilité grâce à notre large base de
-                                                données.</p>
-                                        </div>
-                                        <div class="twm-upload-file">
-                                            <a href="{{ route('login.view') }}" class="site-button">
-                                                Commencer
-                                                <i data-feather="log-in"></i>
-                                            </a>
-                                        </div>
-
-                                    </div>
-                                    <div class="twm-bold-circle-right"></div>
-                                    <div class="twm-bold-circle-left"></div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!-- EXPLORE NEW LIFE END -->
-
-            <!-- TOP COMPANIES START -->
-            <div class="section-full p-t120 site-bg-white twm-companies-wrap">
-
-                <!-- TITLE START-->
-                <div class="section-head center wt-small-separator-outer">
-                    <div class="wt-small-separator site-text-primary">
-                        <div>Ceux qui nous font confiance</div>
-                    </div>
-                    <h2 class="wt-title">Entreprises partenaires</h2>
-                </div>
-                <!-- TITLE END-->
-
-                <div class="container">
-                    <div class="section-content">
-                        <div class="owl-carousel home-client-carousel2 owl-btn-vertical-center">
-                            @forelse($partenaires as $partenaire)
-                            <div class="item">
-                                <div class="ow-client-logo">
-                                    <div class="client-logo client-logo-media">
-                                        <a href="#!">
-                                            <img src="{{ url('storage/' . $partenaire->logo) }}" alt>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            @empty
-                                <div class="item">
-                                    <div class="ow-client-logo">
-                                        <div class="client-logo client-logo-media">
-                                            <a href="#!"><img
-                                                    src="{{ url('images/client-logo/w1.png') }}" alt></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="item">
-                                    <div class="ow-client-logo">
-                                        <div class="client-logo client-logo-media">
-                                            <a href="#!"><img
-                                                    src="{{ url('images/client-logo/w2.png') }}" alt></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="item">
-                                    <div class="ow-client-logo">
-                                        <div class="client-logo client-logo-media">
-                                            <a href="#!"><img
-                                                    src="{{ url('images/client-logo/w3.png') }}" alt></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="item">
-                                    <div class="ow-client-logo">
-                                        <div class="client-logo client-logo-media">
-                                            <a href="#!"><img
-                                                    src="{{ url('images/client-logo/w4.png') }}" alt></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="item">
-                                    <div class="ow-client-logo">
-                                        <div class="client-logo client-logo-media">
-                                            <a href="#!"><img
-                                                    src="{{ url('images/client-logo/w5.png') }}" alt></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="item">
-                                    <div class="ow-client-logo">
-                                        <div class="client-logo client-logo-media">
-                                            <a href="#!"><img
-                                                    src="{{ url('images/client-logo/w6.png') }}" alt></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="item">
-                                    <div class="ow-client-logo">
-                                        <div class="client-logo client-logo-media">
-                                            <a href="#!"><img
-                                                    src="{{ url('images/client-logo/w1.png') }}" alt></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="item">
-                                    <div class="ow-client-logo">
-                                        <div class="client-logo client-logo-media">
-                                            <a href="#!"><img
-                                                    src="{{ url('images/client-logo/w2.png') }}" alt></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="item">
-                                    <div class="ow-client-logo">
-                                        <div class="client-logo client-logo-media">
-                                            <a href="#!"><img
-                                                    src="{{ url('images/client-logo/w3.png') }}" alt></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="item">
-                                    <div class="ow-client-logo">
-                                        <div class="client-logo client-logo-media">
-                                            <a href="#!"><img
-                                                    src="{{ url('images/client-logo/w5.png') }}" alt></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforelse
-                        </div>
-                    </div>
-                </div>
-
-                <div class="twm-company-approch-outer">
-                    <div class="twm-company-approch">
-                        <div class="row">
-
-                            <!--block 1-->
-                            <div class="col-lg-4 col-md-12">
-                                <div class="counter-outer-two">
-                                    <div class="icon-content">
-                                        <div class="tw-count-number text-clr-sky">
-                                            <span class="counter">3</span>K+
-                                        </div>
-                                        <p class="icon-content-info">Utilisateurs actifs</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--block 2-->
-                            <div class="col-lg-4 col-md-12">
-                                <div class="counter-outer-two">
-                                    <div class="icon-content">
-                                        <div class="tw-count-number text-clr-pink">
-                                            <span class="counter">9</span>K+
-                                        </div>
-                                        <p class="icon-content-info">Offres disponibles</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--block 3-->
-                            <div class="col-lg-4 col-md-12">
-                                <div class="counter-outer-two">
-                                    <div class="icon-content">
-                                        <div class="tw-count-number text-clr-green">
-                                            <span class="counter">4</span>K+
-                                        </div>
-                                        <p class="icon-content-info">Entreprises</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- TOP COMPANIES END -->
-
-            <!-- Services -->
-            <div class="section-full p-t120 p-b90 site-bg-gray twm-job-categories-area">
-
-                <div class="container">
-
-                    <div class="wt-separator-two-part">
-                        <div class="row wt-separator-two-part-row">
-                            <div class="col-xl-12 col-lg-12 col-md-12 wt-separator-two-part-left">
-                                <!-- TITLE START-->
-                                <div class="section-head left wt-small-separator-outer">
-                                    <div class="wt-small-separator site-text-primary">
-                                        <div>Nos services </div>
-                                    </div>
-                                    <h2 class="wt-title">Services</h2>
-                                </div>
-                                <!-- TITLE END-->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="twm-job-categories-section">
-
-                        <div class="job-categories-style1 m-b30">
-                            <div class="owl-carousel twm-la-home-blog owl-btn-left-bottom ">
-
-                                <!-- COLUMNS 1 -->
-                                <div class="item ">
-                                    <div class="job-categories-block">
-                                        <div class="twm-content">
-                                            <div class="twm-jobs-available bg-primary">DEMANDE DE COTATION ET  bg-primarySOURCING</div>
-                                            <a href="#:void(0);">Demande de cotations, sourcing (étude des besoins du
-                                                client, recherche et évaluation des candidatures, sélection des
-                                                talents, négociation du contrat, rapport global)</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- COLUMNS 1 -->
-                                <div class="item ">
-                                    <div class="job-categories-block">
-                                        <div class="twm-content">
-                                            <div class="twm-jobs-available bg-primary">OUTSOURCING : RECRUTEMENT,  bg-primaryONBOARDING</div>
-                                            <a href="#:void(0);">
-                                                Signature du contrat de travail, immatriculations CNSS, visa contrats
-                                                ONEM, cartes de services, ouverture des
-                                                comptes
-                                                bancaires, visites d’embauche</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- COLUMNS 1 -->
-                                <div class="item ">
-                                    <div class="job-categories-block">
-                                        <div class="twm-content">
-                                            <div class="twm-jobs-available bg-primary">GESTION DES CONTRATS,  bg-primaryGESTION DE LA PAIE
-                                            </div>
-                                            <a href="#:void(0);">
-                                                Timesheets, payroll, bulletins de salaire, le paiement des salaires, le
-                                                paiement des charges salariales (charges
-                                                sociales et fiscales sur salaires)</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- COLUMNS 1 -->
-                                <div class="item ">
-                                    <div class="job-categories-block">
-                                        <div class="twm-content">
-                                            <div class="twm-jobs-available bg-primary">GESTION DES CONTRATS,  bg-primaryGESTION DE LA PAIE
-                                            </div>
-                                            <a href="#:void(0);">
-                                                Timesheets, payroll, bulletins de salaire, le paiement des salaires, le
-                                                paiement des charges salariales (charges
-                                                sociales et fiscales sur salaires)</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- COLUMNS 1 -->
-                                <div class="item ">
-                                    <div class="job-categories-block">
-                                        <div class="twm-content">
-                                            <div class="twm-jobs-available bg-primary">FORMATIONS, BILAN DE  bg-primaryCOMPÉTENCES</div>
-                                            <a href="#:void(0);">Plan de formation, cartographie de risques, création
-                                                d’entreprise, conseils financiers et
-                                                fiscal</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
+                        <div class="imageThumb">
+                            <img src="assets-2/img/post-job.png" class="img-fluid" alt="Img">
                         </div>
 
                     </div>
                 </div>
             </div>
-            <!-- End Service -->
+            <!-- End Col -->
 
-            <!-- OUR BLOG START -->
-            <div class="section-full p-t120 p-b90 site-bg-gray">
-                <div class="container">
+            <div class="col-xl-6 col-lg-6 col-md-6">
+                <div class="py-4 border calculamBox">
+                    <div class="flex-wrap gap-2 d-flex align-items-center justify-content-between">
 
-                    <!-- TITLE START-->
-                    <div class="section-head center wt-small-separator-outer">
-                        <div class="wt-small-separator site-text-primary">
-                            <div>Blog</div>
-                        </div>
-                        <h2 class="wt-title">Dernières Offres</h2>
-
-                    </div>
-                    <!-- TITLE END-->
-
-                    <div class="section-content">
-                        <div class="twm-blog-post-1-outer-wrap">
-                            <div class="owl-carousel twm-la-home-blog owl-btn-bottom-center">
-                                @forelse($offers as $offer)
-                                    <div class="item">
-                                        <!--Block one-->
-                                        <div class="border blog-post twm-blog-post-1-outer">
-                                            <div class="wt-post-info">
-                                                <div class="wt-post-meta ">
-                                                    <ul>
-                                                        <li class="post-date">
-                                                            {{ $offer->created_at->locale('fr')->translatedFormat('d F, Y') }}
-                                                        </li>
-                                                        <li class="post-author">Par
-                                                            <a href="#">{{ ucfirst($offer->client?->company?->name ?? 'PowerHR') }}</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="wt-post-title ">
-                                                    <h4 class="post-title">
-                                                        <a href="#">
-                                                            {{ strlen($offer->title) > 30 ? substr($offer->title, 0, 30) . '...' : $offer->title }}
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div class="wt-post-text ">
-                                                    <p>
-                                                        {{ strlen($offer->description) > 50 ? substr($offer->description, 0, 50) . '...' : $offer->description }}
-                                                    </p>
-                                                </div>
-                                                <div class="wt-post-readmore ">
-                                                    <a href="{{ route('candidate.jobs.show', $offer) }}" class="site-button-link site-text-primary">Voir détail</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @empty
-                                    <p class="text-center text-muted">
-                                        Aucune offre publié !
-                                    </p>
-                                @endforelse
+                        <div class="boxCaps">
+                            <div class="mb-3 capsWrap">
+                                <h4>Pour les candidats</h4>
+                                <p>Développez votre profil professionnel, trouvez de nouvelles opportunités d'emploi.</p>
+                            </div>
+                            <div class="d-block btnWrap">
+                                <a href="{{ route('candidate.cv.index') }}" class="btn btn-light-primary rounded-pill"><i class="bi bi-cloud-arrow-up me-2"></i>Publiez votre CV</a>
                             </div>
                         </div>
-                    </div>
 
+                        <div class="imageThumb">
+                            <img src="assets-2/img/upload-resume.png" class="img-fluid" alt="Img">
+                        </div>
+
+                    </div>
                 </div>
             </div>
-            <!-- OUR BLOG END -->
+            <!-- End Col -->
 
         </div>
-        <!-- CONTENT END -->
+        <!-- End Row -->
+    </div>
+</section>
+<!-- ============================== User Options End ======================================= -->
 
-        <!-- FOOTER START -->
-        <footer class="footer-dark" style="background-image: url({{ url('images/f-bg.jpg') }});">
-            <div class="container">
 
-                <!-- FOOTER BLOCKES START -->
-                <div class="footer-top">
-                    <div class="row">
+<!-- ============================ Job category Start ================================== -->
+<section>
+    <div class="container">
 
-                        <div class="col-lg-4 col-md-12">
-                            <div class="widget widget_about">
-                                <div class="clearfix logo-footer">
-                                    <a href="/"><img src="images/logo.png" alt></a>
-                                </div>
-                                <p>Power HR est une entreprise axée sur les ressources humaines qui permet aux
-                                    entreprises de trouver très facilement les meilleurs profils et aux demandeurs
-                                    d’emploi de trouver une société qui correspond à leur vision afin de mener à bien
-                                    leur carrière</p>
+        <div class="row align-items-center justify-content-center">
+            <div class="col-xl-8 col-lg-9 col-md-11 col-sm-12">
+                <div class="moder-heading">
+                    <div class="subtitleHeading-wrap">
+                        <h6 class="subtitle-heading">Catégories</h6>
+                    </div>
+                    <h2 class="main-heading">Explorer les catégories</h2>
+                </div>
+            </div>
+        </div>
 
-                            </div>
+        <div class="row align-items-center justify-content-center g-4">
 
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="bi bi-megaphone"></i>
+                    </div>
+                    <div class="category-content">
+                        <h6>Marketing & Sale</h6>
+                        <p>170 Jobs Available</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="bi bi-currency-exchange"></i>
+                    </div>
+                    <div class="category-content">
+                        <h6>Finance</h6>
+                        <p>112 Jobs Available</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="bi bi-file-earmark-medical"></i>
+                    </div>
+                    <div class="category-content">
+                        <h6>Human Resource</h6>
+                        <p>110 Jobs Available</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="bi bi-headset"></i>
+                    </div>
+                    <div class="category-content">
+                        <h6>Customer Service</h6>
+                        <p>170 Jobs Available</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="bi bi-cup-hot"></i>
+                    </div>
+                    <div class="category-content">
+                        <h6>Management</h6>
+                        <p>132 Jobs Available</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="bi bi-display"></i>
+                    </div>
+                    <div class="category-content">
+                        <h6>Software</h6>
+                        <p>180 Jobs Available</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="bi bi-basket2"></i>
+                    </div>
+                    <div class="category-content">
+                        <h6>Retail & Products</h6>
+                        <p>142 Jobs Available</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <div class="category-content">
+                        <h6>Security Analyst</h6>
+                        <p>210 Jobs Available</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="bi bi-lamp-fill"></i>
+                    </div>
+                    <div class="category-content">
+                        <h6>Market Research</h6>
+                        <p>162 Jobs Available</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="bi bi-easel2"></i>
+                    </div>
+                    <div class="category-content">
+                        <h6>Art & Design</h6>
+                        <p>186 Jobs Available</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="bi bi-mortarboard"></i>
+                    </div>
+                    <div class="category-content">
+                        <h6>Education</h6>
+                        <p>113 Jobs Available</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <i class="bi bi-tools"></i>
+                    </div>
+                    <div class="category-content">
+                        <h6>Automobile</h6>
+                        <p>162 Jobs Available</p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ============================ Job category End ================================== -->
+
+
+<!-- ============================ Trending Jobs Start ================================== -->
+<section class="bg-light">
+    <div class="container">
+
+        <div class="row align-items-center justify-content-center">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+
+                <div class="smart-heading-wrap">
+                    <div class="smart-heading">
+                        <h2 class="main-heading">Offres d'emploi tendance pour vous</h2>
+                        <div class="subtitleHeading-wrap">
+                            <h6 class="subtitle-heading">Découvrez plein d'offres d'emploi actives sur PowerHr</h6>
                         </div>
-
-                        <div class="col-lg-8 col-md-12">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="widget widget_services ftr-list-center">
-                                        <h3 class="widget-title text-primary">Contact</h3>
-                                        <ul>
-                                            <li><a href="#"> +243 8222 144 160</a></li>
-                                            <li><a href="#">contact@powerhr.com</a></li>
-                                            <li><a href="#"> Isoke 152,</br> Gombe, Kinshasa</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="widget widget_services ftr-list-center">
-                                        <h3 class="widget-title text-primary">Liens rapides</h3>
-                                        <ul>
-                                            <li><a href="/">Accueil</a></li>
-                                            <li><a href="#">A propos</a></li>
-                                            <li><a href="#">Services</a></li>
-                                            <li><a href="#">Blog</a></li>
-                                            <li><a href="#">Contact</a></li>
-                                        </ul>
-
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
+                    </div>
+                    <div class="explore-wrap">
+                        <a href="{{ route('jobs') }}" class="btn-simple-link">Voir toutes les offres</a>
                     </div>
                 </div>
-                <!-- FOOTER COPYRIGHT -->
-                <div class="footer-bottom">
 
-                    <div class="footer-bottom-info">
+            </div>
+        </div>
 
-                        <div class="footer-copy-right">
-                            <span class="copyrights-text">Copyright
-                                © 2024 Power HR DRC
-                            </span>
+        <div class="row align-items-center justify-content-center g-4">
+
+           @forelse ($jobs as $job)
+            <!-- Single Item -->
+            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                <div class="joblist-layouts JobhillShdaow">
+                    <div class="joblist-body">
+                        <div class="joblist-wrapper">
+
+                            <div class="joblist-first">
+                                <div class="starterCaption">
+                                    <div class="jobAvatar">
+                                        <a class="text-center border bg-light rounded-2 avatar" href="#">
+                                            <i class="bi bi-briefcase text-primary" style="font-size: 30px;"></i>
+                                        </a>
+                                    </div>
+                                    <div class="starterInfo">
+                                        <div class="starterInfo-body">
+                                            <div class="titleWraps">
+                                                <h5 class="title verified"><a href="#">{{ $job->title }}<span class="verify" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Verified Jobs"><i class="bi bi-patch-check-fill"></i></span></a></h5>
+                                                <div class="infoGroup">
+                                                    <span class="infoText jobtype">{{ strlen($job->category?->name) > 30 ? substr($job->category?->name, 0, 30) . '...' : $job->category?->name }}</span>
+                                                    <span class="infoText location"><i class="bi bi-geo-alt me-1"></i>{{ $job->location ?? '--' }}</span>
+                                                    <span class="infoText jobtype">{{ $job->contract_type }}</span>
+                                                    <span class="infoText exp"><i class="bi bi-briefcase me-1"></i>{{ $job->experience_years ? $job->experience_years . ' an(s)': '' }}, Expérience</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="starterInfo-bottom">
+                                            <div class="mb-4 jobDesc d-block">
+                                                <p class="m-0">{{ strlen($job->description) > 50 ? substr($job->description, 0, 50) . '...' : $job->description }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
+                    </div>
 
+                    <a href="#" class="JobhillLink"></a>
+                </div>
+            </div>
+           @empty
+           <!-- Single Item -->
+          <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+              <div class="joblist-layouts JobhillShdaow">
+                  <div class="joblist-body">
+                        <div class="joblist-wrapper">
+                            <p class="text-center col-12">Aucune offre disponible</p>
+                        </div>
+                  </div>
+              </div>
+          </div>
+           @endforelse
+
+        </div>
+
+    </div>
+</section>
+<!-- ============================ Trending Jobs End ================================== -->
+
+
+<!-- =============================== Your Career Grows =============================== -->
+<section class="py-0 bg-primary position-relative">
+    <div class="container">
+
+        <div class="row align-items-center justify-content-between g-4">
+
+            <div class="col-xl-5 col-lg-6 col-md-12">
+                <div class="py-5 servicesTags my-lg-5">
+
+                    <div class="mb-4 headingBloc d-block">
+                        <h3 class="fw-semibold text-light">Nos services pour faire progresser votre carrière</h3>
+                    </div>
+
+                    <div class="my-5 JobhillFeatures">
+                        <div class="single">
+                            <div class="icons withShadow lice">
+                                <i class="text-white bi bi-pencil-square"></i>
+                            </div>
+                            <div class="caption">
+                                <h5 class="capTitle text-light">Inscrivez-vous gratuitement</h5>
+                                <div class="opacity-75 description text-light">Demander au client de ne pas prêter attention est logique dès le départ, car cela limitera les choses.</div>
+                            </div>
+                        </div>
+                        <div class="single">
+                            <div class="icons withShadow lice">
+                                <i class="text-white bi bi-pin-angle"></i>
+                            </div>
+                            <div class="caption">
+                                <h5 class="capTitle text-light">Recrutez et publiez les meilleurs talents</h5>
+                                <div class="opacity-75 description text-light">C'est un fait établi depuis longtemps : une part de pizza que vous avez oublié d'acheter.</div>
+                            </div>
+                        </div>
+                        <div class="single">
+                            <div class="icons withShadow lice">
+                                <i class="text-white bi bi-stars"></i>
+                            </div>
+                            <div class="caption">
+                                <h5 class="capTitle text-light">Travaillez avec les meilleurs sans vous casser la figure.</h5>
+                                <div class="opacity-75 description text-light">Généralement, nous préférons l'original, le vin sans conservateurs à base de soufre.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gap-3 d-flex align-items-center justify-content-start">
+                        <a href="#" class="px-5 btn btn-warning rounded-pill fw-medium">Créer un compte</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="top-0 bottom-0 bg-cover h-100 position-absolute end-0 w-50 d-none d-md-none d-xl-block d-lg-block" style="background:url(assets-2/img/base-2.jpg)no-repeat;"></div>
+</section>
+<!-- ============================== Your Career Grows End ========================== -->
+
+
+<!-- ============================ Hiring Companies Start ================================== -->
+<section>
+    <div class="container">
+
+        <div class="row align-items-center justify-content-center">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+
+                <div class="smart-heading-wrap">
+                    <div class="smart-heading">
+                        <h2 class="main-heading">Entreprises - partenaires</h2>
+                        <div class="subtitleHeading-wrap">
+                            <h6 class="subtitle-heading">Trouvez des entreprises qui cherchent des talents</h6>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row align-items-center justify-content-between">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="companies_slider">
+
+                    @forelse($partenaires as $partenaire)
+                    <div class="singleItem">
+                        <div class="companiesGrid JobhillShdaow">
+                            <div class="imageWrap">
+                                <img src="{{ url('storage/' . $partenaire->logo) }}" class="img-fluid" alt="Company Logo">
+                            </div>
+                            <div class="companyDetails">
+                                <h4 class="companyTitle"><a class="name" href="#">{{ $partenaire->name }}</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                    <!-- Single Item -->
+                    <div class="singleItem">
+                        <div class="companiesGrid JobhillShdaow">
+                            <div class="imageWrap">
+                                <img src="assets-2/img/emp-3.png" class="img-fluid" alt="Company Logo">
+                            </div>
+                            <div class="companyDetails">
+                                <h4 class="companyTitle"><a class="name" href="#">Flying Software Consultency</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Item -->
+                    <div class="singleItem">
+                        <div class="companiesGrid JobhillShdaow">
+                            <div class="imageWrap">
+                                <img src="assets-2/img/emp-1.png" class="img-fluid" alt="Company Logo">
+                            </div>
+                            <div class="companyDetails">
+                                <h4 class="companyTitle"><a class="name" href="#">Amook Software Services</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Item -->
+                    <div class="singleItem">
+                        <div class="companiesGrid JobhillShdaow">
+                            <div class="imageWrap">
+                                <img src="assets-2/img/emp-5.png" class="img-fluid" alt="Company Logo">
+                            </div>
+                            <div class="companyDetails">
+                                <h4 class="companyTitle"><a class="name" href="#">Addok Adsword Services</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Item -->
+                    <div class="singleItem">
+                        <div class="companiesGrid JobhillShdaow">
+                            <div class="imageWrap">
+                                <img src="assets-2/img/emp-6.png" class="img-fluid" alt="Company Logo">
+                            </div>
+                            <div class="companyDetails">
+                                <h4 class="companyTitle"><a class="name" href="#">Slaps eMail Services</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Item -->
+                    <div class="singleItem">
+                        <div class="companiesGrid JobhillShdaow">
+                            <div class="imageWrap">
+                                <img src="assets-2/img/emp-7.png" class="img-fluid" alt="Company Logo">
+                            </div>
+                            <div class="companyDetails">
+                                <h4 class="companyTitle"><a class="name" href="#">Moco Consultancy Services</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Item -->
+                    <div class="singleItem">
+                        <div class="companiesGrid JobhillShdaow">
+                            <div class="imageWrap">
+                                <img src="assets-2/img/emp-1.png" class="img-fluid" alt="Company Logo">
+                            </div>
+                            <div class="companyDetails">
+                                <h4 class="companyTitle"><a class="name" href="#">Tata Consultancy Services</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Item -->
+                    <div class="singleItem">
+                        <div class="companiesGrid JobhillShdaow">
+                            <div class="imageWrap">
+                                <img src="assets-2/img/emp-9.png" class="img-fluid" alt="Company Logo">
+                            </div>
+                            <div class="companyDetails">
+                                <h4 class="companyTitle"><a class="name" href="#">Yelp Advertisement Services</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Item -->
+                    <div class="singleItem">
+                        <div class="companiesGrid JobhillShdaow">
+                            <div class="imageWrap">
+                                <img src="assets-2/img/emp-10.png" class="img-fluid" alt="Company Logo">
+                            </div>
+                            <div class="companyDetails">
+                                <h4 class="companyTitle"><a class="name" href="#">Croom Email Marketing</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    @endforelse
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ============================ Hiring Companies End ================================== -->
+
+
+<!-- ============================ Users Reviews Start ================================== -->
+<section class="bg-light">
+    <div class="container">
+
+        <div class="row align-items-center">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="smart-heading-wrap">
+                    <div class="smart-heading">
+                        <h2 class="main-heading">La confiance de nos clients et partenaires</h2>
+                        <div class="subtitleHeading-wrap">
+                            <h6 class="subtitle-heading">Meilleurs avis de nos clients</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row align-items-center justify-content-center">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+
+                <div class="reviews_slider">
+
+                    <!-- Single Item -->
+                    <div class="singleItem">
+                        <div class="reviewsCard">
+                            <div class="reviewsBody">
+
+                                <div class="reviews-topHeader">
+                                    <div class="reviewsStar">
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                    </div>
+                                    <div class="revws-desc">
+                                        <h5 class="reviewsTitle">"One of the Superb Platform"</h5>
+                                        <p class="text">Absolutely love Jobhill! whenever I'm in need of finding a job, Jobhill is my #1 go to! wouldn't look anywhere else.</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Item -->
+                    <div class="singleItem">
+                        <div class="reviewsCard">
+                            <div class="reviewsBody">
+
+                                <div class="reviews-topHeader">
+                                    <div class="reviewsStar">
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                    </div>
+                                    <div class="revws-desc">
+                                        <h5 class="reviewsTitle">"One of the Superb Platform"</h5>
+                                        <p class="text">I love this app, and service, it makes applying for job so much easier you can make your resume as easy as filling out an application...</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Item -->
+                    <div class="singleItem">
+                        <div class="reviewsCard">
+                            <div class="reviewsBody">
+
+                                <div class="reviews-topHeader">
+                                    <div class="reviewsStar">
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                    </div>
+                                    <div class="revws-desc">
+                                        <h5 class="reviewsTitle">"One of the Superb Platform"</h5>
+                                        <p class="text">Jobhill the best job finder app out there right now.. they also protect you from spammers so the only emails I get due to...</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Item -->
+                    <div class="singleItem">
+                        <div class="reviewsCard">
+                            <div class="reviewsBody">
+
+                                <div class="reviews-topHeader">
+                                    <div class="reviewsStar">
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                    </div>
+                                    <div class="revws-desc">
+                                        <h5 class="reviewsTitle">"One of the Superb Platform"</h5>
+                                        <p class="text">I love this Jobhill app. it's more legit than the other ones with advertisement. Once I uploaded my resume, then employers...</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Item -->
+                    <div class="singleItem">
+                        <div class="reviewsCard">
+                            <div class="reviewsBody">
+
+                                <div class="reviews-topHeader">
+                                    <div class="reviewsStar">
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                        <span class="star fill"><i class="fa-solid fa-star"></i></span>
+                                    </div>
+                                    <div class="revws-desc">
+                                        <h5 class="reviewsTitle">"One of the Superb Platform"</h5>
+                                        <p class="text">Overall, the Jobhill application is a powerful tool for anyone in the job market. Its reliability, extensive job listings, and user-friendly..</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
                     </div>
 
                 </div>
 
             </div>
-
-        </footer>
-        <!-- FOOTER END -->
-
-        <!-- BUTTON TOP START -->
-        <button class="scroltop">
-            <span class="relative fa fa-angle-up" id="btn-vibrate"></span>
-        </button>
+        </div>
 
     </div>
+</section>
+<!-- ============================ Users Reviews End ================================== -->
 
-    <!-- JAVASCRIPT  FILES ========================================= -->
-    <script src="{{ url('js/jquery-3.6.0.min.js') }}"></script><!-- JQUERY.MIN JS -->
-    <script src="{{ url('js/popper.min.js') }}"></script><!-- POPPER.MIN JS -->
-    <script src="{{ url('js/bootstrap.min.js') }}"></script><!-- BOOTSTRAP.MIN JS -->
-    <script src="{{ url('js/magnific-popup.min.js') }}"></script><!-- MAGNIFIC-POPUP JS -->
-    <script src="{{ url('js/waypoints.min.js') }}"></script><!-- WAYPOINTS JS -->
-    <script src="{{ url('js/counterup.min.js') }}"></script><!-- COUNTERUP JS -->
-    <script src="{{ url('js/waypoints-sticky.min.js') }}"></script><!-- STICKY HEADER -->
-    <script src="{{ url('js/isotope.pkgd.min.js') }}"></script><!-- MASONRY  -->
-    <script src="{{ url('js/imagesloaded.pkgd.min.js') }}"></script><!-- MASONRY  -->
-    <script src="{{ url('js/owl.carousel.min.js') }}"></script><!-- OWL  SLIDER  -->
-    <script src="{{ url('js/theia-sticky-sidebar.js') }}"></script><!-- STICKY SIDEBAR  -->
-    <script src="{{ url('js/lc_lightbox.lite.js') }}"></script><!-- IMAGE POPUP -->
-    <script src="{{ url('js/bootstrap-select.min.js') }}"></script><!-- Form js -->
-    <script src="{{ url('js/dropzone.js') }}"></script><!-- IMAGE UPLOAD  -->
-    <script src="{{ url('js/jquery.scrollbar.j') }}s"></script><!-- scroller -->
-    <script src="{{ url('js/bootstrap-datepicker.js') }}"></script><!-- scroller -->
-    <script src="{{ url('js/jquery.dataTables.min.js') }}"></script><!-- Datatable -->
-    <script src="{{ url('js/dataTables.bootstrap5.min.js') }}"></script><!-- Datatable -->
-    <script src="{{ url('js/chart.js') }}"></script><!-- Chart -->
-    <script src="{{ url('js/bootstrap-slider.min.js') }}"></script><!-- Price range slider -->
-    <script src="{{ url('js/swiper-bundle.min.js') }}"></script><!-- Swiper JS -->
-    <script src="{{ url('js/custom.js') }}"></script><!-- CUSTOM FUCTIONS  -->
 
-    <script>
-        feather.replace();
-    </script>
+<!-- ============================ Trending Searches Start ================================== -->
+<section>
+    <div class="container">
 
-</body>
+        <div class="row align-items-center">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="smart-heading-wrap">
+                    <div class="smart-heading">
+                        <h2 class="main-heading">Découvrez les emplois les plus populaires</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</html>
+        <div class="row align-items-center justify-content-center g-4">
+            <div class="col-xl-12 col-lg-12 col-md-12">
+
+                <div class="discoverTabs">
+                    <nav class="scrollwrap">
+                        <div class="nav nav-tabs simple-tabs borders" id="nav-tab" role="tablist">
+
+                            <button class="nav-link active" id="nav-popular-tab" data-bs-toggle="tab" data-bs-target="#nav-popular" type="button" role="tab" aria-controls="nav-popular" aria-selected="true">Recherche Populaire</button>
+
+                            <button class="nav-link" id="nav-location-tab" data-bs-toggle="tab" data-bs-target="#nav-location" type="button" role="tab" aria-controls="nav-location" aria-selected="false">Lieux</button>
+
+                            <button class="nav-link" id="nav-jobtype-tab" data-bs-toggle="tab" data-bs-target="#nav-jobtype" type="button" role="tab" aria-controls="nav-jobtype" aria-selected="false">Type d'emploi</button>
+
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+
+                        <!-- Popular Searches -->
+                        <div class="tab-pane fade show active" id="nav-popular" role="tabpanel" aria-labelledby="nav-popular-tab" tabindex="0">
+                            <div class="trendinglinks-wrap">
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>gestionnaire administratif</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>concepteur graphique</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>senior web designer</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>femme au foyer</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>développeur web</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>Agent immobilier</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>marketing des ventes</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>superviseur</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>développeur Figma vers WordPress</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>Concepteur HTML</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>Chauffeur</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>Boulanger</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>Chef de projet</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>spécialiste SEO</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>rédacteur de contenu</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>chef administratif</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>ressources humaines</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>chef cuisinier</a>
+                            </div>
+                        </div>
+
+                        <!-- Locations -->
+                        <div class="tab-pane fade" id="nav-location" role="tabpanel" aria-labelledby="nav-location-tab" tabindex="0">
+                            <div class="trendinglinks-wrap">
+                                <a href="#" class="trending-link"><i class="bi bi-geo-alt me-2"></i>Kinshasa</a>
+                                <a href="#" class="trending-link"><i class="bi bi-geo-alt me-2"></i>Lubambashi</a>
+                                <a href="#" class="trending-link"><i class="bi bi-geo-alt me-2"></i>Kongo central</a>
+                                <a href="#" class="trending-link"><i class="bi bi-geo-alt me-2"></i>Mbuji-Mayi</a>
+                                <a href="#" class="trending-link"><i class="bi bi-geo-alt me-2"></i>Ituri</a>
+                                <a href="#" class="trending-link"><i class="bi bi-geo-alt me-2"></i>Équateur</a>
+                                <a href="#" class="trending-link"><i class="bi bi-geo-alt me-2"></i>Autres</a>
+                            </div>
+                        </div>
+
+                        <!-- Job Types -->
+                        <div class="tab-pane fade" id="nav-jobtype" role="tabpanel" aria-labelledby="nav-jobtype-tab" tabindex="0">
+                            <div class="trendinglinks-wrap">
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>A Temps plein</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>Occasionnel/Temporaire</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>Temps Partiel</a>
+                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>Stage</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<!-- ============================ Trending Searches End ================================== -->
+@endsection

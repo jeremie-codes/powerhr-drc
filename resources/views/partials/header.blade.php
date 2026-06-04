@@ -1,4 +1,4 @@
-<div class="navbar-header">
+<div class="border navbar-header">
     <div class="row align-items-center justify-content-between">
         <div class="col-auto">
             <div class="flex-wrap gap-4 d-flex align-items-center">
@@ -21,7 +21,7 @@
 
                 <!-- Language dropdown start -->
                 @php
-                    $currentLang = session('lang') ?? auth()->user()->langue ?? app()->getLocale() ?? 'fr';
+                    $currentLang = session('lang') ?? auth()->user()->langue ?? 'fr';
                 @endphp
 
                 <div class="dropdown d-none d-sm-inline-block">
@@ -86,14 +86,14 @@
                 <div class="dropdown">
                     <button class="d-flex justify-content-center align-items-center rounded-circle" type="button"
                         data-bs-toggle="dropdown">
-                        <div class="w-40-px h-40-px rounded-circle bg-light-600 overflow-hidden">
+                        <div class="overflow-hidden border w-40-px h-40-px rounded-circle bg-light-600">
                             <img src="{{ asset(auth()->user()->image ? 'storage/' . auth()->user()->image : 'build/images/users/avatar-1.png') }}" alt="image"
                                  class="object-fit-cover">
                         </div>
                     </button>
                     <div class="dropdown-menu to-top dropdown-menu-sm">
                         <div class="gap-2 px-16 py-12 mb-16 radius-8 bg-primary-50 d-flex align-items-center justify-content-between">
-                            <div class="w-40-px h-40-px rounded-circle bg-light overflow-hidden">
+                            <div class="overflow-hidden border w-40-px h-40-px rounded-circle bg-light">
                                 <img src="{{ asset(auth()->user()->image ? 'storage/' . auth()->user()->image : 'build/images/users/avatar-1.png') }}" alt="image"
                                      class="object-fit-cover">
                             </div>

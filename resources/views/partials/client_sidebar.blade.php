@@ -69,7 +69,7 @@
      {{-- PARAMÈTRES --}}
      <li class="{{ request()->routeIs('client.settings.index*') ? 'active' : '' }}">
          <a href="{{ route('client.settings.index') }}">
-             <i class="text-xl ri-user-settings-line d-flex"></i>
+             <i class="text-xl ri-settings-line d-flex"></i>
              <span>Utilisateur</span>
          </a>
      </li>

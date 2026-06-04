@@ -1,8 +1,11 @@
+@php
+    $currentLang = session('lang') ?? auth()->user()->langue ?? 'fr';
+@endphp
 <div class="relative dropdown text-end">
     <button type="button"
         class="inline-flex items-center gap-3 dropdown-toggle btn border-slate-200"
         id="dropdownMenuButton">
-        @switch(Session::get('lang'))
+        @switch($currentLang)
             @case('fr')
                 <img src="{{ URL::asset('build/images/flags/20/fr.svg') }}" alt="" id="header-lang-img"
                     class="object-cover h-5 rounded-full">
@@ -24,7 +27,7 @@
 
 
 
-   <div class="absolute z-50 hidden p-3 mt-1 bg-white rounded-md shadow-md dropdown-menu min-w-[9rem] flex flex-col gap-3">
+   <div class="absolute z-50 p-3 mt-1 bg-white rounded-md shadow-md dropdown-menu min-w-[9rem] flex flex-col gap-3">
 
         <!-- FR -->
         <a href="javascript:void(0)"
@@ -48,5 +51,3 @@
 
 </div>
 
-<!-- élément requis par Google (caché) -->
-<div id="google_translate_element" class="hidden"></div>

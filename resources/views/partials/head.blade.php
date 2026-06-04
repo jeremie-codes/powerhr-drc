@@ -47,11 +47,17 @@
     <!-- Audio Player -->
     <link rel="stylesheet" href="{{ asset('assets/css/lib/audioplayer.css') }}">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/all/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/license.min.js"></script>
 
     <!-- Main Style -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
     <script>
+        function clearGoogleTranslate() {
+            document.cookie = "googtrans=; path=/; domain=" + window.location.hostname + "; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+            document.cookie = "googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+        }
 
         function googleTranslateElementInit() {
             new google.translate.TranslateElement(

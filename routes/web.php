@@ -10,6 +10,9 @@ Route::post('/set-language', function (Request $request) {
 
 
 Route::get('/', [\App\Http\Controllers\RouteController::class, 'index'])->name('index');
+Route::get('/jobs', [\App\Http\Controllers\RouteController::class, 'jobs'])->name('jobs');
+Route::get('/contact-us', [\App\Http\Controllers\RouteController::class, 'contact'])->name('contact');
+Route::get('/faq', [\App\Http\Controllers\RouteController::class, 'faq'])->name('faq');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/candidate.php';

@@ -30,7 +30,7 @@
 
                                     <div class="gap-2 d-flex align-items-center">
                                         <span
-                                            class="flex-shrink-0 mb-0 text-white w-48-px h-48-px bg-cyan-100 text-cyan-600 d-flex justify-content-center align-items-center rounded-circle h6">
+                                            class="flex-shrink-0 mb-0 w-48-px h-48-px bg-cyan-100 text-cyan-600 d-flex justify-content-center align-items-center rounded-circle h6">
                                             <i class="ri-briefcase-2-line"></i>
                                         </span>
                                         <div>
@@ -114,7 +114,7 @@
 
                                     <div class="gap-2 d-flex align-items-center">
                                         <span
-                                            class="flex-shrink-0 mb-0 text-white w-48-px h-48-px bg-cyan-100 text-cyan-600 d-flex justify-content-center align-items-center rounded-circle h6">
+                                            class="flex-shrink-0 mb-0 w-48-px h-48-px bg-cyan-100 text-cyan-600 d-flex justify-content-center align-items-center rounded-circle h6">
                                             <i class="ri-group-fill"></i>
                                         </span>
                                         <div>
@@ -269,12 +269,13 @@
                                     <div class="text-center w-100">
                                         <div class="text-white text-md">Bienvenue à nouveau!</div>
 
-                                        <h6 class="text-white ">
+                                        <h6 class="text-lg text-white">
                                             {{ $user->name ?? null }}
-                                            <p class="text-sm text-white">
-                                                {{ 'Profil ' . $user->role }}
-                                            </p>
                                         </h6>
+
+                                        <p class="text-sm text-white">
+                                            {{ 'Profil ' . $user->role }}
+                                        </p>
                                     </div>
                                 </div>
 

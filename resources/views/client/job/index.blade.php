@@ -94,7 +94,7 @@
                         <button type="button"
                             class="gap-2 px-12 py-12 mb-16 text-sm btn btn-primary btn-sm w-100 radius-8 d-flex align-items-center"
                             data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <iconify-icon icon="fa6-regular:square-plus" class="text-lg icon line-height-1"></iconify-icon>
+                            <i class="text-lg fi fi-rr-bookmark icon line-height-1" class="icon"></i>
                             Secteur d'activité
                         </button>
 

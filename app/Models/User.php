@@ -32,6 +32,8 @@ class User extends Authenticatable
         'is_active',
         'is_deleted',
         'email_verified_at',
+        'otp',
+        'updated_at',
     ];
 
     /**
@@ -136,6 +138,19 @@ class User extends Authenticatable
         }
 
         return 'candidate.index';
+    }
+
+    public function otpIsValid(): bool
+    {
+        // On s'assure qu'on a un OTP
+        if (is_null($this->otp)) {
+            return false;
+        }
+
+        // On calcule la différence absolue en minutes
+        $minutesDepuisMaj = $this->updated_at->diffInMinutes(now());
+
+        return $minutesDepuisMaj <= 15;
     }
 
 }

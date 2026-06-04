@@ -4,8 +4,7 @@
 @endsection
 @section('content')
 
-    <body
-        class="flex items-center justify-center min-h-screen px-4 py-16 bg-cover bg-auth-pattern dark:bg-auth-pattern-dark dark:text-zink-100 font-public">
+    <body class="flex items-center justify-center min-h-screen px-4 py-16 bg-cover bg-auth-pattern dark:bg-auth-pattern-dark dark:text-zink-100 font-public">
         <div class="mb-0 border-none shadow-none xl:w-2/3 card bg-white/70 dark:bg-zink-500/70">
             <div class="grid grid-cols-1 gap-0 lg:grid-cols-12">
                 <div class="lg:col-span-5">
@@ -16,14 +15,19 @@
                             <p class="text-slate-500 dark:text-zink-200">Connectez-vous à votre compte</p>
                         </div>
 
-                        @if (session('status'))
+                        @if (session('success'))
                             <div
                                 class="px-4 py-3 mt-4 text-sm font-medium text-green-600 border border-transparent rounded-md bg-green-50">
-                                {{ session('status') }}
+                                {{ session('success') }}
+                            </div>
+                        @elseif (session('error'))
+                            <div
+                                class="px-4 py-3 mt-4 text-sm font-medium text-red-600 border border-transparent rounded-md bg-red-50">
+                                {{ session('error') }}
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('login') }}" class="mt-10" id="signInForm">
+                        <form method="POST" action="{{ route('login') }}" class="mt-10" id="signInForm" onsubmit="disableBtn()">
                             @csrf
                             <div class="mb-3">
                                 <x-label for="email" value="{{ __('Email') }}" />
@@ -49,23 +53,25 @@
                             </div>
                             <div>
                                 <div class="flex items-center gap-2">
-                                    <x-checkbox id="remember_me" name="remember"  />
+                                    <x-checkbox id="remember_me" name="remember" />
                                     <label for="remember_me"
-                                        class="inline-block text-base font-medium align-middle cursor-pointer">Se souvenir de moi.</label>
+                                        class="inline-block text-base font-medium align-middle cursor-pointer">Se souvenir
+                                        de moi.</label>
                                 </div>
                                 <x-input-error for="remember" />
                             </div>
                             <div class="mt-5">
-                                <button type="submit"
+                                <button type="submit" id="submit-btn"
                                     class="w-full text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Se
-                                    connecter</button>
+                                    connecter
+                                </button>
                             </div>
 
                             <div class="mt-10 text-center">
                                 <p class="mb-0 text-slate-500 dark:text-zink-200">Vous n'avez pas de compte ? <a
                                         href="{{ route('register') }}"
                                         class="font-semibold underline transition-all duration-150 ease-linear text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500">
-                                        Créez-en</a> </p>
+                                        S'inscrire</a> </p>
                             </div>
                         </form>
                     </div>
@@ -89,4 +95,22 @@
                 </div>
             </div>
         </div>
+
+        <script>
+           function disableBtn() {
+                const btn = document.getElementById('submit-btn');
+
+                // Désactive le bouton
+                btn.disabled = true;
+
+                // Ajoute un style visuel (optionnel selon ton CSS)
+                btn.style.opacity = "0.5";
+                btn.style.cursor = "not-allowed";
+
+                // Change le texte pour rassurer l'utilisateur
+                btn.innerText = "Connexion en cours...";
+
+                return true; // Important pour laisser le formulaire s'envoyer
+            }
+            </script>
     @endsection

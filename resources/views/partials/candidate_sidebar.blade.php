@@ -15,7 +15,7 @@
             {{-- LISTE DES OFFRES --}}
             <li class="{{ request()->routeIs('candidate.jobs.index') ? 'active' : '' }}">
                 <a href="{{ route('candidate.jobs.index') }}">
-                    <i class="text-xl ri-briefcase-2-line menu-icon"></i>
+                    <i class="text-xl fi fi-rr-megaphone menu-icon"></i>
                     <span>Offres disponibles</span>
                 </a>
             </li>
@@ -23,7 +23,7 @@
             {{-- MES CANDIDATURES --}}
             <li class="{{ request()->routeIs('candidate.jobs.apply') ? 'active' : '' }}">
                 <a href="{{ route('candidate.jobs.apply') }}">
-                    <i class="text-xl ri-file-gif-line menu-icon"></i>
+                    <i class="text-xl ri-briefcase-2-line menu-icon"></i>
                     <span>Mes candidatures</span>
                 </a>
             </li>
@@ -41,7 +41,7 @@
             {{-- PARAMÈTRES --}}
             <li class="{{ request()->routeIs('candidate.settings.index') ? 'active' : '' }}">
                 <a href="{{ route('candidate.settings.index') }}">
-                    <i class="text-xl ri-user-settings-line d-flex"></i>
+                    <i class="text-xl ri-settings-line d-flex"></i>
                     <span>Paramètres</span>
                 </a>
             </li>
@@ -49,7 +49,7 @@
             {{-- MON CV --}}
             <li class="{{ request()->routeIs('candidate.cv.index') ? 'active' : '' }}">
                 <a href="{{ route('candidate.cv.index') }}">
-                    <i class="text-xl ri-file-line menu-icon"></i>
+                    <i class="text-xl fi fi-rr-resume menu-icon"></i>
                     <span>Mon CV</span>
                 </a>
             </li>
