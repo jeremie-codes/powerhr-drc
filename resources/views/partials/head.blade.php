@@ -49,17 +49,48 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/all/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/license.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css" integrity="sha512-t7Few9xlddEmgd3oKZQahkNI4dS6l80+eGEzFQiqtyVYdvcSG2D3Iub77R20BdotfRPA9caaRkg1tyaJiPmO0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Main Style -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <div id="google_translate_element" class="hidden"></div>
-
     <style>
         body {
             top: 0 !important;
+        }
+
+        .btn-warning {
+            background-color: #ffa033;
+            border-color: #ff8633;
+            color: #fff;
+        }
+
+        .bg-warning {
+            background-color: #ff8633 !important;
+        }
+
+        .text-warning {
+            color: #ff8633 !important;
+        }
+
+        /*body {
+            top: 0 !important;
+            font-family: 'Montserrat', sans-serif;
+        }*/
+
+        .bg-primary, .btn-primary {
+            background-color: #1077b2 !important;
+        }
+
+        .text-primary, .site-text-primary {
+            color: #1077b2 !important;
+        }
+
+        @media (min-width: 995px) {
+            .head-text {
+                position: relative;
+                top: -150px;
+            }
         }
     </style>
 
