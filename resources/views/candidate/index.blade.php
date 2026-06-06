@@ -29,9 +29,9 @@
                             />
 
                             <div class="p-16 flex- nft-promo-card__inner d-flex align-items-center justify-content-between">
-                                <div class=" nft-promo-card__humb overflow-hidden rounded-pill border bg-blue-light" style="width: 150px; height: 150px">
+                                <div class="overflow-hidden border nft-promo-card__humb rounded-pill bg-blue-light" style="width: 150px; height: 150px">
                                     <img src="{{ asset($user->image ? 'storage/' . $user->image : 'build/images/users/avatar-1.png') }}" alt=""
-                                        class=" object-cover " style="border-radius: 100%;">
+                                        class="object-cover " style="border-radius: 100%;">
                                 </div>
 
                                 <div class="flex-grow-1">
@@ -42,7 +42,7 @@
                                         <p class="gap-2 text-sm text-white d-flex align-items-center">
                                             @if($user->candidate?->is_certified)
                                                 <span>
-                                                    <iconify-icon icon="fa-solid:award" class="mb-0 text-2xl text-white"></iconify-icon>
+                                                    <i class="text-2xl text-white bi bi-patch-check-fill"></i>
                                                 </span>
                                                 <span> Profil certifié</span>
                                             @else

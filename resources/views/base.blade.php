@@ -10,7 +10,7 @@
 		<link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}">
 
 		<!-- Vendors Css -->
-		<link href="assets-2/css/vendors.css" rel="stylesheet">
+		<link href="{{ asset('assets-2/css/vendors.css') }}" rel="stylesheet">
 
 		<!-- Icons CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -94,11 +94,11 @@
 		<!-- ============================================================== -->
 		<!-- All Jquery -->
 		<!-- ============================================================== -->
-		<script src="assets-2/js/vendors.js"></script>
+		<script src="{{ asset('assets-2/js/vendors.js') }}"></script>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/js/all.min.js" integrity="sha512-6BTOlkauINO65nLhXhthZMtepgJSghyimIalb+crKRPhvhmsCdnIuGcVbR5/aQY2A+260iC1OPy1oCdB6pSSwQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-		<script src="assets-2/js/custom.js"></script>
+		<script src="{{ asset('assets-2/js/custom.js') }}"></script>
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
 		<!-- ============================================================== -->

@@ -152,7 +152,7 @@
                                 alt="" class="border br-white border-width-2-px w-100-px h-100-px rounded-circle object-fit-cover">
 
                             <div class="text-center position-relative d-flex align-items-center justify-content-center">
-                                <iconify-icon icon="fa-solid:award" class="mb-0 text-2xl text-primary"></iconify-icon>
+                                <i class="text-2xl text-succes bi bi-patch-check-fill"></i>
                                 <h6 class="mt-4 mb-0 text-lg">Profil anonyme</h6>
                             </div>
                             <span class=" text-secondary-light">{{ $profile->qualification_level }}</span>

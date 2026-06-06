@@ -4,28 +4,23 @@
 
 @section('body')
 
-<!-- ============================ Hearo Search Form Start================================== -->
-<div class="pt-10 pb-5 overflow-hidden image-cover hero-banner bg-primary position-relative" data-overlay="0">
-    <div class="bottom-0 position-absolute end-0">
-        <img src="{{ asset("assets-2/img/colored-1.svg") }}" class="img-fluid opacity-4" width="250" alt="">
-    </div>
+<!-- ============================ Page Title ================================== -->
+<section class="bg-cover position-relative" style="background:url({{ asset('assets-2/img/about.png') }})no-repeat;" data-overlay="5">
     <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-xl-7 col-lg-9 col-md-12">
 
-        <!-- Search Form -->
-        <div class="row justify-content-start align-items-start">
-
-            <div class="text-center col-xl-12 col-lg-11 col-md-12 col-sm-12">
-                <div class="mb-4 position-relative">
-                    <h2 class="fw-medium">Explorez <span class="text-warning">toutes les offres d'emploie</span> disponibles</h2>
+                <div class="my-4 text-center fpc-capstion">
+                    <div class="fpc-captions">
+                        <h2 class="text-white fw-medium">Explorez <span class="text-warning">toutes les offres d'emploie</span> disponibles</h2>
+                    </div>
                 </div>
+
             </div>
-
         </div>
-        <!-- </row> -->
-
     </div>
-</div>
-<!-- ============================ Hearo Search Form End ================================== -->
+</section>
+<!-- ============================ Page Title ================================== -->
 
 
 <!-- ============================ Search Job Wrapper ================================== -->

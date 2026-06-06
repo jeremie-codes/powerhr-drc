@@ -161,7 +161,7 @@
 
 
 <!-- ============================ Video Helps End ================================== -->
-<section class="bg-cover" style="background:url(assets/img/banner-1.jpg)no-repeat;" data-overlay="5">
+<section class="bg-cover" style="background:url({{ asset('images/abou.jpeg') }})no-repeat;" data-overlay="5">
     <div class="ht-150"></div>
     <div class="container">
         <div class="row align-items-center justify-content-center">
@@ -258,7 +258,7 @@
             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
                 <div class="teamBlock">
                     <div class="teamThumb">
-                        <img src="assets/img/team-1.jpg" class="img-fluid circle" alt="Team Name">
+                        <img src="{{ asset('assets/images/user.png') }}" class="img-fluid circle" alt="Team Name">
                         <div class="teamSocial">
                             <ul>
                                 <li><a href="#" class="socialLink"><i class="fa-brands fa-facebook-f"></i></a></li>
@@ -277,7 +277,7 @@
             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
                 <div class="teamBlock">
                     <div class="teamThumb">
-                        <img src="assets/img/team-2.jpg" class="img-fluid circle" alt="Team Name">
+                        <img src="{{ asset('assets/images/user.png') }}" class="img-fluid circle" alt="Team Name">
                         <div class="teamSocial">
                             <ul>
                                 <li><a href="#" class="socialLink"><i class="fa-brands fa-facebook-f"></i></a></li>
@@ -296,7 +296,7 @@
             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
                 <div class="teamBlock">
                     <div class="teamThumb">
-                        <img src="assets/img/team-3.jpg" class="img-fluid circle" alt="Team Name">
+                        <img src="{{ asset('assets/images/user.png') }}" class="img-fluid circle" alt="Team Name">
                         <div class="teamSocial">
                             <ul>
                                 <li><a href="#" class="socialLink"><i class="fa-brands fa-facebook-f"></i></a></li>
@@ -315,7 +315,7 @@
             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
                 <div class="teamBlock">
                     <div class="teamThumb">
-                        <img src="assets/img/team-4.jpg" class="img-fluid circle" alt="Team Name">
+                        <img src="{{ asset('assets/images/user.png') }}" class="img-fluid circle" alt="Team Name">
                         <div class="teamSocial">
                             <ul>
                                 <li><a href="#" class="socialLink"><i class="fa-brands fa-facebook-f"></i></a></li>
@@ -325,94 +325,9 @@
                         </div>
                     </div>
                     <div class="caps">
-                        <h4 class="title">Jacqueline Miller</h4>
-                        <p class="subtitle">Human Resource</p>
+                        <h4 class="title">Allen Smith</h4>
+                        <p class="subtitle">UI/UX Designer</p>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                <div class="teamBlock">
-                    <div class="teamThumb">
-                        <img src="assets/img/team-5.jpg" class="img-fluid circle" alt="Team Name">
-                        <div class="teamSocial">
-                            <ul>
-                                <li><a href="#" class="socialLink"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                <li><a href="#" class="socialLink"><i class="fa-brands fa-twitter"></i></a></li>
-                                <li><a href="#" class="socialLink"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="caps">
-                        <h4 class="title">Louis Ferguson</h4>
-                        <p class="subtitle">Content Writer</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                <div class="teamBlock">
-                    <div class="teamThumb">
-                        <img src="assets/img/team-6.jpg" class="img-fluid circle" alt="Team Name">
-                        <div class="teamSocial">
-                            <ul>
-                                <li><a href="#" class="socialLink"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                <li><a href="#" class="socialLink"><i class="fa-brands fa-twitter"></i></a></li>
-                                <li><a href="#" class="socialLink"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="caps">
-                        <h4 class="title">Samuel Guerrero</h4>
-                        <p class="subtitle">Software Developer</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                <div class="teamBlock">
-                    <div class="teamThumb">
-                        <img src="assets/img/team-7.jpg" class="img-fluid circle" alt="Team Name">
-                        <div class="teamSocial">
-                            <ul>
-                                <li><a href="#" class="socialLink"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                <li><a href="#" class="socialLink"><i class="fa-brands fa-twitter"></i></a></li>
-                                <li><a href="#" class="socialLink"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="caps">
-                        <h4 class="title">Lori Stevens</h4>
-                        <p class="subtitle">Figma Designer</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                <div class="teamBlock">
-                    <div class="teamThumb">
-                        <img src="assets/img/team-8.jpg" class="img-fluid circle" alt="Team Name">
-                        <div class="teamSocial">
-                            <ul>
-                                <li><a href="#" class="socialLink"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                <li><a href="#" class="socialLink"><i class="fa-brands fa-twitter"></i></a></li>
-                                <li><a href="#" class="socialLink"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="caps">
-                        <h4 class="title">Samuel Bishop</h4>
-                        <p class="subtitle">Product Designer</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="mt-5 row align-items-center justify-content-center">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                <div class="text-center more">
-                    <a href="#" class="btn btn-more btn-outline-primary rounded-pill">Load More Teams</a>
                 </div>
             </div>
         </div>

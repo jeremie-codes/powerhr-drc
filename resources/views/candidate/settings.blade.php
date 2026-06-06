@@ -32,7 +32,7 @@
                                 {{ auth()->user()->name }}
                                 @if(auth()->user()->candidate?->is_certified)
                                     <span>
-                                        <iconify-icon icon="fa-solid:award" class="mb-0 text-2xl text-primary-500"></iconify-icon>
+                                        <i class="text-2xl text-succes bi bi-patch-check-fill"></i>
                                     </span>
                                 @endif
                             </h6>

@@ -32,7 +32,7 @@
         <div class="col-12 col-md-4 col-lg-6">
             <div class="mb-5 footer-widget pe-xl-5 mb-md-0">
                 <div class="footerLogo">
-                    <img src="assets-2/img/web-icon-w.png" class="img-fluid" alt="Footer Logo">
+                    <img src="{{ asset('assets-2/img/web-icon-w.png') }}" class="img-fluid" alt="Footer Logo">
                 </div>
                 <div class="footerText pe-xl-3">
                     <p>Power HR est une entreprise axée sur les ressources humaines qui permet aux entreprises de trouver très facilement les meilleurs profils et aux demandeurs d’emploi de trouver une société qui correspond à leur vision afin de mener à bien leur carrière.</p>
@@ -85,8 +85,8 @@
 
                     <div class="gap-2 d-flex align-items-center justify-content-start">
                         <div class="appLink">
-                            <a href="#" class="app-link"><img src="assets-2/img/app.png" class="img-fluid" alt="App"></a>
-                            <a href="#" class="app-link"><img src="assets-2/img/ios.png" class="img-fluid" alt="App"></a>
+                            <a href="#" class="app-link"><img src="{{ asset('assets-2/img/app.png') }}" class="img-fluid" alt="App"></a>
+                            <a href="#" class="app-link"><img src="{{ asset('assets-2/img/ios.png') }}" class="img-fluid" alt="App"></a>
                         </div>
                     </div>
 
