@@ -1,3 +1,7 @@
+@php
+    $currentLang = app()->getLocale() ?? auth()->user()->langue ?? 'fr';
+@endphp
+
 <div class="border navbar-header">
     <div class="row align-items-center justify-content-between">
         <div class="col-auto">
@@ -20,10 +24,6 @@
                 <button type="button" data-theme-toggle class="w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center"></button>
 
                 <!-- Language dropdown start -->
-                @php
-                    $currentLang = session('lang') ?? auth()->user()->langue ?? 'fr';
-                @endphp
-
                 <div class="dropdown d-none d-sm-inline-block">
                     <button
                         class="w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center"

@@ -40,7 +40,7 @@ Default Style
   --paragraphColor: #474d6a;
   --bs-body-color-rgb: 71, 77, 106;
   --bs-dark-text: #121224;
-  --bs-primary: #1967D2;
+  --bs-primary: #1077b2;
   --bs-secondary: #f3f5fc;
   --bs-secondary-text: #4c5f6e;
   --bs-light: #f8f9fc;
@@ -8993,7 +8993,7 @@ Jobhill Elements Styles
   transform: translateY(-7px);
 }
 .category-item:hover .category-icon {
-  background: var(--bs-primary);
+  background: #ffa033;
   color: var(--bs-white);
 }
 
@@ -12509,7 +12509,7 @@ Half Map Elements Design
 }
 
 /*----------------------------------------------
-Inner Page Design 
+Inner Page Design
 ----------------------------------------------*/
 /*---------------- Inner Page Design : Page Title ---------------- */
 .titleWrap {

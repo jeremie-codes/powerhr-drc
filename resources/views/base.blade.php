@@ -21,18 +21,18 @@
 
 		<style>
 			.btn-warning {
-				background-color: #ffbd22;
-				border-color: #ffbd22;
+				background-color: #ffa033;
+				border-color: #ff8633;
 				color: #fff;
 			}
 
-			.text-warning {
-				color: #ffbd22 !important;
-			}
-
-            .skiptranslate {
-                display: none !important;
+            .bg-warning {
+                background-color: #ff8633 !important;
             }
+
+			.text-warning {
+				color: #ff8633 !important;
+			}
 
             /*body {
                 top: 0 !important;
@@ -54,42 +54,6 @@
                 }
             }
         </style>
-
-        <script>
-            function googleTranslateElementInit() {
-                new google.translate.TranslateElement(
-                    {
-                        pageLanguage: 'fr',
-                        autoDisplay: false
-                    },
-                    'google_translate_element'
-                );
-            }
-
-            function changeLanguage(lang) {
-
-                // Google Translate
-                const select = document.querySelector('.goog-te-combo');
-                if (select) {
-                    select.value = lang;
-                    select.dispatchEvent(new Event('change'));
-                }
-
-                // Sauvegarde en session Laravel
-                fetch("{{ route('set.language') }}", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                    },
-                    body: JSON.stringify({ lang })
-                }).then(() => {
-                    window.location.reload();
-                });
-            }
-        </script>
-
-        <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	</head>
 
 	<body>

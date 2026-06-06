@@ -21,15 +21,17 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
+        dd(App::getLocale());
+
         if ($user->isAdmin()) {
-            return redirect()->route('admin.index');
+            return redirect()->route('admin.index', ['locale' => App::getLocale()]);
         }
 
         if ($user->isClient()) {
-            return redirect()->route('client.index');
+            return redirect()->route('client.index', ['locale' => App::getLocale()]);
         }
 
-        return redirect()->route('candidate.index');
+        return redirect()->route('candidate.index', ['locale' => App::getLocale()]);
     }
 
 
@@ -47,6 +49,6 @@ class AuthenticatedSessionController extends Controller
 
         App::setLocale('fr');
 
-        return redirect()->route('index');
+        return redirect()->route('index', ['locale' => app()->getLocale()]);
     }
 }

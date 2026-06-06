@@ -10,7 +10,7 @@
             </h6>
             <ul class="gap-2 d-flex align-items-center">
                 <li class="fw-medium">
-                    <a href="{{ route('candidate.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
+                    <a href="{{ route('candidate.index', ['locale' => app()->getLocale()]) }}" class="gap-1 d-flex align-items-center hover-text-primary">
                         <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
                         Candidats
                     </a>
@@ -61,7 +61,7 @@
                                 <input type="password" name="password" class="form-control radius-8" required>
                             </div>
                         </div>
-                        
+
                         {{-- Password Confirmation --}}
                         <div class="col-md-6">
                             <div class="mb-20">
@@ -129,7 +129,7 @@
                         </div>
 
                         <hr class="my-3">
-                        
+
                         <h6 class="mt-2 text-md">Informations Personnelles</h6>
 
                         {{-- Job Type --}}
@@ -396,7 +396,7 @@
 <script>
     window.toggleEmployerField = function (el) {
         const employerField = document.getElementById('employer-field');
-        
+
         if(el.value === 'employee') {
             el.setAttribute('required', 'required');
             employerField.classList.remove('d-none');

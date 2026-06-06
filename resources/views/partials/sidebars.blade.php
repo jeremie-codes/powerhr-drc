@@ -4,7 +4,7 @@
     </button>
 
     <div>
-        <a href="{{ route('candidate.index') }}" class="sidebar-logo">
+        <a href="{{ route('candidate.index', ['locale' => app()->getLocale()]) }}" class="sidebar-logo">
             <img src="{{ asset('images/logo.png') }}" alt="site logo" class="light-logo">
             <img src="{{ asset('images/logo.png') }}" alt="site logo" class="dark-logo">
             <img src="{{ asset('images/favicon.png') }}" alt="site logo" class="logo-icon">

@@ -10,7 +10,7 @@
 
                 <div class="my-4 text-center fpc-capstion">
                     <div class="fpc-captions">
-                        <h1 class="xl-heading text-light">Contactez-nous</h1>
+                        <h1 class="xl-heading text-warning">Contactez-nous</h1>
                         <p class="text-light">Ne vous inquiétez pas, nous vous répondrons dans les plus bref délais</p>
                     </div>
                 </div>

@@ -4,20 +4,25 @@
 
 @section('body')
 <!-- ============================ Hero Banner  Start================================== -->
-<div class="hero-header full-height home-5 position-relative" data-overlay="0">
+<div class="hero-header full-height home-5 position-relative" data-overlay="0"
+    style="background-image: url({{ asset('images/banner-2.png') }}); background-size: cover;">
     <div class="container">
 
-        <!-- Search Form -->
         <div class="row justify-content-between align-items-center g-4">
-            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
 
-                <div class="mb-5 position-relative">
-                    <h1>Découvrez, postulez, réussissez, <span class="text-seegreen text-warning fst-italic">tout au même endroit</span></h1>
-                    <p class="banner-subtitle fw-light">Rejoignez une communauté de professionnels où les opportunités sont illimitées et où la collaboration est la clé du succès.</p>
+                <div class="mb-5 position-relative fst-italic">
+                    <h3 style="font-weight: 400">NOUS TRANSFORMONS</h3>
+                    <h1 class="my-0" style="text-transform: uppercase">L'EXPéRIENCE <span class="text-seegreen text-warning">HR</span> EN RDC</h1>
+                    <p class="banner-subtitle fw-light btn btn-dark">Identities fit, <span class="text-seegreen text-warning fst-italic fw-semibold"> HR Legacy</span></p>
+                    <p class="text-right position-relative banner-subtitle fw-normal col-12 col-md-6">Construisons ensemble
+                        <span class="text-seegreen text-warning fst-italic"> l'héritage HR de demain</span> <br>
+                        <img src="{{ asset('images/courbe.png') }}" class="img-fluid" width="100" alt="Image" style="position: absolute; right: 20px; top: 20px">
+                    </p>
                 </div>
 
                 <!-- Search Form -->
-                <div class="shadow smartSearch">
+                <div class="shadow smartSearch col-md-8">
                     <div class="row g-0">
 
                         <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
@@ -40,7 +45,7 @@
                     <div class="flex-wrap gap-3 d-flex align-items-center justify-content-start">
                         <div class="singleGroup">
                             <div class="gap-2 d-flex align-items-center justify-content-start">
-                                <div class="bg-white square--40 circle"><img src="assets-2/img/trustpilot.png" class="img-fluid" width="20" alt="Image"></div>
+                                <div class="bg-white square--40 circle"><img src="{{ asset('assets-2/img/trustpilot.png') }}" class="img-fluid" width="20" alt="Image"></div>
                                 <div class="text-white fw-4 fw-bold">Avis de </div>
                             </div>
                         </div>
@@ -60,12 +65,12 @@
                 </div>
             </div>
 
-            <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 z-2">
-            <div class="banner-clousio">
-                <div class="position-relative">
-                    <div class="m-0 text-center figure"><img src="assets-2/img/banner-worker.png" class="img-fluid" alt=""></div>
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 z-2">
+                <div class="banner-clousio">
+                    <div class="position-relative">
+                        <div class="m-0 text-center figure"><img src="{{ asset('images/follow.png') }}" class="img-fluid" width="150" style="position: absolute; right: 0; bottom: -70px;"></div>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
         <!-- </row> -->
@@ -90,12 +95,12 @@
                                 <p>Trouvez des professionnels du monde entier et possédant toutes les compétences.</p>
                             </div>
                             <div class="d-block btnWrap">
-                                <a href="{{ route('client.jobs.create') }}" class="btn btn-light-primary rounded-pill"><i class="bi bi-send-check me-2"></i>Publiez votre offre - Gratuitement</a>
+                                <a href="{{ route('client.jobs.create', ['locale' => app()->getLocale()]) }}" class="btn btn-light-primary rounded-pill"><i class="bi bi-send-check me-2"></i>Publiez votre offre - Gratuitement</a>
                             </div>
                         </div>
 
                         <div class="imageThumb">
-                            <img src="assets-2/img/post-job.png" class="img-fluid" alt="Img">
+                            <img src="{{ asset('assets-2/img/post-job.png') }}" class="img-fluid" alt="Img">
                         </div>
 
                     </div>
@@ -113,12 +118,12 @@
                                 <p>Développez votre profil professionnel, trouvez de nouvelles opportunités d'emploi.</p>
                             </div>
                             <div class="d-block btnWrap">
-                                <a href="{{ route('candidate.cv.index') }}" class="btn btn-light-primary rounded-pill"><i class="bi bi-cloud-arrow-up me-2"></i>Publiez votre CV</a>
+                                <a href="{{ route('candidate.cv.index', ['locale' => app()->getLocale()]) }}" class="btn btn-light-primary rounded-pill"><i class="bi bi-cloud-arrow-up me-2"></i>Publiez votre CV</a>
                             </div>
                         </div>
 
                         <div class="imageThumb">
-                            <img src="assets-2/img/upload-resume.png" class="img-fluid" alt="Img">
+                            <img src="{{ asset('assets-2/img/upload-resume.png') }}" class="img-fluid" alt="Img">
                         </div>
 
                     </div>
@@ -315,7 +320,7 @@
                         </div>
                     </div>
                     <div class="explore-wrap">
-                        <a href="{{ route('jobs') }}" class="btn-simple-link">Voir toutes les offres</a>
+                        <a href="{{ route('jobs', ['locale' => app()->getLocale()]) }}" class="btn-simple-link">Voir toutes les offres</a>
                     </div>
                 </div>
 
@@ -439,12 +444,13 @@
 
     </div>
     <div class="top-0 bottom-0 bg-cover h-100 position-absolute end-0 w-50 d-none d-md-none d-xl-block d-lg-block" style="background:url(assets-2/img/base-2.jpg)no-repeat;"></div>
+    {{-- <div class="top-0 bottom-0 bg-cover h-100 position-absolute end-0 w-50 d-none d-md-none d-xl-block d-lg-block" style="background:url(images/section.png)no-repeat;"></div> --}}
 </section>
 <!-- ============================== Your Career Grows End ========================== -->
 
 
 <!-- ============================ Hiring Companies Start ================================== -->
-<section>
+<section class="border-bottom">
     <div class="container">
 
         <div class="row align-items-center justify-content-center">
@@ -468,7 +474,7 @@
 
                     @forelse($partenaires as $partenaire)
                     <div class="singleItem">
-                        <div class="companiesGrid JobhillShdaow">
+                        <div class="p-0 pt-2 companiesGrid JobhillShdaow">
                             <div class="imageWrap">
                                 <img src="{{ url('storage/' . $partenaire->logo) }}" class="img-fluid" alt="Company Logo">
                             </div>
@@ -480,9 +486,9 @@
                     @empty
                     <!-- Single Item -->
                     <div class="singleItem">
-                        <div class="companiesGrid JobhillShdaow">
+                        <div class="p-0 pt-2 companiesGrid JobhillShdaow">
                             <div class="imageWrap">
-                                <img src="assets-2/img/emp-3.png" class="img-fluid" alt="Company Logo">
+                                <img src="{{ asset('assets-2/img/emp-3.png') }}" class="img-fluid" alt="Company Logo">
                             </div>
                             <div class="companyDetails">
                                 <h4 class="companyTitle"><a class="name" href="#">Flying Software Consultency</a></h4>
@@ -492,9 +498,9 @@
 
                     <!-- Single Item -->
                     <div class="singleItem">
-                        <div class="companiesGrid JobhillShdaow">
+                        <div class="p-0 pt-2 companiesGrid JobhillShdaow">
                             <div class="imageWrap">
-                                <img src="assets-2/img/emp-1.png" class="img-fluid" alt="Company Logo">
+                                <img src="{{ asset('assets-2/img/emp-1.png') }}" class="img-fluid" alt="Company Logo">
                             </div>
                             <div class="companyDetails">
                                 <h4 class="companyTitle"><a class="name" href="#">Amook Software Services</a></h4>
@@ -504,9 +510,9 @@
 
                     <!-- Single Item -->
                     <div class="singleItem">
-                        <div class="companiesGrid JobhillShdaow">
+                        <div class="p-0 pt-2 companiesGrid JobhillShdaow">
                             <div class="imageWrap">
-                                <img src="assets-2/img/emp-5.png" class="img-fluid" alt="Company Logo">
+                                <img src="{{ asset('assets-2/img/emp-5.png') }}" class="img-fluid" alt="Company Logo">
                             </div>
                             <div class="companyDetails">
                                 <h4 class="companyTitle"><a class="name" href="#">Addok Adsword Services</a></h4>
@@ -516,9 +522,9 @@
 
                     <!-- Single Item -->
                     <div class="singleItem">
-                        <div class="companiesGrid JobhillShdaow">
+                        <div class="p-0 pt-2 companiesGrid JobhillShdaow">
                             <div class="imageWrap">
-                                <img src="assets-2/img/emp-6.png" class="img-fluid" alt="Company Logo">
+                                <img src="{{ asset('assets-2/img/emp-6.png') }}" class="img-fluid" alt="Company Logo">
                             </div>
                             <div class="companyDetails">
                                 <h4 class="companyTitle"><a class="name" href="#">Slaps eMail Services</a></h4>
@@ -528,9 +534,9 @@
 
                     <!-- Single Item -->
                     <div class="singleItem">
-                        <div class="companiesGrid JobhillShdaow">
+                        <div class="p-0 pt-2 companiesGrid JobhillShdaow">
                             <div class="imageWrap">
-                                <img src="assets-2/img/emp-7.png" class="img-fluid" alt="Company Logo">
+                                <img src="{{ asset('assets-2/img/emp-7.png') }}" class="img-fluid" alt="Company Logo">
                             </div>
                             <div class="companyDetails">
                                 <h4 class="companyTitle"><a class="name" href="#">Moco Consultancy Services</a></h4>
@@ -540,9 +546,9 @@
 
                     <!-- Single Item -->
                     <div class="singleItem">
-                        <div class="companiesGrid JobhillShdaow">
+                        <div class="p-0 pt-2 companiesGrid JobhillShdaow">
                             <div class="imageWrap">
-                                <img src="assets-2/img/emp-1.png" class="img-fluid" alt="Company Logo">
+                                <img src="{{ asset('assets-2/img/emp-1.png') }}" class="img-fluid" alt="Company Logo">
                             </div>
                             <div class="companyDetails">
                                 <h4 class="companyTitle"><a class="name" href="#">Tata Consultancy Services</a></h4>
@@ -552,9 +558,9 @@
 
                     <!-- Single Item -->
                     <div class="singleItem">
-                        <div class="companiesGrid JobhillShdaow">
+                        <div class="p-0 pt-2 companiesGrid JobhillShdaow">
                             <div class="imageWrap">
-                                <img src="assets-2/img/emp-9.png" class="img-fluid" alt="Company Logo">
+                                <img src="{{ asset('assets-2/img/emp-9.png') }}" class="img-fluid" alt="Company Logo">
                             </div>
                             <div class="companyDetails">
                                 <h4 class="companyTitle"><a class="name" href="#">Yelp Advertisement Services</a></h4>
@@ -564,9 +570,9 @@
 
                     <!-- Single Item -->
                     <div class="singleItem">
-                        <div class="companiesGrid JobhillShdaow">
+                        <div class="p-0 pt-2 companiesGrid JobhillShdaow">
                             <div class="imageWrap">
-                                <img src="assets-2/img/emp-10.png" class="img-fluid" alt="Company Logo">
+                                <img src="{{ asset('assets-2/img/emp-10.png') }}" class="img-fluid" alt="Company Logo">
                             </div>
                             <div class="companyDetails">
                                 <h4 class="companyTitle"><a class="name" href="#">Croom Email Marketing</a></h4>
@@ -582,6 +588,365 @@
     </div>
 </section>
 <!-- ============================ Hiring Companies End ================================== -->
+
+
+<!-- ============================ Explore Job By Location Start ================================== -->
+<section>
+    <div class="container">
+
+        <div class="row align-items-center justify-content-center">
+            <div class="col-xl-8 col-lg-9 col-md-11 col-sm-12">
+                <div class="moder-heading">
+                    <div class="subtitleHeading-wrap">
+                        <h6 class="subtitle-heading">Publications récentes</h6>
+                    </div>
+                    <h2 class="main-heading">Nos derniers postes</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row align-items-center justify-content-center">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+
+                        <div class="location_slider">
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-16.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-1.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-6.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-3.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-2.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-4.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-5.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-7.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-8.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-9.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-10.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-12.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-13.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-14.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-15.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-18.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-19.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-20.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Item -->
+                            <div class="singleItem">
+                                <div class="cardCities cursor rounded-4">
+                                    <div class="cardCities-image ratio ratio-5">
+                                        <img src="{{ asset('assets-2/img/brand/blog-21.jpeg') }}" class="img-fluid object-fit" alt="image">
+                                    </div>
+
+                                    <div class="px-4 py-4 text-center citiesCard-content d-flex flex-column justify-content-between">
+                                        <div class="cardCities-bg"></div>
+                                        <div class="citiesCard-topcaps"></div>
+                                        <div class="citiesCard-bottomcaps">
+                                            <button class="btn btn-whitener rounded-pill full-width">Nous Contacter<i class="fa-solid fa-arrow-trend-up ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- ============================ Explore Job By Location End ================================== -->
 
 
 <!-- ============================ Users Reviews Start ================================== -->

@@ -16,7 +16,7 @@
 
             <div class="text-center col-xl-12 col-lg-11 col-md-12 col-sm-12">
                 <div class="mb-4 position-relative">
-                    <h2 class="fw-medium">Explorez <span class="text-info">toutes les offres d'emploie</span> disponibles</h2>
+                    <h2 class="fw-medium">Explorez <span class="text-warning">toutes les offres d'emploie</span> disponibles</h2>
                 </div>
             </div>
 

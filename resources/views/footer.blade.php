@@ -9,7 +9,7 @@
                         <h2 class="text-light">Commencez dès aujourd'hui</h2>
                         <p class="m-0 opacity-75 fs-5 text-light">Créez votre compte gratuitement et trouvez votre prochain emploi ou employé</p>
                         <div class="gap-3 d-flex align-items-center justify-content-center">
-                            <a href="{{ route('login.view') }}" class="px-5 btn btn-warning rounded-pill fw-medium">Créer un compte</a>
+                            <a href="{{ route('register.view', ['locale' => app()->getLocale()]) }}" class="px-5 btn btn-warning rounded-pill fw-medium">Créer un compte</a>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                 <h4 class="widget-title">Nos Contacts</h4>
                 <ul class="footer-menu">
                     <li><a href="JavaScript:Void(0);">+243 8222 144 160</a></li>
-                    <li><a href="JavaScript:Void(0);">contact@powerhr.com</a></li>
+                    <li><a href="JavaScript:Void(0);">conseillercommercial1@powerhr-drc.com</a></li>
                     <li><a href="JavaScript:Void(0);">Isoke 152, Gombe, Kinshasa</a></li>
                 </ul>
             </div>

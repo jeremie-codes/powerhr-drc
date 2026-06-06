@@ -11,7 +11,7 @@
                     <div class="!px-10 !py-12 card-body">
 
                         <div class="text-center">
-                            <h4 class="mb-2 text-purple-500 dark:text-purple-500">Bienvenue !</h4>
+                            <h4 class="mb-2 text-primary dark:text-primary">Bienvenue !</h4>
                             <p class="text-slate-500 dark:text-zink-200">Créer un compte pour continuer.</p>
                         </div>
                         <div>
@@ -52,7 +52,7 @@
                                         <!-- Candidat -->
                                         <div class="w-1/2">
                                             <label for="candidate"
-                                                class="flex items-center justify-between p-4 transition bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:bg-blue-50">
+                                                class="flex items-center justify-between p-4 transition bg-white border border-gray-300 rounded-lg cursor-pointer focus:border-custom-500 hover:border-custom-500 checked:border-custom-500">
                                                 <span class="text-base font-medium text-gray-800">
                                                     Candidat <br>
                                                     <small class="text-sm text-gray-400 font-base">Pour postuler</small>
@@ -67,7 +67,7 @@
                                         <!-- Entreprise -->
                                         <div class="w-1/2">
                                             <label for="company"
-                                                class="flex items-center justify-between p-4 transition bg-white border border-gray-300 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:bg-blue-50">
+                                                class="flex items-center justify-between p-4 transition bg-white border border-gray-300 rounded-lg cursor-pointer focus:border-custom-500 hover:border-custom-500 checked:border-custom-500">
                                                 <span class="text-base font-medium text-gray-800">
                                                     Entreprise <br>
                                                     <small class="text-sm text-gray-400 font-base">Pour engager</small>
@@ -89,17 +89,17 @@
 
                                             <div class="ms-2">
                                                 J'accèpte
-                                                <a target="_blank" href="#!"
-                                                    class="text-sm text-gray-600 underline rounded-md dark:text-slate-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                    les conditions d'utilisation et de confidentialité
-                                                </a>
+                                                {{-- <a href="#!"
+                                                    class="text-sm text-gray-600 underline rounded-md dark:text-slate-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"> --}}
+                                                    les conditions d'utilisation.
+                                                {{-- </a> --}}
                                             </div>
                                         </div>
                                     </label>
                                 </div>
                                 <div class="mt-5">
                                     <button type="submit" id="submit-btn"
-                                        class="w-full text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">
+                                        class="w-full text-white bg-orange-500 border-orange-500 btn hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">
                                         Créer un compte
                                     </button>
                                 </div>
@@ -107,9 +107,8 @@
 
                             <div class="mt-10 text-center">
                                 <p class="mb-0 text-slate-500 dark:text-zink-200">Avez-vous déjà un compte ? <a
-                                        href="{{ route('login') }}"
-                                        class="font-semibold underline transition-all duration-150 ease-linear text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500">Se
-                                        connecter</a>
+                                        href="{{ route('login.view', ['locale' => app()->getLocale()]) }}"
+                                        class="font-semibold underline transition-all duration-150 ease-linear text-primary dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500">Se connecter</a>
                                 </p>
                             </div>
                         </div>
@@ -118,7 +117,7 @@
                 <div class="mx-2 mt-2 mb-2 border-none shadow-none lg:col-span-7 card bg-white/60 dark:bg-zink-500/60">
                     <div class="!px-10 !pt-10 h-full !pb-0 card-body flex flex-col">
                         <div class="flex items-center justify-between gap-3">
-                            <div class="grow">
+                            <div>
                                 <a href="{{ url('/') }}">
                                     <x-application-logo />
                                 </a>

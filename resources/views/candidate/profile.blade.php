@@ -8,7 +8,7 @@
             <h6 class="mb-0 fw-semibold">Mon Profil</h6>
             <ul class="gap-2 d-flex align-items-center">
                 <li class="fw-medium">
-                    <a href="{{ route('candidate.index') }}" class="gap-1 d-flex align-items-center hover-text-primary">
+                    <a href="{{ route('candidate.index', ['locale' => app()->getLocale()]) }}" class="gap-1 d-flex align-items-center hover-text-primary">
                         <iconify-icon icon="solar:home-smile-angle-outline" class="text-lg icon"></iconify-icon>
                         Tableau de bord
                     </a>

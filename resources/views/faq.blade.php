@@ -10,7 +10,7 @@
             <div class="col-xl-6 col-lg-6 col-md-7">
                 <div class="fpc-capstion">
                     <div class="fpc-captions">
-                        <h2 class="text-white">Foire aux questions</h2>
+                        <h2 class="text-warning">Foire aux questions</h2>
                         <p class="subtitle text-light">Il arrive que des candidats, partenaires ou entreprises aient des questions sur notre plateforme de recrutement.</p>
                     </div>
                 </div>

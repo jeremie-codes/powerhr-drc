@@ -3,8 +3,8 @@
             <li class="sidebar-menu-group-title">Accueil</li>
 
             {{-- DASHBOARD --}}
-            <li class="{{ request()->routeIs('candidate.index') ? 'active' : '' }}">
-                <a href="{{ route('candidate.index') }}">
+            <li class="{{ request()->routeIs('candidate.index', ['locale' => app()->getLocale()]) ? 'active' : '' }}">
+                <a href="{{ route('candidate.index', ['locale' => app()->getLocale()]) }}">
                     <i class="text-xl ri-home-4-line menu-icon"></i>
                     <span>Tablau de bord</span>
                 </a>

@@ -11,7 +11,7 @@
                     <div class="!px-12 !py-12 card-body">
 
                         <div class="text-center">
-                            <h4 class="mb-2 text-purple-500 dark:text-purple-500">Bon retour parmis nous !</h4>
+                            <h4 class="mb-2 text-primary dark:text-primary">Bon retour parmis nous !</h4>
                             <p class="text-slate-500 dark:text-zink-200">Connectez-vous à votre compte</p>
                         </div>
 
@@ -62,16 +62,17 @@
                             </div>
                             <div class="mt-5">
                                 <button type="submit" id="submit-btn"
-                                    class="w-full text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Se
+                                    class="w-full text-white bg-orange-400 border-orange-400 btn hover:text-white hover:bg-orange-700 hover:border-orange-700 focus:text-white focus:bg-orange-700 focus:border-orange-700 focus:ring focus:ring-custom-100 active:text-white active:bg-orange-700 active:border-orange-700 active:ring active:ring-custom-100 dark:ring-custom-400/20">Se
                                     connecter
                                 </button>
                             </div>
 
                             <div class="mt-10 text-center">
-                                <p class="mb-0 text-slate-500 dark:text-zink-200">Vous n'avez pas de compte ? <a
-                                        href="{{ route('register') }}"
-                                        class="font-semibold underline transition-all duration-150 ease-linear text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500">
-                                        S'inscrire</a> </p>
+                                <p class="mb-0 text-slate-500 dark:text-zink-200">Vous n'avez pas de compte ?
+                                    <a href="{{ route('register.view', ['locale' => app()->getLocale()]) }}" class="font-semibold underline transition-all duration-150 ease-linear text-primary dark:text-zink-200 hover:text-primary dark:hover:text-primary">
+                                        S'inscrire
+                                    </a>
+                                </p>
                             </div>
                         </form>
                     </div>
@@ -79,7 +80,7 @@
                 <div class="mx-2 mt-2 mb-2 border-none shadow-none lg:col-span-7 card bg-white/60 dark:bg-zink-500/60">
                     <div class="!px-10 !pt-10 h-full !pb-0 card-body flex flex-col">
                         <div class="flex items-center justify-between gap-3">
-                            <div class="grow">
+                            <div>
                                 <a href="{{ url('/') }}">
                                     <x-application-logo />
                                 </a>

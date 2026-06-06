@@ -22,6 +22,11 @@ class RouteController extends Controller
         return view('jobs', compact('jobs'));
     }
 
+    public function about()
+    {
+        return view('about');
+    }
+
     public function contact()
     {
         return view('contact');

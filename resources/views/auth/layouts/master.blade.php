@@ -14,72 +14,50 @@
 
     @include('auth.layouts.head-css')
 
-    <script>
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement(
-                {
-                    pageLanguage: 'fr',
-                    autoDisplay: false
-                },
-                'google_translate_element'
-            );
-        }
-
-        function changeLanguage(lang) {
-
-            // Google Translate
-            const select = document.querySelector('.goog-te-combo');
-            if (select) {
-                select.value = lang;
-                select.dispatchEvent(new Event('change'));
-            }
-
-            // Sauvegarde en session Laravel
-            fetch("{{ route('set.language') }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
-                body: JSON.stringify({ lang })
-            }).then(() => {
-                window.location.reload();
-            });
-        }
-    </script>
-
-    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <div id="google_translate_element" class="hidden"></div>
-
     <style>
+			.btn-warning {
+				background-color: #ffa033;
+				border-color: #ff8633;
+				color: #fff;
+			}
 
-        .bg-primary, .btn-primary {
-            background-color: #1077b2 !important;
-        }
+            .bg-warning {
+                background-color: #ff8633 !important;
+            }
 
-        .text-primary, .site-text-primary {
-            color: #1077b2 !important;
-        }
+			.text-warning {
+				color: #ff8633 !important;
+			}
 
-        .skiptranslate {
-            display: none !important;
-        }
-        body {
-            top: 0 !important;
-            font-family: 'Montserrat', sans-serif !important;
-        }
-    </style>
+            /*body {
+                top: 0 !important;
+                font-family: 'Montserrat', sans-serif;
+            }*/
+
+            .bg-primary, .btn-primary {
+                background-color: #1077b2 !important;
+            }
+
+            .text-primary, .site-text-primary {
+                color: #1077b2 !important;
+            }
+
+            @media (min-width: 995px) {
+                .head-text {
+                    position: relative;
+                    top: -150px;
+                }
+            }
+        </style>
 
 </head>
 
 <!-- Content -->
 @yield('content')
-
 
 <!-- Vendor Script -->
 @include('auth.layouts.vendor-scripts')
