@@ -986,7 +986,7 @@
                                     </div>
                                     <div class="revws-desc">
                                         <h5 class="reviewsTitle">"One of the Superb Platform"</h5>
-                                        <p class="text">Absolutely love Jobhill! whenever I'm in need of finding a job, Jobhill is my #1 go to! wouldn't look anywhere else.</p>
+                                        <p class="text">Absolutely love Jobhill! whenever I'm in need of finding a job, POWER HR DRC is my #1 go to! wouldn't look anywhere else.</p>
                                     </div>
                                 </div>
 
@@ -1034,7 +1034,7 @@
                                     </div>
                                     <div class="revws-desc">
                                         <h5 class="reviewsTitle">"One of the Superb Platform"</h5>
-                                        <p class="text">Jobhill the best job finder app out there right now.. they also protect you from spammers so the only emails I get due to...</p>
+                                        <p class="text">POWER HR DRC the best job finder app out there right now.. they also protect you from spammers so the only emails I get due to...</p>
                                     </div>
                                 </div>
 
@@ -1058,7 +1058,7 @@
                                     </div>
                                     <div class="revws-desc">
                                         <h5 class="reviewsTitle">"One of the Superb Platform"</h5>
-                                        <p class="text">I love this Jobhill app. it's more legit than the other ones with advertisement. Once I uploaded my resume, then employers...</p>
+                                        <p class="text">I love this POWER HR DRC app. it's more legit than the other ones with advertisement. Once I uploaded my resume, then employers...</p>
                                     </div>
                                 </div>
 
@@ -1082,7 +1082,7 @@
                                     </div>
                                     <div class="revws-desc">
                                         <h5 class="reviewsTitle">"One of the Superb Platform"</h5>
-                                        <p class="text">Overall, the Jobhill application is a powerful tool for anyone in the job market. Its reliability, extensive job listings, and user-friendly..</p>
+                                        <p class="text">Overall, the POWER HR DRC application is a powerful tool for anyone in the job market. Its reliability, extensive job listings, and user-friendly..</p>
                                     </div>
                                 </div>
 

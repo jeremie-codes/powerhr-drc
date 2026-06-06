@@ -12,7 +12,7 @@
 
                 <div class="my-4 text-center fpc-capstion">
                     <div class="fpc-captions">
-                        <h2 class="text-white fw-medium">Explorez <span class="text-warning">toutes les offres d'emploie</span> disponibles</h2>
+                        <h2 class="text-white fw-medium">Explorez <span class="text-warning">toutes les offres d'emploi</span> disponibles</h2>
                     </div>
                 </div>
 
