@@ -118,7 +118,7 @@
                     <div class="!px-10 !pt-10 h-full !pb-0 card-body flex flex-col">
                         <div class="flex items-center justify-between gap-3">
                             <div>
-                                <a href="{{ url('/') }}">
+                                <a href="{{ route('index') }}">
                                     <x-application-logo />
                                 </a>
                             </div>

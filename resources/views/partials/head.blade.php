@@ -58,9 +58,6 @@
     <div id="google_translate_element" class="hidden"></div>
 
     <style>
-        .skiptranslate {
-            display: none !important;
-        }
         body {
             top: 0 !important;
         }

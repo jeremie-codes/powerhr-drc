@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use App\Mail\VerifieEmail;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -65,19 +64,19 @@ class RegisteredUserController extends Controller
 
         if (!$otp) {
             Log::error('Tentative de connexion sans OTP pour l\'email: ' . $request->email);
-            return redirect()->route('login.view', ['locale' => App::getLocale()])->with('error', 'OTP invalide. Veuillez réessayer.');
+            return redirect()->route('login.view')->with('error', 'OTP invalide. Veuillez réessayer.');
         }
 
         $email = $request->email;
         if (!$email) {
             Log::error('Tentative de connexion sans email pour l\'OTP: ' . $otp);
-            return redirect()->route('login.view', ['locale' => App::getLocale()])->with('error', 'Email invalide. Veuillez réessayer.');
+            return redirect()->route('login.view')->with('error', 'Email invalide. Veuillez réessayer.');
         }
 
         $user = User::where('email', $email)->first();
         if (!$user) {
             Log::error('Aucun utilisateur trouvé pour l\'email: ' . $email);
-            return redirect()->route('login.view', ['locale' => App::getLocale()])->with('error', 'Utilisateur non trouvé. Veuillez réessayer.');
+            return redirect()->route('login.view')->with('error', 'Utilisateur non trouvé. Veuillez réessayer.');
         }
 
         if ($user->otp == $otp) {
@@ -95,9 +94,9 @@ class RegisteredUserController extends Controller
                 return redirect()->route('client.index');
             }
 
-            return redirect()->route('candidate.index', ['locale' => app()->getLocale()]);
+            return redirect()->route('candidate.index');
         } else {
-            return redirect()->route('login.view', ['locale' => App::getLocale()])->with('error', 'OTP invalide. Veuillez réessayer.');
+            return redirect()->route('login.view')->with('error', 'OTP invalide. Veuillez réessayer.');
         }
     }
 
@@ -132,7 +131,7 @@ class RegisteredUserController extends Controller
 
         } catch (\Exception $e) {
             Log::error('Erreur lors du renvoi OTP: ' . $e->getMessage());
-            return redirect()->route('login.view', ['locale' => App::getLocale()])->with('error', 'Une erreur est survenue, réessayez plus tard.');
+            return redirect()->route('login.view')->with('error', 'Une erreur est survenue, réessayez plus tard.');
         }
     }
 

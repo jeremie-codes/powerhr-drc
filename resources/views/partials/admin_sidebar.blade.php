@@ -4,7 +4,7 @@
 
     {{-- DASHBOARD --}}
     <li class="{{ request()->routeIs('admin.index') ? 'active' : '' }}">
-        <a href="{{ route('admin.index') }}">
+        <a href="{{ route('admin.index', ['locale' => app()->getLocal()]) }}">
             <i class="text-xl ri-home-4-line menu-icon"></i>
             <span>Tablau de bord</span>
         </a>
@@ -14,7 +14,7 @@
 
     {{-- LISTE DES OFFRES --}}
     <li class="{{ request()->routeIs('admin.jobs.*') ? 'active' : '' }}">
-        <a href="{{ route('admin.jobs.index') }}">
+        <a href="{{ route('admin.jobs.index', ['locale' => app()->getLocal()]) }}">
             <i class="text-xl ri-briefcase-2-line menu-icon"></i>
             <span>Liste d'Offres</span>
         </a>
@@ -22,7 +22,7 @@
 
     {{-- MES CANDIDATURES --}}
     <li class="{{ request()->routeIs('admin.jobs.*') ? 'active' : '' }}">
-        <a href="{{ route('admin.jobs.apply') }}">
+        <a href="{{ route('admin.jobs.apply', ['locale' => app()->getLocal()]) }}">
             <i class="text-xl ri-file-gif-line menu-icon"></i>
             <span>Liste des candidatures</span>
         </a>
@@ -32,7 +32,7 @@
 
     {{-- LISTE DES CLIENTS --}}
     <li class="{{ request()->routeIs('admin.client.*') ? 'active' : '' }}">
-        <a href="{{ route('admin.client.index') }}">
+        <a href="{{ route('admin.client.index', ['locale' => app()->getLocal()]) }}">
             <i class="text-xl ri-stack-line menu-icon"></i>
             <span>Liste des clients</span>
         </a>
@@ -40,7 +40,7 @@
 
     {{-- LISTE DES CANDIDATS --}}
     <li class="{{ request()->routeIs('admin.canidates.*') ? 'active' : '' }}">
-        <a href="{{ route('admin.candidates.index') }}">
+        <a href="{{ route('admin.candidates.index', ['locale' => app()->getLocal()]) }}">
             <i class="text-xl ri-stack-line menu-icon"></i>
             <span>Liste des candidats</span>
         </a>
@@ -48,7 +48,7 @@
 
     {{-- PROFIL CLIENT --}}
     <li class="{{ request()->routeIs('admin.employes.*') ? 'active' : '' }}">
-        <a href="{{ route('admin.employes.index') }}">
+        <a href="{{ route('admin.employes.index', ['locale' => app()->getLocal()]) }}">
             <i class="text-xl ri-file-user-line menu-icon"></i>
             <span>Liste des employés</span>
         </a>
@@ -66,7 +66,7 @@
 
     {{-- PROFIL --}}
     <li class="{{ request()->routeIs('admin.profile.*') ? 'active' : '' }}">
-        <a href="{{ route('admin.profile.index') }}">
+        <a href="{{ route('admin.profile.index', ['locale' => app()->getLocal()]) }}">
             <i class="text-xl ri-user-settings-line d-flex"></i>
             <span>Mon Profil</span>
         </a>
@@ -74,7 +74,7 @@
 
     {{-- PARAMÈTRES --}}
     <li class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-        <a href="{{ route('admin.users.index') }}">
+        <a href="{{ route('admin.users.index', ['locale' => app()->getLocal()]) }}">
             <i class="text-xl ri-group-3-line d-flex"></i>
             <span>Gestion d'Utilisateur</span>
         </a>

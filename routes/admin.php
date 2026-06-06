@@ -9,15 +9,20 @@ use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RouteController;
 use App\Http\Controllers\Admin\UserController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
+Route::get('admin', function () {
+    return redirect()->route('admin.index', ['locale' => App::getLocale()]);
+});
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::prefix('admin')->group(function () {
-        Route::prefix('{locale}')
-            ->where(['locale' => 'fr|en'])
-            ->middleware('locale')
-            ->group(function () {
+Route::prefix('{locale}')
+    ->where(['locale' => 'fr|en'])
+    ->middleware('locale')
+    ->group(function () {
+
+        Route::middleware(['auth', 'role:admin'])->group(function () {
+            Route::prefix('admin')->group(function () {
 
                 Route::get('/', [RouteController::class, 'index'])->name('admin.index');
 
@@ -53,24 +58,22 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
                 Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
                 Route::get('/users/create', [UserController::class, 'create'])->name('admin.users.create');
                 Route::get('/users/{user}/edit', [UserController::class, 'create'])->name('admin.users.edit');
+            });
+
+            Route::post('/jobs/store', [JobController::class, 'store'])->name('admin.jobs.store');
+            Route::post('/jobs/{jobOffer}/update', [JobController::class, 'update'])->name('admin.jobs.update');
+            Route::post('/jobs/{jobOffer}/delete', [JobController::class, 'destroy'])->name('admin.jobs.delete');
+            Route::post('/jobs/apply/{apply}/change', [JobController::class, 'changeApply'])->name('admin.jobs.change.apply');
+            Route::post('/clients/store', [ClientController::class, 'store'])->name('admin.client.store');
+            Route::post('/clients/{client}/update', [ClientController::class, 'update'])->name('admin.client.update');
+            Route::post('/candidates/store', [CandidateController::class, 'store'])->name('admin.candidates.store');
+            Route::post('/candidates/{user}/update', [CandidateController::class, 'update'])->name('admin.candidates.update');
+            Route::post('/candidates/recommended', [RecommendedController::class, 'store'])->name('admin.candidate.recommended.store');
+            Route::post('/candidates/recommended/{recommanded}/cancel', [RecommendedController::class, 'destroy'])->name('admin.candidate.recommended.cancel');
+            Route::post('/candidates/recommended/{recommanded}/validate', [RecommendedController::class, 'validate'])->name('admin.candidate.recommended.validate');
+            Route::post('/profile', [ProfileController::class, 'store'])->name('admin.profile.store');
+            Route::post('/users/store', [UserController::class, 'store'])->name('admin.users.store');
+            Route::post('/users/{user}/disable', [UserController::class, 'update'])->name('admin.users.update');
+            Route::post('/users/{user}/delete', [UserController::class, 'destroy'])->name('admin.users.delete');
         });
-
-        Route::post('/jobs/store', [JobController::class, 'store'])->name('admin.jobs.store');
-        Route::post('/jobs/{jobOffer}/update', [JobController::class, 'update'])->name('admin.jobs.update');
-        Route::post('/jobs/{jobOffer}/delete', [JobController::class, 'destroy'])->name('admin.jobs.delete');
-        Route::post('/jobs/apply/{apply}/change', [JobController::class, 'changeApply'])->name('admin.jobs.change.apply');
-        Route::post('/clients/store', [ClientController::class, 'store'])->name('admin.client.store');
-        Route::post('/clients/{client}/update', [ClientController::class, 'update'])->name('admin.client.update');
-        Route::post('/candidates/store', [CandidateController::class, 'store'])->name('admin.candidates.store');
-        Route::post('/candidates/{user}/update', [CandidateController::class, 'update'])->name('admin.candidates.update');
-        Route::post('/candidates/recommended', [RecommendedController::class, 'store'])->name('admin.candidate.recommended.store');
-        Route::post('/candidates/recommended/{recommanded}/cancel', [RecommendedController::class, 'destroy'])->name('admin.candidate.recommended.cancel');
-        Route::post('/candidates/recommended/{recommanded}/validate', [RecommendedController::class, 'validate'])->name('admin.candidate.recommended.validate');
-        Route::post('/profile', [ProfileController::class, 'store'])->name('admin.profile.store');
-        Route::post('/users/store', [UserController::class, 'store'])->name('admin.users.store');
-        Route::post('/users/{user}/disable', [UserController::class, 'update'])->name('admin.users.update');
-        Route::post('/users/{user}/delete', [UserController::class, 'destroy'])->name('admin.users.delete');
-
     });
-});
-

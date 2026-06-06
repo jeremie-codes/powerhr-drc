@@ -25,8 +25,7 @@
 
                 <!-- Language dropdown start -->
                 <div class="dropdown d-none d-sm-inline-block">
-                    <button
-                        class="w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center"
+                    <button class="w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center"
                         type="button" data-bs-toggle="dropdown">
 
                         @if($currentLang == 'en')
@@ -36,7 +35,6 @@
                             <img src="{{ asset('assets/images/flags/flag3.png') }}"
                                 class="w-24 h-24 object-fit-cover rounded-circle">
                         @endif
-
                     </button>
 
                     <div class="dropdown-menu to-top dropdown-menu-sm">
@@ -49,7 +47,7 @@
                         <div class="overflow-y-auto max-h-400-px scroll-sm pe-8">
 
                             {{-- ENGLISH --}}
-                            <div onclick="changeLanguage('en')"
+                            <a href="{{ route(Route::currentRouteName(), array_merge(request()->route()->parameters(), ['locale' => 'fr'])) }}"
                                 class="mb-16 cursor-pointer form-check style-check d-flex align-items-center justify-content-between">
 
                                 <span class="gap-3 d-flex align-items-center">
@@ -61,10 +59,10 @@
                                 <input class="form-check-input"
                                     type="radio"
                                     {{ $currentLang == 'en' ? 'checked' : '' }}>
-                            </div>
+                            </a>
 
                             {{-- FRANÇAIS --}}
-                            <div onclick="changeLanguage('fr')"
+                            <a href="{{ route(Route::currentRouteName(), array_merge(request()->route()->parameters(), ['locale' => 'en'])) }}"
                                 class="mb-16 cursor-pointer form-check style-check d-flex align-items-center justify-content-between">
 
                                 <span class="gap-3 d-flex align-items-center">
@@ -76,7 +74,7 @@
                                 <input class="form-check-input"
                                     type="radio"
                                     {{ $currentLang == 'fr' ? 'checked' : '' }}>
-                            </div>
+                            </a>
 
                         </div>
                     </div>

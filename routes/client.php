@@ -8,14 +8,19 @@ use App\Http\Controllers\Client\JobController;
 use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\Client\RouteController;
 use App\Http\Controllers\Client\SettingController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth', 'role:client,prospect'])->group(function () {
-    Route::prefix('client')->group(function () {
-        Route::prefix('{locale}')
-            ->where(['locale' => 'fr|en'])
-            ->middleware('locale')
-            ->group(function () {
+Route::get('client', function () {
+    return redirect()->route('client.index', ['locale' => App::getLocale()]);
+});
+
+Route::prefix('{locale}')
+    ->where(['locale' => 'fr|en'])
+    ->middleware('locale')
+    ->group(function () {
+        Route::middleware(['auth', 'role:client,prospect'])->group(function () {
+            Route::prefix('client')->group(function () {
 
                 Route::get('/', [RouteController::class, 'index'])->name('client.index');
 
@@ -43,18 +48,17 @@ Route::middleware(['auth', 'role:client,prospect'])->group(function () {
                 Route::get('/settings', [SettingController::class, 'index'])->name('client.settings.index');
 
                 Route::get('/brief', [ClientBriefController::class, 'create'])->name('client.briefs.index');
+            });
 
+            Route::post('/jobs/store', [JobController::class, 'store'])->name('client.jobs.store');
+            Route::post('/jobs/{jobOffer}/update', [JobController::class, 'update'])->name('client.jobs.update');
+            Route::post('/jobs/{jobOffer}/delete', [JobController::class, 'destroy'])->name('client.jobs.delete');
+            Route::post('/jobs/apply/{apply}/change', [JobController::class, 'changeApply'])->name('client.jobs.change.apply');
+            Route::post('/candidates/recommended', [CandidateController::class, 'store'])->name('client.candidate.recommended.store');
+            Route::post('/candidates/recommended/{recommanded}/cancel', [CandidateController::class, 'destroy'])->name('client.candidate.recommended.cancel');
+            Route::post('/profile', [ProfileController::class, 'store'])->name('client.profile.store');
+            Route::post('/settings', [SettingController::class, 'store'])->name('client.settings.store');
+            Route::post('/brief', [ClientBriefController::class, 'store'])->name('client.briefs.store');
+            Route::post('/brief/{brief}/update', [ClientBriefController::class, 'update'])->name('client.briefs.update');
         });
-
-        Route::post('/jobs/store', [JobController::class, 'store'])->name('client.jobs.store');
-        Route::post('/jobs/{jobOffer}/update', [JobController::class, 'update'])->name('client.jobs.update');
-        Route::post('/jobs/{jobOffer}/delete', [JobController::class, 'destroy'])->name('client.jobs.delete');
-        Route::post('/jobs/apply/{apply}/change', [JobController::class, 'changeApply'])->name('client.jobs.change.apply');
-        Route::post('/candidates/recommended', [CandidateController::class, 'store'])->name('client.candidate.recommended.store');
-        Route::post('/candidates/recommended/{recommanded}/cancel', [CandidateController::class, 'destroy'])->name('client.candidate.recommended.cancel');
-        Route::post('/profile', [ProfileController::class, 'store'])->name('client.profile.store');
-        Route::post('/settings', [SettingController::class, 'store'])->name('client.settings.store');
-        Route::post('/brief', [ClientBriefController::class, 'store'])->name('client.briefs.store');
-        Route::post('/brief/{brief}/update', [ClientBriefController::class, 'update'])->name('client.briefs.update');
     });
-});
