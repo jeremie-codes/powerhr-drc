@@ -104,7 +104,7 @@
                         </div>
 
                         <div class="imageThumb">
-                            <img src="{{ asset('images/publish.png') }}" class="img-fluid" alt="Img" style="height: 230px !important;">
+                            <img src="{{ asset('images/publish.png') }}" class="img-fluid" alt="Img" style="height: 200px !important;">
                         </div>
 
                     </div>
@@ -127,7 +127,7 @@
                         </div>
 
                         <div class="imageThumb">
-                            <img src="{{ asset('images/send-cv.png') }}" class="img-fluid" alt="Img" style="height: 230px !important;">
+                            <img src="{{ asset('images/send-cv.png') }}" class="img-fluid" alt="Img" style="height: 200px !important;">
                         </div>
 
                     </div>
@@ -1128,7 +1128,7 @@
 
                             <button class="nav-link active" id="nav-popular-tab" data-bs-toggle="tab" data-bs-target="#nav-popular" type="button" role="tab" aria-controls="nav-popular" aria-selected="true">Recherche Populaire</button>
 
-                            <button class="nav-link" id="nav-location-tab" data-bs-toggle="tab" data-bs-target="#nav-location" type="button" role="tab" aria-controls="nav-location" aria-selected="false">Lieux</button>
+                            {{-- <button class="nav-link" id="nav-location-tab" data-bs-toggle="tab" data-bs-target="#nav-location" type="button" role="tab" aria-controls="nav-location" aria-selected="false">Lieux</button> --}}
 
                             <button class="nav-link" id="nav-jobtype-tab" data-bs-toggle="tab" data-bs-target="#nav-jobtype" type="button" role="tab" aria-controls="nav-jobtype" aria-selected="false">Type d'emploi</button>
 
@@ -1160,26 +1160,17 @@
                             </div>
                         </div>
 
-                        <!-- Locations -->
-                        <div class="tab-pane fade" id="nav-location" role="tabpanel" aria-labelledby="nav-location-tab" tabindex="0">
-                            <div class="trendinglinks-wrap">
-                                <a href="#" class="trending-link"><i class="bi bi-geo-alt me-2"></i>Kinshasa</a>
-                                <a href="#" class="trending-link"><i class="bi bi-geo-alt me-2"></i>Lubambashi</a>
-                                <a href="#" class="trending-link"><i class="bi bi-geo-alt me-2"></i>Kongo central</a>
-                                <a href="#" class="trending-link"><i class="bi bi-geo-alt me-2"></i>Mbuji-Mayi</a>
-                                <a href="#" class="trending-link"><i class="bi bi-geo-alt me-2"></i>Ituri</a>
-                                <a href="#" class="trending-link"><i class="bi bi-geo-alt me-2"></i>Équateur</a>
-                                <a href="#" class="trending-link"><i class="bi bi-geo-alt me-2"></i>Autres</a>
-                            </div>
-                        </div>
-
                         <!-- Job Types -->
                         <div class="tab-pane fade" id="nav-jobtype" role="tabpanel" aria-labelledby="nav-jobtype-tab" tabindex="0">
                             <div class="trendinglinks-wrap">
-                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>A Temps plein</a>
-                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>Occasionnel/Temporaire</a>
-                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>Temps Partiel</a>
-                                <a href="#" class="trending-link"><i class="bi bi-search me-2"></i>Stage</a>
+                                <a href="{{ route('jobs') }}?contract_type=Temps plein" class="trending-link"><i class="bi bi-search me-2"></i>A Temps plein</a>
+                                <a href="{{ route('jobs') }}?contract_type=Temps partiel" class="trending-link"><i class="bi bi-search me-2"></i>Temps Partiel</a>
+                                <a href="{{ route('jobs') }}?contract_type=Apprentissage" class="trending-link"><i class="bi bi-search me-2"></i>Apprentissage</a>
+                                <a href="{{ route('jobs') }}?contract_type=Stage" class="trending-link"><i class="bi bi-search me-2"></i>Stage</a>
+                                <a href="{{ route('jobs') }}?contract_type=Stage" class="trending-link"><i class="bi bi-search me-2"></i>Stage</a>
+                                <a href="{{ route('jobs') }}?contract_type=CDI" class="trending-link"><i class="bi bi-search me-2"></i>CDI</a>
+                                <a href="{{ route('jobs') }}?contract_type=CDD" class="trending-link"><i class="bi bi-search me-2"></i>CDD</a>
+                                <a href="{{ route('jobs') }}?contract_type=Autres" class="trending-link"><i class="bi bi-search me-2"></i>Autres</a>
                             </div>
                         </div>
 

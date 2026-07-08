@@ -33,7 +33,6 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('test@123'),
         ]);
 
-        /*
         User::factory()->create([
             'name' => 'Entreprise Client',
             'role' => 'client',
@@ -46,11 +45,11 @@ class DatabaseSeeder extends Seeder
             'role' => 'candidate',
             'email' => 'jeremie@powerhr-drc.com',
             'password' => bcrypt('powerhr@123'),
-        ]);*/
+        ]);
 
         $this->call([
-            //ClientSeeder::class,
-            //JobOfferSeeder::class,
+            ClientSeeder::class,
+            JobOfferSeeder::class,
             JobCategorySeeder::class,
         ]);
 
