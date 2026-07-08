@@ -25,6 +25,9 @@
 				border-color: #ff8633;
 				color: #fff;
 			}
+			.btn-outline-dark:hover {
+				color: #fff !important;
+			}
 
             .bg-warning {
                 background-color: #ff8633 !important;

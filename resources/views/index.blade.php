@@ -3,6 +3,10 @@
 @section('title', 'Accueil')
 
 @section('body')
+
+@php
+    $locale = app()->getLocale();
+@endphp
 <!-- ============================ Hero Banner  Start================================== -->
 <div class="hero-header full-height home-5 position-relative" data-overlay="0"
     style="background-image: url({{ asset('images/banner-2.png') }}); background-size: cover;">
@@ -95,12 +99,12 @@
                                 <p>Trouvez des professionnels du monde entier et possédant toutes les compétences.</p>
                             </div>
                             <div class="d-block btnWrap">
-                                <a href="{{ route('client.jobs.create', ['locale' => app()->getLocale()]) }}" class="btn btn-light-primary rounded-pill"><i class="bi bi-send-check me-2"></i>Publiez votre offre - Gratuitement</a>
+                                <a href="{{ route('client.jobs.create', ['locale' => $locale]) }}" class="btn btn-light-primary rounded-pill"><i class="bi bi-send-check me-2"></i>Publiez votre offre - Gratuitement</a>
                             </div>
                         </div>
 
                         <div class="imageThumb">
-                            <img src="{{ asset('assets-2/img/post-job.png') }}" class="img-fluid" alt="Img">
+                            <img src="{{ asset('images/publish.png') }}" class="img-fluid" alt="Img" style="height: 230px !important;">
                         </div>
 
                     </div>
@@ -118,12 +122,12 @@
                                 <p>Développez votre profil professionnel, trouvez de nouvelles opportunités d'emploi.</p>
                             </div>
                             <div class="d-block btnWrap">
-                                <a href="{{ route('candidate.cv.index', ['locale' => app()->getLocale()]) }}" class="btn btn-light-primary rounded-pill"><i class="bi bi-cloud-arrow-up me-2"></i>Publiez votre CV</a>
+                                <a href="{{ route('candidate.cv.index', ['locale' => $locale]) }}" class="btn btn-light-primary rounded-pill"><i class="bi bi-cloud-arrow-up me-2"></i>Publiez votre CV</a>
                             </div>
                         </div>
 
                         <div class="imageThumb">
-                            <img src="{{ asset('assets-2/img/upload-resume.png') }}" class="img-fluid" alt="Img">
+                            <img src="{{ asset('images/send-cv.png') }}" class="img-fluid" alt="Img" style="height: 230px !important;">
                         </div>
 
                     </div>
@@ -156,7 +160,7 @@
         <div class="row align-items-center justify-content-center g-4">
 
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <a href="#" class="category-item">
+                <a href='{{ url("$locale/jobs?category=") }}Marketing & Sale' class="category-item">
                     <div class="category-icon">
                         <i class="bi bi-megaphone"></i>
                     </div>
@@ -168,7 +172,7 @@
             </div>
 
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <a href="#" class="category-item">
+                <a href='{{ url("$locale/jobs?category=") }}Finance' class="category-item">
                     <div class="category-icon">
                         <i class="bi bi-currency-exchange"></i>
                     </div>
@@ -180,7 +184,7 @@
             </div>
 
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <a href="#" class="category-item">
+                <a href='{{ url("$locale/jobs?category=") }}Human Resource' class="category-item">
                     <div class="category-icon">
                         <i class="bi bi-file-earmark-medical"></i>
                     </div>
@@ -192,7 +196,7 @@
             </div>
 
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <a href="#" class="category-item">
+                <a href='{{ url("$locale/jobs?category=") }}Customer Service' class="category-item">
                     <div class="category-icon">
                         <i class="bi bi-headset"></i>
                     </div>
@@ -204,7 +208,7 @@
             </div>
 
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <a href="#" class="category-item">
+                <a href='{{ url("$locale/jobs?category=") }}Management' class="category-item">
                     <div class="category-icon">
                         <i class="bi bi-cup-hot"></i>
                     </div>
@@ -216,7 +220,7 @@
             </div>
 
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <a href="#" class="category-item">
+                <a href='{{ url("$locale/jobs?category=") }}Software' class="category-item">
                     <div class="category-icon">
                         <i class="bi bi-display"></i>
                     </div>
@@ -228,7 +232,7 @@
             </div>
 
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <a href="#" class="category-item">
+                <a href='{{ url("$locale/jobs?category=") }}Retail & Products' class="category-item">
                     <div class="category-icon">
                         <i class="bi bi-basket2"></i>
                     </div>
@@ -240,7 +244,7 @@
             </div>
 
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <a href="#" class="category-item">
+                <a href='{{ url("$locale/jobs?category=") }}Security Analyst' class="category-item">
                     <div class="category-icon">
                         <i class="bi bi-shield-check"></i>
                     </div>
@@ -252,7 +256,7 @@
             </div>
 
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <a href="#" class="category-item">
+                <a href='{{ url("$locale/jobs?category=") }}Market Research' class="category-item">
                     <div class="category-icon">
                         <i class="bi bi-lamp-fill"></i>
                     </div>
@@ -264,7 +268,7 @@
             </div>
 
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <a href="#" class="category-item">
+                <a href='{{ url("$locale/jobs?category=") }}Art & Design' class="category-item">
                     <div class="category-icon">
                         <i class="bi bi-easel2"></i>
                     </div>
@@ -276,7 +280,7 @@
             </div>
 
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <a href="#" class="category-item">
+                <a href='{{ url("$locale/jobs?category=") }}Education' class="category-item">
                     <div class="category-icon">
                         <i class="bi bi-mortarboard"></i>
                     </div>
@@ -288,7 +292,7 @@
             </div>
 
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                <a href="#" class="category-item">
+                <a href='{{ url("$locale/jobs?category=") }}Automobile' class="category-item">
                     <div class="category-icon">
                         <i class="bi bi-tools"></i>
                     </div>
@@ -320,7 +324,7 @@
                         </div>
                     </div>
                     <div class="explore-wrap">
-                        <a href="{{ route('jobs', ['locale' => app()->getLocale()]) }}" class="btn-simple-link">Voir toutes les offres</a>
+                        <a href="{{ route('jobs', ['locale' => $locale]) }}" class="btn-simple-link">Voir toutes les offres</a>
                     </div>
                 </div>
 

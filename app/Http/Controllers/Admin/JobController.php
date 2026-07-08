@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Application;
 use App\Models\Company;
+use App\Models\Country;
 use App\Models\JobCategory;
 use App\Models\JobOffer;
 use Illuminate\Http\Request;
@@ -60,16 +61,18 @@ class JobController extends Controller
 
     public function create()
     {
-        $categories = JobCategory::all();
-        $companies = Company::all();
-        return view('admin.job.create', compact('categories', 'companies'));
+        $companies = Company::orderBy('name')->get();
+        $categories = JobCategory::orderBy('name')->get();
+        $countries = Country::orderBy('name')->get();
+        return view('admin.job.create', compact('categories', 'companies', 'countries'));
     }
 
     public function edit(JobOffer $jobOffer)
     {
-        $categories = JobCategory::all();
-        $companies = Company::all();
-        return view('admin.job.edit', compact('categories', 'jobOffer', 'companies'));
+        $categories = JobCategory::orderBy('name')->get();
+        $categories = JobCategory::orderBy('name')->get();
+        $countries = Country::orderBy('name')->get();
+        return view('admin.job.edit', compact('categories', 'jobOffer', 'companies', 'countries'));
     }
 
     public function store(Request $request)
@@ -86,6 +89,7 @@ class JobController extends Controller
                 'currency' => 'nullable|string|max:10',
                 'expires_at' => 'nullable|date|after:today',
                 'client_id' => 'nullable|exists:users,id',
+                'country_id' => 'required|exists:countries,id',
             ]);
 
             JobOffer::create([
@@ -93,6 +97,7 @@ class JobController extends Controller
                 'job_category_id' => $request->job_category_id,
                 'title' => $request->title,
                 'description' => $request->description,
+                'country_id' => $request->country_id,
                 'location' => $request->location,
                 'contract_type' => $request->contract_type,
                 'experience_years' => $request->experience_years,
@@ -125,6 +130,7 @@ class JobController extends Controller
                 'currency' => 'nullable|string|max:10',
                 'expires_at' => 'nullable|date|after:today',
                 'client_id' => 'nullable|exists:users,id',
+                'country_id' => 'required|exists:countries,id',
                 'is_active' => 'nullable|boolean',
             ]);
 

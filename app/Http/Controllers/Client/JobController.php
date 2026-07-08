@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Application;
+use App\Models\Country;
 use App\Models\JobCategory;
 use App\Models\JobOffer;
 use Illuminate\Http\Request;
@@ -73,14 +74,16 @@ class JobController extends Controller
             return redirect()->back()->with('error', 'Vous n\'avez pas le droit de publier une offre. Veuillez contacter votre administrateur.');
         }
 
-        $categories = JobCategory::all();
-        return view('client.job.create', compact('categories'));
+        $categories = JobCategory::orderBy('name')->get();
+        $countries = Country::orderBy('name')->get();
+        return view('client.job.create', compact('categories', 'countries'));
     }
 
     public function edit(JobOffer $jobOffer)
     {
-        $categories = JobCategory::all();
-        return view('client.job.edit', compact('categories', 'jobOffer'));
+        $categories = JobCategory::orderBy('name')->get();
+        $countries = Country::orderBy('name')->get();
+        return view('client.job.edit', compact('categories', 'jobOffer', 'countries'));
     }
 
     public function store(Request $request)
@@ -96,6 +99,7 @@ class JobController extends Controller
                 'salary' => 'nullable|numeric|min:0',
                 'currency' => 'nullable|string|max:10',
                 'expires_at' => 'nullable|date|after:today',
+                'country_id' => 'required|exists:countries,id',
             ]);
 
             JobOffer::create([
@@ -103,6 +107,7 @@ class JobController extends Controller
                 'job_category_id' => $request->job_category_id,
                 'title' => $request->title,
                 'description' => $request->description,
+                'country_id' => $request->country_id,
                 'location' => $request->location,
                 'contract_type' => $request->contract_type,
                 'experience_years' => $request->experience_years,
@@ -135,6 +140,7 @@ class JobController extends Controller
                 'currency' => 'nullable|string|max:10',
                 'expires_at' => 'nullable|date|after:today',
                 'is_active' => 'nullable|boolean',
+                'country_id' => 'required|exists:countries,id',
             ]);
 
             $jobOffer->update($validated);

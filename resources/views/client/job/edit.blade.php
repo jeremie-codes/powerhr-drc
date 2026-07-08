@@ -52,6 +52,21 @@
                             </div>
                         </div>
 
+                        {{-- Pays |  --}}
+                        <div class="col-sm-6">
+                            <div class="mb-20">
+                                <label class="form-label fw-semibold">Pays <span class="text-danger-600">*</span></label>
+                                <select name="country_id" class="form-select radius-8" required>
+                                    <option value="">-- Sélectionner --</option>
+                                    @foreach($countries as $country)
+                                        <option value="{{ $country->id }}" {{ $jobOffer->country_id == $country->id ? 'selected' : '' }}>
+                                            {{ $country->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         {{-- Localisation --}}
                         <div class="col-sm-6">
                             <div class="mb-20">

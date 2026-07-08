@@ -12,6 +12,7 @@ class JobOffer extends Model
         'job_category_id',
         'title',
         'description',
+        'country_id',
         'location',
         'contract_type',
         'experience_years',
@@ -41,16 +42,17 @@ class JobOffer extends Model
         return $this->belongsTo(JobCategory::class, 'job_category_id');
     }
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
+
     /* Offre visible côté candidat */
     public function scopeVisible($query)
     {
         return $query
             ->where('is_active', true)
-            ->where('is_deleted', false)
-            ->where(function ($q) {
-                $q->whereNull('expires_at')
-                  ->orWhere('expires_at', '>=', now());
-            });
+            ->where('is_deleted', false);
     }
 
     /* Recherche */
@@ -60,12 +62,12 @@ class JobOffer extends Model
 
         return $query->where(function ($q) use ($term) {
             $q->where('title', 'like', "%$term%")
-              ->orWhere('location', 'like', "%$term%")
-              ->orWhere('contract_type', 'like', "%$term%");
+                ->orWhere('location', 'like', "%$term%")
+                ->orWhere('contract_type', 'like', "%$term%");
         });
     }
 
-     /* Offres actives (logique métier réelle) */
+    /* Offres actives (logique métier réelle) */
     public function scopeCurrentlyActive($query)
     {
         return $query
@@ -73,7 +75,7 @@ class JobOffer extends Model
             ->where('is_deleted', false)
             ->where(function ($q) {
                 $q->whereNull('expires_at')
-                  ->orWhere('expires_at', '>=', now());
+                    ->orWhere('expires_at', '>=', now());
             });
     }
 
@@ -83,8 +85,41 @@ class JobOffer extends Model
         return $query
             ->where(function ($q) {
                 $q->where('is_active', false)
-                  ->orWhere('expires_at', '<', now());
+                    ->orWhere('expires_at', '<', now());
             })
             ->where('is_deleted', false);
+    }
+
+    public function scopeFilter($query, array $filters)
+    {
+        return $query
+            // Recherche libre
+            ->when($filters['search'] ?? false, function ($q, $search) {
+                $q->where(function ($query) use ($search) {
+                    $query->where('title', 'like', "%{$search}%")
+                        ->orWhere('location', 'like', "%{$search}%")
+                        ->orWhere('contract_type', 'like', "%{$search}%");
+                });
+            })
+
+            // Catégorie
+            ->when($filters['category'] ?? false, function ($q, $category) {
+                $q->where('job_category_id', $category);
+            })
+
+            // Type contrat
+            ->when($filters['contract_type'] ?? false, function ($q, $types) {
+                $q->where('contract_type', $types);
+            })
+
+            // Lieu
+            ->when($filters['location'] ?? false, function ($q, $location) {
+                $q->where('country_id', $location);
+            })
+
+            // Expérience minimale
+            ->when($filters['experience'] ?? false, function ($q, $experience) {
+                $q->where('experience_years', '>=', $experience);
+            });
     }
 }

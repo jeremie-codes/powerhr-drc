@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Country;
+use App\Models\JobCategory;
 use App\Models\JobOffer;
+use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
@@ -15,11 +18,31 @@ class RouteController extends Controller
         return view('index', compact('partenaires', 'jobs'));
     }
 
-    public function jobs()
+    public function jobs(Request $request)
     {
-        $jobs = JobOffer::with('category')->where('is_active', true)->paginate(10);
+        $perPage = $request->integer('per_page', 50);
+        $countries = Country::orderBy('name')->get();
+        $jobs = JobOffer::with('category')
 
-        return view('jobs', compact('jobs'));
+            ->visible()
+            ->filter($request->only([
+                'search',
+                'category',
+                'contract_type',
+                'location',
+                'experience'
+            ]))
+            ->latest()
+            ->paginate($perPage)
+            ->withQueryString();
+
+        $categories = JobCategory::orderBy('name')->get();
+
+        return view('jobs', compact(
+            'jobs',
+            'categories',
+            'countries'
+        ));
     }
 
     public function about()
@@ -36,5 +59,4 @@ class RouteController extends Controller
     {
         return view('faq');
     }
-
 }
