@@ -35,7 +35,7 @@
                     <div class="searchingSidebar pe-xl-5 pe-lg-4">
 
                         <div class="border offcanvas offcanvas-start rounded-3 largeshow" data-bs-scroll="true"
-                            tabindex="-1" id="filterSlider" aria-labelledby="filterSliderLabel">
+                            tabindex="-1" id="filterSlider" aria-labelledby="filterSliderLabel" style="border: 0.5px solid #ccc !important; border-radius: 5px;">
                             <div class="py-3 offcanvas-header border-bottom">
                                 <h3 class="h5">Filters</h3>
                                 <button type="button" class="text-sm btn-close d-lg-none" data-bs-dismiss="offcanvas"
@@ -55,7 +55,7 @@
                                                 <h5 class="widgetTitle">Mot-clé d'emploi</h5>
 
                                                 <div class="formField icons">
-                                                    <input type="text" name="search" class="form-control lights"
+                                                    <input style="border: 0.5px solid #ccc" type="text" name="search" class="form-control lights"
                                                         placeholder="Job title, keywords..."
                                                         value="{{ request('search') }}">
 
@@ -67,7 +67,7 @@
                                             <div class="widget">
                                                 <h5 class="widgetTitle">Catégorie</h5>
 
-                                                <div class="formField lights">
+                                                <div class="formField lights" style="border: 0.5px solid #ccc; border-radius: 5px; overflow: hidden">
                                                     <select name="category" class="jobcategory form-control">
 
                                                         <option value="">Toutes les catégories</option>
@@ -89,43 +89,43 @@
                                                     <div class="row align-items-center justify-content-between gy-2">
                                                         <div class="col-6">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" {{ request('contract_type') == 'Temps plein' ? 'checked': '' }} value="Temps plein" name="contract_type" type="radio" id="full_time">
+                                                                <input class="form-check-input border" style="border: 0.5px solid #ccc !important" {{ request('contract_type') == 'Temps plein' ? 'checked': '' }} value="Temps plein" name="contract_type" type="radio" id="full_time">
                                                                 <label class="form-check-label" for="full_time">A Temps plein</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" {{ request('contract_type') == 'Temps partiel' ? 'checked': '' }} value="Temps partiel" name="contract_type" type="radio" id="part_time">
+                                                                <input class="form-check-input border" style="border: 0.5px solid #ccc !important" {{ request('contract_type') == 'Temps partiel' ? 'checked': '' }} value="Temps partiel" name="contract_type" type="radio" id="part_time">
                                                                 <label class="form-check-label" for="part_time">Temps partiel</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" {{ request('contract_type') == 'Apprentissage' ? 'checked': '' }} value="Apprentissage" name="contract_type" type="radio" id="apprentissage">
+                                                                <input class="form-check-input border" style="border: 0.5px solid #ccc !important" {{ request('contract_type') == 'Apprentissage' ? 'checked': '' }} value="Apprentissage" name="contract_type" type="radio" id="apprentissage">
                                                                 <label class="form-check-label" for="apprentissage">Apprentissage</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" {{ request('contract_type') == 'Stage' ? 'checked': '' }} value="Stage" name="contract_type" type="radio" id="stage">
+                                                                <input class="form-check-input border" style="border: 0.5px solid #ccc !important" {{ request('contract_type') == 'Stage' ? 'checked': '' }} value="Stage" name="contract_type" type="radio" id="stage">
                                                                 <label class="form-check-label" for="stage">Stage</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" {{ request('contract_type') == 'CDI' ? 'checked': '' }} value="CDI" name="contract_type" type="radio" id="cdi">
+                                                                <input class="form-check-input border" style="border: 0.5px solid #ccc !important" {{ request('contract_type') == 'CDI' ? 'checked': '' }} value="CDI" name="contract_type" type="radio" id="cdi">
                                                                 <label class="form-check-label" for="cdi">CDI</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" {{ request('contract_type') == 'CDD' ? 'checked': '' }} value="CDD" name="contract_type" type="radio" id="cdd">
+                                                                <input class="form-check-input border" style="border: 0.5px solid #ccc !important" {{ request('contract_type') == 'CDD' ? 'checked': '' }} value="CDD" name="contract_type" type="radio" id="cdd">
                                                                 <label class="form-check-label" for="cdd">CDD</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" {{ request('contract_type') == 'Autre' ? 'checked': '' }} value="Autre" name="contract_type" type="radio" id="Autre">
+                                                                <input class="form-check-input border" style="border: 0.5px solid #ccc !important" {{ request('contract_type') == 'Autre' ? 'checked': '' }} value="Autre" name="contract_type" type="radio" id="Autre">
                                                                 <label class="form-check-label" for="Autre">Autres</label>
                                                             </div>
                                                         </div>
@@ -136,7 +136,7 @@
                                             <!-- Locations -->
                                             <div class="widget">
                                                 <h5 class="widgetTitle">Lieux</h5>
-                                                <div class="formField lights icons">
+                                                <div class="formField lights icons" style="border: 0.5px solid #ccc; border-radius: 5px; overflow: hidden">
                                                     <select class="jobcategory form-control" name="location">
                                                         <option value="" selected>Tout le pays</option>
                                                         @foreach ($countries as $country)
@@ -155,25 +155,25 @@
                                                     <div class="row align-items-center justify-content-between gy-2">
                                                         <div class="col-6">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" name="experience" value="0" type="radio" id="freshgraduate">
+                                                                <input class="form-check-input border" style="border: 0.5px solid #ccc !important" name="experience" value="0" type="radio" id="freshgraduate">
                                                                 <label class="form-check-label" for="freshgraduate">Jeune iplomé</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" name="experience" value="1" type="radio" id="beginner">
+                                                                <input class="form-check-input border" style="border: 0.5px solid #ccc !important" name="experience" value="1" type="radio" id="beginner">
                                                                 <label class="form-check-label" for="beginner">Gradué</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" name="experience" value="3" type="radio" id="intermediate">
+                                                                <input class="form-check-input border" style="border: 0.5px solid #ccc !important" name="experience" value="3" type="radio" id="intermediate">
                                                                 <label class="form-check-label" for="intermediate">Lincecié</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" name="experience" value="5" type="radio" id="expert">
+                                                                <input class="form-check-input border" style="border: 0.5px solid #ccc !important" name="experience" value="5" type="radio" id="expert">
                                                                 <label class="form-check-label" for="expert">Expert</label>
                                                             </div>
                                                         </div>

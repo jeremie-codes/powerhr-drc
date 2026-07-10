@@ -447,7 +447,7 @@
         </div>
 
     </div>
-    <div class="top-0 bottom-0 bg-cover h-100 position-absolute end-0 w-50 d-none d-md-none d-xl-block d-lg-block" style="background:url(assets-2/img/base-2.jpg)no-repeat;"></div>
+    <div class="top-0 bottom-0 bg-cover h-100 position-absolute end-0 w-50 d-none d-md-none d-xl-block d-lg-block" style="background:url({{ asset('assets-2/img/base-2.jpg') }})no-repeat;"></div>
     {{-- <div class="top-0 bottom-0 bg-cover h-100 position-absolute end-0 w-50 d-none d-md-none d-xl-block d-lg-block" style="background:url(images/section.png)no-repeat;"></div> --}}
 </section>
 <!-- ============================== Your Career Grows End ========================== -->

@@ -12,7 +12,7 @@
 
                         <div class="text-center">
                             <h4 class="mb-2 text-primary dark:text-primary">Bon retour parmis nous !</h4>
-                            <p class="text-slate-500 dark:text-zink-200">Connectez-vous à votre compte</p>
+                            <p class="text-black dark:text-zink-200">Connectez-vous à votre compte</p>
                         </div>
 
                         @if (session('success'))
@@ -62,13 +62,13 @@
                             </div>
                             <div class="mt-5">
                                 <button type="submit" id="submit-btn"
-                                    class="w-full text-white bg-orange-400 border-orange-400 btn hover:text-white hover:bg-orange-700 hover:border-orange-700 focus:text-white focus:bg-orange-700 focus:border-orange-700 focus:ring focus:ring-custom-100 active:text-white active:bg-orange-700 active:border-orange-700 active:ring active:ring-custom-100 dark:ring-custom-400/20">Se
-                                    connecter
+                                    class="w-full text-white bg-orange-500 border-orange-500 btn hover:text-white hover:bg-orange-600 hover:border-orange-600 focus:text-white focus:bg-orange-600 focus:border-orange-600 focus:ring focus:ring-orange-100 active:text-white active:bg-orange-600 active:border-orange-600 active:ring active:ring-orange-100 dark:ring-orange-400/20">
+                                    Se connecter
                                 </button>
                             </div>
 
                             <div class="mt-10 text-center">
-                                <p class="mb-0 text-slate-500 dark:text-zink-200">Vous n'avez pas de compte ?
+                                <p class="mb-0 text-black dark:text-zink-200">Vous n'avez pas de compte ?
                                     <a href="{{ route('register.view', ['locale' => app()->getLocale()]) }}" class="font-semibold underline transition-all duration-150 ease-linear text-primary dark:text-zink-200 hover:text-primary dark:hover:text-primary">
                                         S'inscrire
                                     </a>

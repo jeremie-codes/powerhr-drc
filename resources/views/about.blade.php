@@ -23,7 +23,7 @@
 
 
 <!-- ============================ blockquote ================================== -->
-<section class="pb-0">
+{{-- <section class="pb-0">
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-xl-9 col-lg-11 col-md-12">
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="fpc-banner"></div>
-</section>
+</section> --}}
 <!-- ============================ blockquote ================================== -->
 
 
@@ -49,77 +49,90 @@
                 <div class="servicesTags">
 
                     <div class="mb-4 headingBloc d-block">
-                        <h3 class="fw-semibold">Join POWER HR DRC & Get Your Dream Job Today</h3>
+                        <h3 class="fw-semibold">POWER HR DRC est une entreprise 100% Congolaise qui transforme l'expérience RH en RDC</h3>
                     </div>
 
                     <div class="mb-4 d-block">
-                        <p>Websites in professional use templating systems. Commercial publishing platforms and content management systems ensure that you can show different text, different data using the same template.</p>
-                        <p>This is quite a problem to solve, but just doing without greeking text won't fix it. Using test items of real content and data in designs will help, but there's no guarantee that every oddity will be found and corrected.</p>
+                        <p>Née du terrain - entre télécoms, BTP, pétrole, et ONG - nous connaissons  les réalités des entreprises, et les attentes des jeunes professionnels.</p>
+                        <p>Notre mission consiste à structurer, connecter, valoriser le capital humain congolais. Nous aidons les jeunes à contruire une vraie identité professionnelle, pas juste à remplir le CV.</p>
+                        <p>Nous ne faisons pas du placement. Nous construisons des trajectoires. <br>Nous ne faisons pas de la sous-traitance. Nous bâtissons des alliances durables entre le potentiel humain et les défis économiques.</p>
                     </div>
 
                     <div class="mb-4 d-block">
+                        <div class="mt-3 headingBloc d-block">
+                            <h3 class="fw-semibold">Nos services</h3>
+                        </div>
                         <ul class="p-0 row g-4">
 
                             <li class="col-md-6">
                                 <div class="singleiconList">
                                     <i class="bi bi-check-circle-fill icon text-success"></i>
-                                    <p>Project Done Successfully</p>
+                                    <p>Placement du personnel</p>
                                 </div>
                             </li>
 
                             <li class="col-md-6">
                                 <div class="singleiconList">
                                     <i class="bi bi-check-circle-fill icon text-success"></i>
-                                    <p><mark class="ctr">200</mark>k Jobs available</p>
+                                    <p>Demande cotation & sourcing</p>
                                 </div>
                             </li>
 
                             <li class="col-md-6">
                                 <div class="singleiconList">
                                     <i class="bi bi-check-circle-fill icon text-success"></i>
-                                    <p><mark class="ctr">18</mark> Winning All Awards</p>
+                                    <p>Outsourcing, Recrutement, Onboarding</p>
                                 </div>
                             </li>
 
                             <li class="col-md-6">
                                 <div class="singleiconList">
                                     <i class="bi bi-check-circle-fill icon text-success"></i>
-                                    <p><mark class="ctr">50000</mark>+ Satisfy Talents</p>
+                                    <p>Gestion de contrat, Paie</p>
+                                </div>
+                            </li>
+
+                            <li class="col-md-6">
+                                <div class="singleiconList">
+                                    <i class="bi bi-check-circle-fill icon text-success"></i>
+                                    <p>Formation</p>
                                 </div>
                             </li>
 
                         </ul>
                     </div>
 
-                    <div class="gap-3 d-flex align-items-center justify-content-start">
-                        <a href="#" class="px-5 btn btn-primary btn-more rounded-pill fw-medium">Create An Account</a>
-                    </div>
-
                 </div>
             </div>
 
-            <div class="col-xl-5 col-lg-6 col-md-12">
+            <div class="col-xl-5 col-lg-6 col-md-12" style="min-height: 500px !important">
                 <div class="row g-4">
+
+                    {{-- <div class="mt-3 headingBloc d-block">
+                        <h3 class="fw-semibold">Notre mission</h3>
+                    </div> --}}
+
+                    <div class="p-0 col-12">
+                        <img src="{{ asset('images/maps.png') }}" class="img-fluid" height="600" />
+                    </div>
+
+                    {{-- <div class="col-6">
+                        <div class="cardCounter pe-2">
+                            <div class="shadow-sm card">
+                                <div class="icons"><i class="bi bi-patch-check text-success"></i></div>
+                                <div class="caption">
+                                    <h6>Ancrage local, intelligence du réel</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="col-6">
                         <div class="cardCounter pe-2">
                             <div class="shadow-sm card">
                                 <div class="icons"><i class="bi bi-patch-check text-success"></i></div>
                                 <div class="caption">
-                                    <h2 class="title"><span class="ctr text-success">22</span>k</h2>
-                                    <p>Active Talents</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <div class="cardCounter pe-2">
-                            <div class="shadow-sm card">
-                                <div class="icons"><i class="bi bi-shield-check text-warning"></i></div>
-                                <div class="caption">
-                                    <h2 class="title"><span class="ctr text-warning">22</span>k</h2>
-                                    <p>Winning Award</p>
+                                    <h6>Structuration des entités professionnelles</h6>
                                 </div>
                             </div>
                         </div>
@@ -128,10 +141,9 @@
                     <div class="col-6">
                         <div class="cardCounter ps-2">
                             <div class="shadow-sm card">
-                                <div class="icons"><i class="bi bi-wallet2 text-info"></i></div>
+                                <div class="icons"><i class="bi bi-patch-check text-success"></i></div>
                                 <div class="caption">
-                                    <h2 class="title"><span class="ctr text-info">22</span>k</h2>
-                                    <p>Active Jobs</p>
+                                    <h6>Culture de l'excellence accessible</h6>
                                 </div>
                             </div>
                         </div>
@@ -140,14 +152,13 @@
                     <div class="col-6">
                         <div class="cardCounter ps-2">
                             <div class="shadow-sm card">
-                                <div class="icons"><i class="bi bi-emoji-laughing text-acent"></i></div>
+                                <div class="icons"><i class="bi bi-patch-check text-success"></i></div>
                                 <div class="caption">
-                                    <h2 class="title"><span class="ctr text-acent">22</span>k</h2>
-                                    <p>Happy Employees</p>
+                                    <h6>Croissance partagée</h6>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
@@ -183,7 +194,7 @@
 
 
 <!-- ============================ Our facts End ================================== -->
-<section class="py-4 gray">
+{{-- <section class="py-4 gray">
     <div class="container">
         <div class="row align-items-center justify-content-between g-4">
 
@@ -233,12 +244,12 @@
 
         </div>
     </div>
-</section>
+</section> --}}
 <!-- ============================ Our facts End ================================== -->
 
 
 <!-- ================================ Our Team Start ======================================= -->
-<section>
+{{-- <section>
     <div class="container">
 
         <div class="row align-items-center justify-content-center">
@@ -333,7 +344,7 @@
         </div>
 
     </div>
-</section>
+</section> --}}
 <!-- ================================ Article Section Start ======================================= -->
 
 

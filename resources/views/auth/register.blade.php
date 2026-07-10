@@ -99,14 +99,14 @@
                                 </div>
                                 <div class="mt-5">
                                     <button type="submit" id="submit-btn"
-                                        class="w-full text-white bg-orange-500 border-orange-500 btn hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">
+                                        class="w-full text-white bg-orange-500 border-orange-500 btn hover:text-white hover:bg-orange-600 hover:border-orange-600 focus:text-white focus:bg-orange-600 focus:border-orange-600 focus:ring focus:ring-orange-100 active:text-white active:bg-orange-600 active:border-orange-600 active:ring active:ring-orange-100 dark:ring-orange-400/20">
                                         Créer un compte
                                     </button>
                                 </div>
                             </form>
 
                             <div class="mt-10 text-center">
-                                <p class="mb-0 text-slate-500 dark:text-zink-200">Avez-vous déjà un compte ? <a
+                                <p class="mb-0 text-black dark:text-zink-200">Avez-vous déjà un compte ? <a
                                         href="{{ route('login.view', ['locale' => app()->getLocale()]) }}"
                                         class="font-semibold underline transition-all duration-150 ease-linear text-primary dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500">Se connecter</a>
                                 </p>

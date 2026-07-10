@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\Country;
 use App\Models\JobCategory;
 use App\Models\JobOffer;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
@@ -47,7 +48,10 @@ class RouteController extends Controller
 
     public function about()
     {
-        return view('about');
+        $teams = User::where('role', 'admin')->get();
+
+        //dd($teams);
+        return view('about', compact('teams'));
     }
 
     public function contact()
