@@ -55,8 +55,10 @@ class JobController extends Controller
         ));
     }
 
-    public function show(JobOffer $jobOffer)
+    public function show($jobOffer)
     {
+        $jobOffer = JobOffer::findOrFail($jobOffer);
+
         $jobOffer->load([
             'client.company',
             'applications'
@@ -69,8 +71,6 @@ class JobController extends Controller
                 ->where('candidate_id', auth()->id())
                 ->exists();
         }
-
-        //dd($hasApplied);
 
         return view('candidate.job.show', compact('jobOffer', 'hasApplied'));
     }
