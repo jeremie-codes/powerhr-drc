@@ -72,6 +72,7 @@ class JobController extends Controller
 
         return view('candidate.job.show', compact('jobOffer', 'hasApplied'));
     }
+
     public function store(Request $request)
     {
         try {

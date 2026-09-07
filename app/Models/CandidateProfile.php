@@ -40,7 +40,7 @@ class CandidateProfile extends Model
 
     public function experiences()
     {
-        return $this->hasMany(CandidateExperience::class, 'candidate_id');
+        return $this->hasMany(CandidateExperience::class, 'candidate_profile_id');
     }
 
     public function educations()
