@@ -55,10 +55,8 @@ class JobController extends Controller
         ));
     }
 
-    public function show($jobOffer)
+    public function show($locale, JobOffer $jobOffer)
     {
-        $jobOffer = JobOffer::findOrFail($jobOffer);
-
         $jobOffer->load([
             'client.company',
             'applications'
@@ -74,7 +72,6 @@ class JobController extends Controller
 
         return view('candidate.job.show', compact('jobOffer', 'hasApplied'));
     }
-
     public function store(Request $request)
     {
         try {
